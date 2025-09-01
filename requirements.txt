@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pydantic
+python-multipart
+pandas
+numpy
+Pillow
+requests
+python-dotenv
+httpx
+aiofiles
