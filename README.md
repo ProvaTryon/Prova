@@ -18,23 +18,30 @@ The platform integrates a recommendation system, a chatbot for customer support,
 
 ## Architecture
 
-The project is structured into three main services:
+The project uses a microservices architecture:
 
-1. **Frontend (React)** – User interface for browsing, shopping, and interacting with AI features.
-2. **Backend-Web (Node.js)** – Handles user accounts, products, companies, and general API services.
-3. **Backend-AI (FastAPI)** – Hosts AI services including chatbot, recommendation, and try-on models.
+1. **Frontend (React)** – User interface
+2. **Backend-Web (Node.js)** – Core business logic and APIs  
+3. **AI-Backend (FastAPI)** – Virtual try-on and AI services (separate repository)
 
 ```
 fashion-platform/
 │
-├── frontend/ # React application
-├── backend-web/ # Node.js backend (website logic)
-├── backend-ai/ # FastAPI backend (AI services)
-├── models/ # Machine learning models
-├── data/ # Datasets and uploaded assets
-├── docs/ # Documentation
-├── docker-compose.yml
-└── README.md
+├── frontend/           # React application
+├── backend-web/        # Node.js backend
+├── ai-backend/         # Git submodule → cloth-store-app-tryone
+├── docs/              # Documentation
+└── docker-compose.yml
+```
+
+### Setup with Submodule
+
+```bash
+git clone --recursive https://github.com/YousefAyman125/clothing-store-app.git
+cd fashion-platform
+
+# If already cloned, initialize submodules
+git submodule update --init --recursive
 ```
 
 ---
@@ -101,3 +108,39 @@ uvicorn app.main:app --reload
 ```bash
 docker-compose up --build
 ```
+
+---
+
+## Prerequisites
+- Node.js 18+ 
+- Python 3.9+
+- Docker & Docker Compose
+
+## Environment Variables
+```bash
+# Backend-Web
+DATABASE_URL=postgresql://user:password@localhost:5432/fashion_db
+JWT_SECRET=your_jwt_secret
+AI_SERVICE_URL=http://localhost:8000
+
+# Backend-AI  
+MODEL_PATH=/app/models
+HUGGINGFACE_TOKEN=your_token
+```
+
+## API Documentation
+- Backend-Web: http://localhost:5000/api-docs
+- Backend-AI: http://localhost:8000/docs
+
+## Testing
+```bash
+make test                    # Run all tests
+make backend-test           # Backend tests only
+make frontend-test          # Frontend tests only
+```
+
+## Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## License
+MIT License - see [LICENSE](LICENSE) file.
