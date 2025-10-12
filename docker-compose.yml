@@ -5,28 +5,20 @@ services:
     build: ./frontend
     ports:
       - "3000:3000"
-    environment:
-      - REACT_APP_BACKEND_URL=http://localhost:5000
-    depends_on:
-      - backend-web
-
+    
   backend-web:
     build: ./backend-web
     ports:
       - "5000:5000"
     environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/fashion_db
-      - AI_SERVICE_URL=http://backend-ai:8000
-    depends_on:
-      - db
-      - backend-ai
-
-  backend-ai:
-    build: ./backend-ai
+      - AI_SERVICE_URL=http://ai-backend:8000
+    
+  ai-backend:  # Updated service name
+    build: ./ai-backend
     ports:
       - "8000:8000"
-    environment:
-      - MODEL_PATH=/app/models
+    volumes:
+      - ./ai-backend/models:/app/models
 
   db:
     image: postgres:13
