@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { Plus, Pencil, Trash2, Search } from "lucide-react"
 import { mockProducts, type Product } from "@/lib/mock-data"
 import { Button } from "@/components/ui/button"
@@ -8,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { ProductFormModal } from "@/components/admin/product-form-modal"
 
 export default function ProductsManagement() {
+  const t = useTranslations('admin.products')
   const [products, setProducts] = useState<Product[]>(mockProducts)
   const [searchQuery, setSearchQuery] = useState("")
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -35,7 +37,7 @@ export default function ProductsManagement() {
   }
 
   const handleDeleteProduct = (id: string) => {
-    if (confirm("Are you sure you want to delete this product?")) {
+    if (confirm(t('deleteConfirm'))) {
       setProducts(products.filter((p) => p.id !== id))
     }
   }
@@ -54,12 +56,12 @@ export default function ProductsManagement() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="font-serif text-3xl font-semibold mb-2">Products</h1>
-          <p className="text-muted-foreground">Manage your product catalog</p>
+          <h1 className="font-serif text-3xl font-semibold mb-2">{t('title')}</h1>
+          <p className="text-muted-foreground">{t('subtitle')}</p>
         </div>
         <Button onClick={() => setIsModalOpen(true)} className="flex items-center gap-2">
           <Plus className="w-4 h-4" />
-          Add Product
+          {t('addProduct')}
         </Button>
       </div>
 
@@ -69,7 +71,7 @@ export default function ProductsManagement() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
           <Input
             type="text"
-            placeholder="Search products..."
+            placeholder={t('searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
@@ -83,12 +85,12 @@ export default function ProductsManagement() {
           <table className="w-full">
             <thead className="bg-muted/50 border-b border-border">
               <tr>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Product</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Brand</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Category</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Price</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Stock</th>
-                <th className="text-right px-6 py-4 text-sm font-semibold">Actions</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('product')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('brand')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('category')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('price')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('stock')}</th>
+                <th className="text-right px-6 py-4 text-sm font-semibold">{t('actions')}</th>
               </tr>
             </thead>
             <tbody>
@@ -103,7 +105,7 @@ export default function ProductsManagement() {
                       />
                       <div>
                         <p className="font-medium">{product.name}</p>
-                        <p className="text-sm text-muted-foreground">{product.sizes.length} sizes</p>
+                        <p className="text-sm text-muted-foreground">{product.sizes.length} {t('sizes')}</p>
                       </div>
                     </div>
                   </td>
@@ -131,7 +133,7 @@ export default function ProductsManagement() {
                         product.inStock ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"
                       }`}
                     >
-                      {product.inStock ? "In Stock" : "Out of Stock"}
+                      {product.inStock ? t('inStock') : t('outOfStock')}
                     </span>
                   </td>
                   <td className="px-6 py-4">
@@ -139,12 +141,14 @@ export default function ProductsManagement() {
                       <button
                         onClick={() => openEditModal(product)}
                         className="p-2 hover:bg-muted rounded-lg transition-colors"
+                        title={t('actions')}
                       >
                         <Pencil className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteProduct(product.id)}
                         className="p-2 hover:bg-red-50 text-red-600 rounded-lg transition-colors"
+                        title={t('actions')}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -158,7 +162,7 @@ export default function ProductsManagement() {
 
         {filteredProducts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">No products found</p>
+            <p className="text-muted-foreground">{t('noProductsFound')}</p>
           </div>
         )}
       </div>
