@@ -111,18 +111,25 @@
     "saveChanges": "Save Changes"
   },
   "shop": {
-    "title": "Shop",
+    "title": "Shop All",
+    "subtitle": "Discover our curated collection of premium fashion",
     "filters": "Filters",
     "sortBy": "Sort By",
+    "searchPlaceholder": "Search products...",
     "priceRange": "Price Range",
     "category": "Category",
     "brand": "Brand",
     "size": "Size",
     "color": "Color",
-    "applyFilters": "Apply Filters",
-    "clearFilters": "Clear Filters",
-    "showingResults": "Showing {count} results",
-    "noResults": "No products found"
+    "clearAll": "Clear All",
+    "clearFilters": "Clear all filters",
+    "noResults": "No products found matching your criteria",
+    "productsCount": "{count} products",
+    "productCount": "{count} product",
+    "sortFeatured": "Featured",
+    "sortPriceLow": "Price: Low to High",
+    "sortPriceHigh": "Price: High to Low",
+    "sortName": "Name: A to Z"
   },
   "common": {
     "search": "Search",

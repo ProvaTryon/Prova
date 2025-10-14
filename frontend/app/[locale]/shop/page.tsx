@@ -7,8 +7,10 @@ import { ProductCard } from "@/components/product/product-card"
 import { FilterSidebar } from "@/components/shop/filter-sidebar"
 import { mockProducts } from "@/lib/mock-data"
 import { SlidersHorizontal, Search } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export default function ShopPage() {
+  const t = useTranslations('shop')
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [sortBy, setSortBy] = useState("featured")
@@ -77,8 +79,8 @@ export default function ShopPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="font-serif text-4xl sm:text-5xl font-medium mb-4">Shop All</h1>
-            <p className="text-muted-foreground">Discover our curated collection of premium fashion</p>
+            <h1 className="font-serif text-4xl sm:text-5xl font-medium mb-4">{t('title')}</h1>
+            <p className="text-muted-foreground">{t('subtitle')}</p>
           </div>
 
           {/* Search and Controls */}
@@ -88,7 +90,7 @@ export default function ShopPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <input
                 type="text"
-                placeholder="Search products..."
+                placeholder={t('searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
@@ -100,11 +102,12 @@ export default function ShopPage() {
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
               className="px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              aria-label={t('sortBy')}
             >
-              <option value="featured">Featured</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="name">Name: A to Z</option>
+              <option value="featured">{t('sortFeatured')}</option>
+              <option value="price-low">{t('sortPriceLow')}</option>
+              <option value="price-high">{t('sortPriceHigh')}</option>
+              <option value="name">{t('sortName')}</option>
             </select>
 
             {/* Mobile Filter Button */}
@@ -113,7 +116,7 @@ export default function ShopPage() {
               className="lg:hidden flex items-center gap-2 px-4 py-3 border border-border rounded-lg hover:bg-muted transition-colors"
             >
               <SlidersHorizontal className="w-5 h-5" />
-              Filters
+              {t('filters')}
             </button>
           </div>
 
@@ -130,7 +133,7 @@ export default function ShopPage() {
             {/* Products Grid */}
             <div className="flex-1">
               <div className="mb-4 text-sm text-muted-foreground">
-                {filteredProducts.length} {filteredProducts.length === 1 ? "product" : "products"}
+                {t(filteredProducts.length === 1 ? 'productCount' : 'productsCount', { count: filteredProducts.length })}
               </div>
 
               {filteredProducts.length > 0 ? (
@@ -141,7 +144,7 @@ export default function ShopPage() {
                 </div>
               ) : (
                 <div className="text-center py-16">
-                  <p className="text-muted-foreground mb-4">No products found matching your criteria</p>
+                  <p className="text-muted-foreground mb-4">{t('noResults')}</p>
                   <button
                     onClick={() =>
                       setFilters({
@@ -153,7 +156,7 @@ export default function ShopPage() {
                     }
                     className="text-primary hover:underline"
                   >
-                    Clear all filters
+                    {t('clearFilters')}
                   </button>
                 </div>
               )}

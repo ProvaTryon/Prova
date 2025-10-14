@@ -111,18 +111,25 @@
     "saveChanges": "حفظ التغييرات"
   },
   "shop": {
-    "title": "المتجر",
-    "filters": "التصفية",
+    "title": "تسوق الكل",
+    "subtitle": "اكتشف مجموعتنا المختارة من الأزياء الفاخرة",
+    "filters": "الفلاتر",
     "sortBy": "ترتيب حسب",
+    "searchPlaceholder": "ابحث عن المنتجات...",
     "priceRange": "نطاق السعر",
     "category": "الفئة",
     "brand": "العلامة التجارية",
     "size": "المقاس",
     "color": "اللون",
-    "applyFilters": "تطبيق التصفية",
-    "clearFilters": "مسح التصفية",
-    "showingResults": "عرض {count} نتيجة",
-    "noResults": "لم يتم العثور على منتجات"
+    "clearAll": "مسح الكل",
+    "clearFilters": "مسح جميع الفلاتر",
+    "noResults": "لم يتم العثور على منتجات تطابق معاييرك",
+    "productsCount": "{count} منتج",
+    "productCount": "{count} منتج",
+    "sortFeatured": "مميز",
+    "sortPriceLow": "السعر: من الأقل إلى الأعلى",
+    "sortPriceHigh": "السعر: من الأعلى إلى الأقل",
+    "sortName": "الاسم: من أ إلى ي"
   },
   "common": {
     "search": "بحث",

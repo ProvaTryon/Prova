@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { X } from "lucide-react"
 import { brands, categories } from "@/lib/mock-data"
+import { useTranslations } from "next-intl"
 
 interface FilterSidebarProps {
   isOpen: boolean
@@ -17,6 +18,7 @@ interface FilterSidebarProps {
 }
 
 export function FilterSidebar({ isOpen, onClose, filters, onFilterChange }: FilterSidebarProps) {
+  const t = useTranslations('shop')
   const [localFilters, setLocalFilters] = useState(filters)
 
   const handleCategoryChange = (categoryId: string) => {
@@ -61,8 +63,8 @@ export function FilterSidebar({ isOpen, onClose, filters, onFilterChange }: Filt
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-6 lg:mb-8">
-          <h2 className="font-serif text-xl font-semibold">Filters</h2>
-          <button onClick={onClose} className="lg:hidden p-2 hover:bg-muted rounded-full">
+          <h2 className="font-serif text-xl font-semibold">{t('filters')}</h2>
+          <button onClick={onClose} className="lg:hidden p-2 hover:bg-muted rounded-full" aria-label="Close filters">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -72,12 +74,12 @@ export function FilterSidebar({ isOpen, onClose, filters, onFilterChange }: Filt
           onClick={handleClearAll}
           className="w-full mb-6 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
-          Clear All
+          {t('clearAll')}
         </button>
 
         {/* Categories */}
         <div className="mb-8">
-          <h3 className="font-semibold mb-4">Category</h3>
+          <h3 className="font-semibold mb-4">{t('category')}</h3>
           <div className="space-y-2">
             {categories.map((category) => (
               <label key={category.id} className="flex items-center gap-3 cursor-pointer group">
@@ -96,7 +98,7 @@ export function FilterSidebar({ isOpen, onClose, filters, onFilterChange }: Filt
 
         {/* Brands */}
         <div className="mb-8">
-          <h3 className="font-semibold mb-4">Brand</h3>
+          <h3 className="font-semibold mb-4">{t('brand')}</h3>
           <div className="space-y-2">
             {brands.map((brand) => (
               <label key={brand} className="flex items-center gap-3 cursor-pointer group">
@@ -114,7 +116,7 @@ export function FilterSidebar({ isOpen, onClose, filters, onFilterChange }: Filt
 
         {/* Price Range */}
         <div className="mb-8">
-          <h3 className="font-semibold mb-4">Price Range</h3>
+          <h3 className="font-semibold mb-4">{t('priceRange')}</h3>
           <div className="space-y-4">
             <input
               type="range"
@@ -140,7 +142,7 @@ export function FilterSidebar({ isOpen, onClose, filters, onFilterChange }: Filt
 
         {/* Sizes */}
         <div>
-          <h3 className="font-semibold mb-4">Size</h3>
+          <h3 className="font-semibold mb-4">{t('size')}</h3>
           <div className="grid grid-cols-3 gap-2">
             {["XS", "S", "M", "L", "XL", "XXL"].map((size) => (
               <button
