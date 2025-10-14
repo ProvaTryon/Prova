@@ -1,56 +1,60 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useParams } from "next/navigation"
+import { useTranslations } from "next-intl"
 import { LayoutDashboard, Package, Users, ShoppingCart, Settings, Store, Home } from "lucide-react"
-
-const navItems = [
-  {
-    name: "Dashboard",
-    href: "/admin",
-    icon: LayoutDashboard,
-  },
-  {
-    name: "Stores",
-    href: "/admin/stores",
-    icon: Store,
-  },
-  {
-    name: "Products",
-    href: "/admin/products",
-    icon: Package,
-  },
-  {
-    name: "Users",
-    href: "/admin/users",
-    icon: Users,
-  },
-  {
-    name: "Orders",
-    href: "/admin/orders",
-    icon: ShoppingCart,
-  },
-  {
-    name: "Settings",
-    href: "/admin/settings",
-    icon: Settings,
-  },
-]
 
 export function AdminSidebar() {
   const pathname = usePathname()
+  const params = useParams()
+  const locale = params.locale as string
+  const t = useTranslations('admin.sidebar')
+
+  const navItems = [
+    {
+      name: t('dashboard'),
+      href: `/${locale}/admin`,
+      icon: LayoutDashboard,
+    },
+    {
+      name: t('stores'),
+      href: `/${locale}/admin/stores`,
+      icon: Store,
+    },
+    {
+      name: t('products'),
+      href: `/${locale}/admin/products`,
+      icon: Package,
+    },
+    {
+      name: t('users'),
+      href: `/${locale}/admin/users`,
+      icon: Users,
+    },
+    {
+      name: t('orders'),
+      href: `/${locale}/admin/orders`,
+      icon: ShoppingCart,
+    },
+    {
+      name: t('settings'),
+      href: `/${locale}/admin/settings`,
+      icon: Settings,
+    },
+  ]
 
   return (
     <aside className="w-64 bg-muted/30 border-r border-border min-h-screen">
       <div className="p-6">
-        <h2 className="font-serif text-xl font-semibold mb-4">Admin Panel</h2>
+        <h2 className="font-serif text-xl font-semibold mb-4">{useTranslations('admin')('title')}</h2>
 
         <Link
-          href="/"
+          href={`/${locale}`}
           className="flex items-center justify-center gap-2 w-full px-4 py-2 mb-6 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
         >
           <Home className="w-4 h-4" />
-          <span className="font-medium">Back to Store</span>
+          <span className="font-medium">{t('backToStore')}</span>
         </Link>
 
         <nav className="space-y-2">

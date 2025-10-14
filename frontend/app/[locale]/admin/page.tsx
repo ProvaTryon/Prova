@@ -1,24 +1,28 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { Package, Users, TrendingUp, Store } from "lucide-react"
 import { mockStores } from "@/lib/mock-data"
 
 export default function AdminDashboard() {
+  const t = useTranslations('admin.dashboard')
+  const tStats = useTranslations('admin.dashboard.stats')
+  
   const totalStores = mockStores.length
   const activeStores = mockStores.filter((s) => s.status === "active").length
-  const pendingStores = mockStores.filter((s) => s.status === "pending").length
+  const pendingStoresList = mockStores.filter((s) => s.status === "pending")
 
   const stats = [
     {
-      name: "Total Stores",
+      name: tStats('totalStores'),
       value: totalStores.toString(),
-      change: `${activeStores} active`,
+      change: `${activeStores} ${tStats('active')}`,
       icon: Store,
       color: "text-accent-foreground",
       bgColor: "bg-accent/20",
     },
     {
-      name: "Total Products",
+      name: tStats('totalProducts'),
       value: "248",
       change: "+12%",
       icon: Package,
@@ -26,7 +30,7 @@ export default function AdminDashboard() {
       bgColor: "bg-green-50",
     },
     {
-      name: "Total Users",
+      name: tStats('totalUsers'),
       value: "1,429",
       change: "+8%",
       icon: Users,
@@ -34,7 +38,7 @@ export default function AdminDashboard() {
       bgColor: "bg-purple-50",
     },
     {
-      name: "Revenue",
+      name: tStats('revenue'),
       value: "$45,231",
       change: "+18%",
       icon: TrendingUp,
@@ -46,8 +50,8 @@ export default function AdminDashboard() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="font-serif text-3xl font-semibold mb-2">Dashboard</h1>
-        <p className="text-muted-foreground">Welcome to the Pròva admin panel</p>
+        <h1 className="font-serif text-3xl font-semibold mb-2">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('welcome')}</p>
       </div>
 
       {/* Stats Grid */}
@@ -77,8 +81,8 @@ export default function AdminDashboard() {
         <div className="bg-background border border-border rounded-lg p-6">
           <h2 className="font-serif text-xl font-semibold mb-4">Pending Store Approvals</h2>
           <div className="space-y-4">
-            {pendingStores.length > 0 ? (
-              pendingStores.map((store) => (
+            {pendingStoresList.length > 0 ? (
+              pendingStoresList.map((store) => (
                 <div
                   key={store.id}
                   className="flex items-center justify-between py-3 border-b border-border last:border-0"

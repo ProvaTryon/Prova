@@ -211,5 +211,139 @@
     "previous": "Previous",
     "submit": "Submit",
     "required": "Required"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "dashboard": {
+      "title": "Dashboard",
+      "welcome": "Welcome to the Pròva admin panel",
+      "stats": {
+        "totalStores": "Total Stores",
+        "active": "active",
+        "totalProducts": "Total Products",
+        "totalUsers": "Total Users",
+        "revenue": "Revenue"
+      },
+      "recentActivity": "Recent Activity",
+      "viewDetails": "View Details"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "stores": "Stores",
+      "products": "Products",
+      "users": "Users",
+      "orders": "Orders",
+      "settings": "Settings",
+      "backToStore": "Back to Store"
+    },
+    "stores": {
+      "title": "Store Management",
+      "allStores": "All Stores",
+      "active": "Active",
+      "pending": "Pending",
+      "suspended": "Suspended",
+      "status": "Status",
+      "owner": "Owner",
+      "totalSales": "Total Sales",
+      "actions": "Actions"
+    },
+    "products": {
+      "title": "Product Management",
+      "allProducts": "All Products",
+      "addProduct": "Add Product"
+    },
+    "users": {
+      "title": "User Management",
+      "allUsers": "All Users",
+      "role": "Role",
+      "joinedDate": "Joined Date"
+    },
+    "orders": {
+      "title": "Order Management",
+      "allOrders": "All Orders",
+      "orderNumber": "Order #",
+      "customer": "Customer",
+      "date": "Date",
+      "total": "Total",
+      "status": "Status"
+    }
+  },
+  "storeOwner": {
+    "title": "Store Owner",
+    "subtitle": "Manage your store",
+    "dashboard": {
+      "welcome": "Welcome back, {name}",
+      "subtitle": "Here's what's happening with {storeName} today",
+      "stats": {
+        "totalProducts": "Total Products",
+        "totalSales": "Total Sales",
+        "revenue": "Revenue",
+        "conversionRate": "Conversion Rate",
+        "thisMonth": "this month",
+        "fromLastMonth": "from last month"
+      },
+      "recentOrders": "Recent Orders",
+      "topProducts": "Top Products",
+      "noOrders": "No orders yet"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "myProducts": "My Products",
+      "analytics": "Analytics",
+      "settings": "Settings",
+      "viewStore": "View Store"
+    },
+    "products": {
+      "title": "My Products",
+      "addProduct": "Add New Product",
+      "editProduct": "Edit Product",
+      "noProducts": "You haven't added any products yet",
+      "startAdding": "Start adding products to your store"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "overview": "Overview",
+      "salesTrend": "Sales Trend",
+      "topProducts": "Top Products",
+      "customerInsights": "Customer Insights"
+    }
+  },
+  "customerService": {
+    "title": "Customer Service",
+    "subtitle": "Support Dashboard",
+    "dashboard": {
+      "title": "Customer Service Dashboard",
+      "subtitle": "Manage customer inquiries and support tickets",
+      "stats": {
+        "waiting": "Waiting",
+        "active": "Active",
+        "resolvedToday": "Resolved Today",
+        "unreadMessages": "Unread Messages"
+      },
+      "recentConversations": "Recent Conversations",
+      "viewAll": "View All Conversations",
+      "noConversations": "No conversations yet"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "conversations": "Conversations",
+      "analytics": "Analytics",
+      "settings": "Settings",
+      "viewStore": "View Store"
+    },
+    "conversations": {
+      "title": "Conversations",
+      "all": "All",
+      "waiting": "Waiting",
+      "active": "Active",
+      "resolved": "Resolved",
+      "searchConversations": "Search conversations..."
+    },
+    "analytics": {
+      "title": "Analytics",
+      "responseTime": "Avg. Response Time",
+      "resolutionRate": "Resolution Rate",
+      "customerSatisfaction": "Customer Satisfaction"
+    }
   }
 }

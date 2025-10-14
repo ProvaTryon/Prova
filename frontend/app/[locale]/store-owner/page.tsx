@@ -1,47 +1,50 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { useAuth } from "@/lib/auth-context"
 import { mockStores, mockProducts } from "@/lib/mock-data"
 import { Package, DollarSign, ShoppingCart, TrendingUp } from "lucide-react"
 import Link from "next/link"
 
 export default function StoreOwnerDashboard() {
+  const t = useTranslations('storeOwner.dashboard')
+  const tStats = useTranslations('storeOwner.dashboard.stats')
   const { user } = useAuth()
   const store = mockStores.find((s) => s.id === user?.storeId)
   const storeProducts = mockProducts.filter((p) => p.brand === store?.name)
 
   const stats = [
     {
-      label: "Total Products",
+      label: tStats('totalProducts'),
       value: storeProducts.length,
       icon: Package,
-      change: "+2 this month",
+      change: `+2 ${tStats('thisMonth')}`,
     },
     {
-      label: "Total Sales",
+      label: tStats('totalSales'),
       value: store?.totalSales || 0,
       icon: ShoppingCart,
-      change: "+12% from last month",
+      change: `+12% ${tStats('fromLastMonth')}`,
     },
     {
-      label: "Revenue",
+      label: tStats('revenue'),
       value: `$${(store?.revenue || 0).toLocaleString()}`,
       icon: DollarSign,
-      change: "+8% from last month",
+      change: `+8% ${tStats('fromLastMonth')}`,
     },
     {
-      label: "Conversion Rate",
+      label: tStats('conversionRate'),
       value: "3.2%",
       icon: TrendingUp,
-      change: "+0.5% from last month",
+      change: `+0.5% ${tStats('fromLastMonth')}`,
     },
   ]
 
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-serif mb-2">Welcome back, {user?.name}</h1>
-        <p className="text-muted-foreground">Here's what's happening with {store?.name} today</p>
+        <h1 className="text-3xl font-serif mb-2">{t('welcome', { name: user?.name || 'User' })}</h1>
+        <p className="text-muted-foreground">{t('subtitle', { storeName: store?.name || 'Your Store' })}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

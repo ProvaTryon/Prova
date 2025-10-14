@@ -1,10 +1,17 @@
 "use client"
 
+import { useTranslations } from "next-intl"
+import { useParams } from "next/navigation"
 import { mockConversations } from "@/lib/mock-data"
 import { MessageSquare, Clock, CheckCircle, AlertCircle } from "lucide-react"
 import Link from "next/link"
 
 export default function CustomerServiceDashboard() {
+  const t = useTranslations('customerService.dashboard')
+  const tStats = useTranslations('customerService.dashboard.stats')
+  const params = useParams()
+  const locale = params.locale as string
+  
   const waitingConversations = mockConversations.filter((c) => c.status === "waiting")
   const activeConversations = mockConversations.filter((c) => c.status === "active")
   const resolvedToday = mockConversations.filter((c) => c.status === "resolved")
@@ -12,28 +19,28 @@ export default function CustomerServiceDashboard() {
 
   const stats = [
     {
-      label: "Waiting",
+      label: tStats('waiting'),
       value: waitingConversations.length,
       icon: Clock,
       color: "text-yellow-600",
       bgColor: "bg-yellow-100",
     },
     {
-      label: "Active",
+      label: tStats('active'),
       value: activeConversations.length,
       icon: MessageSquare,
       color: "text-blue-600",
       bgColor: "bg-blue-100",
     },
     {
-      label: "Resolved Today",
+      label: tStats('resolvedToday'),
       value: resolvedToday.length,
       icon: CheckCircle,
       color: "text-green-600",
       bgColor: "bg-green-100",
     },
     {
-      label: "Unread Messages",
+      label: tStats('unreadMessages'),
       value: totalUnread,
       icon: AlertCircle,
       color: "text-red-600",
@@ -46,8 +53,8 @@ export default function CustomerServiceDashboard() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-serif mb-2">Customer Service Dashboard</h1>
-        <p className="text-muted-foreground">Manage customer inquiries and support tickets</p>
+        <h1 className="text-3xl font-serif mb-2">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -69,7 +76,7 @@ export default function CustomerServiceDashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-card p-6 rounded-lg border">
-          <h2 className="text-xl font-serif mb-4">Recent Conversations</h2>
+          <h2 className="text-xl font-serif mb-4">{t('recentConversations')}</h2>
           <div className="space-y-3">
             {recentConversations.map((conv) => (
               <Link
@@ -109,10 +116,10 @@ export default function CustomerServiceDashboard() {
             ))}
           </div>
           <Link
-            href="/customer-service/conversations"
+            href={`/${locale}/customer-service/conversations`}
             className="text-sm text-primary hover:underline mt-4 inline-block"
           >
-            View all conversations →
+            {t('viewAll')} →
           </Link>
         </div>
 

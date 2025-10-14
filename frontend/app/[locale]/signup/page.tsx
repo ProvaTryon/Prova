@@ -129,22 +129,20 @@ export default function SignupPage() {
                 <button
                   type="button"
                   onClick={() => setAccountType("customer")}
-                  className={`py-3 px-4 border-2 rounded-lg transition-all ${
-                    accountType === "customer"
+                  className={`py-3 px-4 border-2 rounded-lg transition-all ${accountType === "customer"
                       ? "border-primary bg-primary text-primary-foreground"
                       : "border-border hover:border-primary"
-                  }`}
+                    }`}
                 >
                   {t("customer")}
                 </button>
                 <button
                   type="button"
                   onClick={() => setAccountType("brand")}
-                  className={`py-3 px-4 border-2 rounded-lg transition-all ${
-                    accountType === "brand"
+                  className={`py-3 px-4 border-2 rounded-lg transition-all ${accountType === "brand"
                       ? "border-primary bg-primary text-primary-foreground"
                       : "border-border hover:border-primary"
-                  }`}
+                    }`}
                 >
                   {t("brand")}
                 </button>

@@ -211,5 +211,139 @@
     "previous": "السابق",
     "submit": "إرسال",
     "required": "مطلوب"
+  },
+  "admin": {
+    "title": "لوحة الإدارة",
+    "dashboard": {
+      "title": "لوحة التحكم",
+      "welcome": "مرحباً بك في لوحة إدارة Pròva",
+      "stats": {
+        "totalStores": "إجمالي المتاجر",
+        "active": "نشط",
+        "totalProducts": "إجمالي المنتجات",
+        "totalUsers": "إجمالي المستخدمين",
+        "revenue": "الإيرادات"
+      },
+      "recentActivity": "النشاط الأخير",
+      "viewDetails": "عرض التفاصيل"
+    },
+    "sidebar": {
+      "dashboard": "لوحة التحكم",
+      "stores": "المتاجر",
+      "products": "المنتجات",
+      "users": "المستخدمون",
+      "orders": "الطلبات",
+      "settings": "الإعدادات",
+      "backToStore": "العودة للمتجر"
+    },
+    "stores": {
+      "title": "إدارة المتاجر",
+      "allStores": "جميع المتاجر",
+      "active": "نشط",
+      "pending": "قيد الانتظار",
+      "suspended": "معلق",
+      "status": "الحالة",
+      "owner": "المالك",
+      "totalSales": "إجمالي المبيعات",
+      "actions": "الإجراءات"
+    },
+    "products": {
+      "title": "إدارة المنتجات",
+      "allProducts": "جميع المنتجات",
+      "addProduct": "إضافة منتج"
+    },
+    "users": {
+      "title": "إدارة المستخدمين",
+      "allUsers": "جميع المستخدمين",
+      "role": "الدور",
+      "joinedDate": "تاريخ الانضمام"
+    },
+    "orders": {
+      "title": "إدارة الطلبات",
+      "allOrders": "جميع الطلبات",
+      "orderNumber": "طلب رقم",
+      "customer": "العميل",
+      "date": "التاريخ",
+      "total": "الإجمالي",
+      "status": "الحالة"
+    }
+  },
+  "storeOwner": {
+    "title": "مالك المتجر",
+    "subtitle": "إدارة متجرك",
+    "dashboard": {
+      "welcome": "مرحباً بعودتك، {name}",
+      "subtitle": "إليك ما يحدث مع {storeName} اليوم",
+      "stats": {
+        "totalProducts": "إجمالي المنتجات",
+        "totalSales": "إجمالي المبيعات",
+        "revenue": "الإيرادات",
+        "conversionRate": "معدل التحويل",
+        "thisMonth": "هذا الشهر",
+        "fromLastMonth": "من الشهر الماضي"
+      },
+      "recentOrders": "الطلبات الأخيرة",
+      "topProducts": "المنتجات الأكثر مبيعاً",
+      "noOrders": "لا توجد طلبات بعد"
+    },
+    "sidebar": {
+      "dashboard": "لوحة التحكم",
+      "myProducts": "منتجاتي",
+      "analytics": "التحليلات",
+      "settings": "الإعدادات",
+      "viewStore": "عرض المتجر"
+    },
+    "products": {
+      "title": "منتجاتي",
+      "addProduct": "إضافة منتج جديد",
+      "editProduct": "تعديل المنتج",
+      "noProducts": "لم تضف أي منتجات بعد",
+      "startAdding": "ابدأ بإضافة منتجات إلى متجرك"
+    },
+    "analytics": {
+      "title": "التحليلات",
+      "overview": "نظرة عامة",
+      "salesTrend": "اتجاه المبيعات",
+      "topProducts": "المنتجات الأكثر مبيعاً",
+      "customerInsights": "رؤى العملاء"
+    }
+  },
+  "customerService": {
+    "title": "خدمة العملاء",
+    "subtitle": "لوحة الدعم",
+    "dashboard": {
+      "title": "لوحة خدمة العملاء",
+      "subtitle": "إدارة استفسارات العملاء وتذاكر الدعم",
+      "stats": {
+        "waiting": "في الانتظار",
+        "active": "نشط",
+        "resolvedToday": "تم حلها اليوم",
+        "unreadMessages": "الرسائل غير المقروءة"
+      },
+      "recentConversations": "المحادثات الأخيرة",
+      "viewAll": "عرض جميع المحادثات",
+      "noConversations": "لا توجد محادثات بعد"
+    },
+    "sidebar": {
+      "dashboard": "لوحة التحكم",
+      "conversations": "المحادثات",
+      "analytics": "التحليلات",
+      "settings": "الإعدادات",
+      "viewStore": "عرض المتجر"
+    },
+    "conversations": {
+      "title": "المحادثات",
+      "all": "الكل",
+      "waiting": "في الانتظار",
+      "active": "نشط",
+      "resolved": "تم الحل",
+      "searchConversations": "البحث في المحادثات..."
+    },
+    "analytics": {
+      "title": "التحليلات",
+      "responseTime": "متوسط وقت الاستجابة",
+      "resolutionRate": "معدل الحل",
+      "customerSatisfaction": "رضا العملاء"
+    }
   }
 }

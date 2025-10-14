@@ -1,32 +1,37 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useParams } from "next/navigation"
+import { useTranslations } from "next-intl"
 import { Package, BarChart3, Settings, Home, Store } from "lucide-react"
 
 export function StoreSidebar() {
   const pathname = usePathname()
+  const params = useParams()
+  const locale = params.locale as string
+  const t = useTranslations('storeOwner.sidebar')
+  const tTitle = useTranslations('storeOwner')
 
   const links = [
-    { href: "/store-owner", label: "Dashboard", icon: Home },
-    { href: "/store-owner/products", label: "My Products", icon: Package },
-    { href: "/store-owner/analytics", label: "Analytics", icon: BarChart3 },
-    { href: "/store-owner/settings", label: "Settings", icon: Settings },
+    { href: `/${locale}/store-owner`, label: t('dashboard'), icon: Home },
+    { href: `/${locale}/store-owner/products`, label: t('myProducts'), icon: Package },
+    { href: `/${locale}/store-owner/analytics`, label: t('analytics'), icon: BarChart3 },
+    { href: `/${locale}/store-owner/settings`, label: t('settings'), icon: Settings },
   ]
 
   return (
     <aside className="w-64 bg-primary text-primary-foreground min-h-screen p-6">
       <div className="mb-6">
-        <h2 className="text-2xl font-serif">Store Owner</h2>
-        <p className="text-sm opacity-80 mt-1">Manage your store</p>
+        <h2 className="text-2xl font-serif">{tTitle('title')}</h2>
+        <p className="text-sm opacity-80 mt-1">{tTitle('subtitle')}</p>
       </div>
 
       <Link
-        href="/"
+        href={`/${locale}`}
         className="flex items-center justify-center gap-2 w-full px-4 py-2 mb-6 rounded-lg bg-primary-foreground text-primary hover:bg-primary-foreground/90 transition-colors"
       >
         <Store className="w-4 h-4" />
-        <span className="font-medium">View Store</span>
+        <span className="font-medium">{t('viewStore')}</span>
       </Link>
 
       <nav className="space-y-2">
