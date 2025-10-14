@@ -290,7 +290,18 @@
       },
       "recentOrders": "Recent Orders",
       "topProducts": "Top Products",
-      "noOrders": "No orders yet"
+      "noOrders": "No orders yet",
+      "recentProducts": "Recent Products",
+      "inStock": "In Stock",
+      "outOfStock": "Out of Stock",
+      "viewAllProducts": "View all products",
+      "quickActions": "Quick Actions",
+      "addNewProduct": "Add New Product",
+      "addNewProductDesc": "List a new item in your store",
+      "viewAnalytics": "View Analytics",
+      "viewAnalyticsDesc": "Check your sales performance",
+      "storeSettings": "Store Settings",
+      "storeSettingsDesc": "Update your store information"
     },
     "sidebar": {
       "dashboard": "Dashboard",

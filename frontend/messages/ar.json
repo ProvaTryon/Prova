@@ -290,7 +290,18 @@
       },
       "recentOrders": "الطلبات الأخيرة",
       "topProducts": "المنتجات الأكثر مبيعاً",
-      "noOrders": "لا توجد طلبات بعد"
+      "noOrders": "لا توجد طلبات بعد",
+      "recentProducts": "المنتجات الحديثة",
+      "inStock": "متوفر",
+      "outOfStock": "غير متوفر",
+      "viewAllProducts": "عرض جميع المنتجات",
+      "quickActions": "إجراءات سريعة",
+      "addNewProduct": "إضافة منتج جديد",
+      "addNewProductDesc": "أضف عنصراً جديداً إلى متجرك",
+      "viewAnalytics": "عرض التحليلات",
+      "viewAnalyticsDesc": "تحقق من أداء مبيعاتك",
+      "storeSettings": "إعدادات المتجر",
+      "storeSettingsDesc": "تحديث معلومات متجرك"
     },
     "sidebar": {
       "dashboard": "لوحة التحكم",

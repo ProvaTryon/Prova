@@ -1,6 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
+import { useParams } from "next/navigation"
 import { useAuth } from "@/lib/auth-context"
 import { mockStores, mockProducts } from "@/lib/mock-data"
 import { Package, DollarSign, ShoppingCart, TrendingUp } from "lucide-react"
@@ -9,6 +10,8 @@ import Link from "next/link"
 export default function StoreOwnerDashboard() {
   const t = useTranslations('storeOwner.dashboard')
   const tStats = useTranslations('storeOwner.dashboard.stats')
+  const params = useParams()
+  const locale = params.locale as string
   const { user } = useAuth()
   const store = mockStores.find((s) => s.id === user?.storeId)
   const storeProducts = mockProducts.filter((p) => p.brand === store?.name)
@@ -65,7 +68,7 @@ export default function StoreOwnerDashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-card p-6 rounded-lg border">
-          <h2 className="text-xl font-serif mb-4">Recent Products</h2>
+          <h2 className="text-xl font-serif mb-4">{t('recentProducts')}</h2>
           <div className="space-y-4">
             {storeProducts.slice(0, 5).map((product) => (
               <div key={product.id} className="flex items-center gap-4">
@@ -81,39 +84,39 @@ export default function StoreOwnerDashboard() {
                 <span
                   className={`text-xs px-2 py-1 rounded ${product.inStock ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}
                 >
-                  {product.inStock ? "In Stock" : "Out of Stock"}
+                  {product.inStock ? t('inStock') : t('outOfStock')}
                 </span>
               </div>
             ))}
           </div>
-          <Link href="/store-owner/products" className="text-sm text-primary hover:underline mt-4 inline-block">
-            View all products →
+          <Link href={`/${locale}/store-owner/products`} className="text-sm text-primary hover:underline mt-4 inline-block">
+            {t('viewAllProducts')} →
           </Link>
         </div>
 
         <div className="bg-card p-6 rounded-lg border">
-          <h2 className="text-xl font-serif mb-4">Quick Actions</h2>
+          <h2 className="text-xl font-serif mb-4">{t('quickActions')}</h2>
           <div className="space-y-3">
             <Link
-              href="/store-owner/products?action=add"
+              href={`/${locale}/store-owner/products?action=add`}
               className="block p-4 border rounded-lg hover:bg-accent transition-colors"
             >
-              <h3 className="font-medium mb-1">Add New Product</h3>
-              <p className="text-sm text-muted-foreground">List a new item in your store</p>
+              <h3 className="font-medium mb-1">{t('addNewProduct')}</h3>
+              <p className="text-sm text-muted-foreground">{t('addNewProductDesc')}</p>
             </Link>
             <Link
-              href="/store-owner/analytics"
+              href={`/${locale}/store-owner/analytics`}
               className="block p-4 border rounded-lg hover:bg-accent transition-colors"
             >
-              <h3 className="font-medium mb-1">View Analytics</h3>
-              <p className="text-sm text-muted-foreground">Check your sales performance</p>
+              <h3 className="font-medium mb-1">{t('viewAnalytics')}</h3>
+              <p className="text-sm text-muted-foreground">{t('viewAnalyticsDesc')}</p>
             </Link>
             <Link
-              href="/store-owner/settings"
+              href={`/${locale}/store-owner/settings`}
               className="block p-4 border rounded-lg hover:bg-accent transition-colors"
             >
-              <h3 className="font-medium mb-1">Store Settings</h3>
-              <p className="text-sm text-muted-foreground">Update your store information</p>
+              <h3 className="font-medium mb-1">{t('storeSettings')}</h3>
+              <p className="text-sm text-muted-foreground">{t('storeSettingsDesc')}</p>
             </Link>
           </div>
         </div>
