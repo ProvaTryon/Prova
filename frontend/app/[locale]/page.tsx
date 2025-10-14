@@ -1,10 +1,14 @@
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
-import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { products } from "@/lib/mock-data"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/routing"
 
 export default function HomePage() {
+  const t = useTranslations('home')
+  const tProduct = useTranslations('product')
+
   // Get best selling products (first 8 products)
   const bestSellers = products.slice(0, 8)
 
@@ -43,8 +47,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                   <div className="text-center text-white">
-                    <p className="text-4xl font-serif font-bold mb-2">It's Simply</p>
-                    <p className="text-3xl font-serif">You</p>
+                    <p className="text-4xl font-serif font-bold mb-2">{t('hero.title')}</p>
                   </div>
                 </div>
               </div>
@@ -63,8 +66,8 @@ export default function HomePage() {
         {/* Brand Banner */}
         <section className="py-16 bg-primary text-primary-foreground mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl font-bold mb-2">#STAY_UNIQUE</h2>
-            <p className="text-sm tracking-widest">EST.2024</p>
+            <h2 className="text-4xl font-bold mb-2">{t('hero.subtitle')}</h2>
+            <p className="text-sm tracking-widest no-flip">{t('hero.established')}</p>
           </div>
         </section>
 
@@ -72,9 +75,9 @@ export default function HomePage() {
         <section className="py-16 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-3xl font-serif font-medium">Best Sellers</h2>
+              <h2 className="text-3xl font-serif font-medium">{t('bestSellers')}</h2>
               <Link href="/shop" className="text-sm text-primary hover:underline flex items-center gap-1">
-                View All
+                {t('viewAll')}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -84,9 +87,9 @@ export default function HomePage() {
                 {bestSellers.map((product) => (
                   <Link key={product.id} href={`/product/${product.id}`} className="flex-none w-64 snap-start group">
                     <div className="relative mb-4 overflow-hidden rounded-lg bg-muted">
-                      {product.sale && (
+                      {product.salePrice && (
                         <span className="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded z-10">
-                          SALE
+                          {tProduct('sale')}
                         </span>
                       )}
                       <img
@@ -95,16 +98,16 @@ export default function HomePage() {
                         className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <h3 className="font-medium text-sm mb-1 line-clamp-2">{product.name}</h3>
-                    <p className="text-xs text-muted-foreground mb-2">{product.brand}</p>
+                    <h3 className="font-medium text-sm mb-1 line-clamp-2 no-flip">{product.name}</h3>
+                    <p className="text-xs text-muted-foreground mb-2 no-flip">{product.brand}</p>
                     <div className="flex items-center gap-2">
-                      {product.sale ? (
+                      {product.salePrice ? (
                         <>
-                          <span className="text-red-600 font-semibold">${product.salePrice}</span>
-                          <span className="text-muted-foreground line-through text-sm">${product.price}</span>
+                          <span className="text-red-600 font-semibold no-flip">${product.salePrice}</span>
+                          <span className="text-muted-foreground line-through text-sm no-flip">${product.price}</span>
                         </>
                       ) : (
-                        <span className="font-semibold">${product.price}</span>
+                        <span className="font-semibold no-flip">${product.price}</span>
                       )}
                     </div>
                   </Link>
@@ -117,7 +120,9 @@ export default function HomePage() {
         {/* Collections Grid */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-serif font-medium text-center mb-12">Pròva Collections</h2>
+            <h2 className="text-3xl font-serif font-medium text-center mb-12">
+              <span className="no-flip">Pròva</span> {t('collections.title').replace('Pròva ', '')}
+            </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Collection 1 */}
@@ -129,7 +134,10 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-2xl font-serif font-medium mb-2">Casual from Pròva</h3>
+                  <h3 className="text-2xl font-serif font-medium mb-2">
+                    {t('collections.casual').split('Pròva')[0]}
+                    <span className="no-flip">Pròva</span>
+                  </h3>
                   <div className="flex items-center gap-2">
                     <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
                       <ArrowRight className="w-5 h-5 text-foreground" />
@@ -147,7 +155,10 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-2xl font-serif font-medium mb-2">Shirts from Pròva</h3>
+                  <h3 className="text-2xl font-serif font-medium mb-2">
+                    {t('collections.shirts').split('Pròva')[0]}
+                    <span className="no-flip">Pròva</span>
+                  </h3>
                   <div className="flex items-center gap-2">
                     <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
                       <ArrowRight className="w-5 h-5 text-foreground" />
@@ -165,7 +176,10 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-2xl font-serif font-medium mb-2">Pants from Pròva</h3>
+                  <h3 className="text-2xl font-serif font-medium mb-2">
+                    {t('collections.pants').split('Pròva')[0]}
+                    <span className="no-flip">Pròva</span>
+                  </h3>
                   <div className="flex items-center gap-2">
                     <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
                       <ArrowRight className="w-5 h-5 text-foreground" />
@@ -183,7 +197,10 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-2xl font-serif font-medium mb-2">Formal from Pròva</h3>
+                  <h3 className="text-2xl font-serif font-medium mb-2">
+                    {t('collections.formal').split('Pròva')[0]}
+                    <span className="no-flip">Pròva</span>
+                  </h3>
                   <div className="flex items-center gap-2">
                     <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
                       <ArrowRight className="w-5 h-5 text-foreground" />
@@ -201,7 +218,10 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-2xl font-serif font-medium mb-2">Shorts from Pròva</h3>
+                  <h3 className="text-2xl font-serif font-medium mb-2">
+                    {t('collections.shorts').split('Pròva')[0]}
+                    <span className="no-flip">Pròva</span>
+                  </h3>
                   <div className="flex items-center gap-2">
                     <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
                       <ArrowRight className="w-5 h-5 text-foreground" />
@@ -219,7 +239,10 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-2xl font-serif font-medium mb-2">Accessories from Pròva</h3>
+                  <h3 className="text-2xl font-serif font-medium mb-2">
+                    {t('collections.accessories').split('Pròva')[0]}
+                    <span className="no-flip">Pròva</span>
+                  </h3>
                   <div className="flex items-center gap-2">
                     <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
                       <ArrowRight className="w-5 h-5 text-foreground" />

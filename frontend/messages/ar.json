@@ -21,7 +21,16 @@
       "established": "تأسس عام 2024"
     },
     "bestSellers": "الأكثر مبيعاً",
-    "viewAll": "عرض الكل"
+    "viewAll": "عرض الكل",
+    "collections": {
+      "title": "مجموعات Pròva",
+      "casual": "الكاجوال من Pròva",
+      "shirts": "القمصان من Pròva",
+      "pants": "البناطيل من Pròva",
+      "formal": "الرسمي من Pròva",
+      "shorts": "الشورتات من Pròva",
+      "accessories": "الإكسسوارات من Pròva"
+    }
   },
   "product": {
     "addToCart": "أضف إلى السلة",

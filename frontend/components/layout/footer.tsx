@@ -6,7 +6,7 @@ import { Link } from "@/i18n/routing"
 
 export function Footer() {
   const t = useTranslations('footer')
-  
+
   return (
     <footer className="bg-secondary text-secondary-foreground mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

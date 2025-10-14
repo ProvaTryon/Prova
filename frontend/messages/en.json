@@ -21,7 +21,16 @@
       "established": "EST.2024"
     },
     "bestSellers": "Best Sellers",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "collections": {
+      "title": "Pròva Collections",
+      "casual": "Casual from Pròva",
+      "shirts": "Shirts from Pròva",
+      "pants": "Pants from Pròva",
+      "formal": "Formal from Pròva",
+      "shorts": "Shorts from Pròva",
+      "accessories": "Accessories from Pròva"
+    }
   },
   "product": {
     "addToCart": "Add to Cart",
