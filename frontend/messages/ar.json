@@ -306,13 +306,27 @@
       "deleteConfirm": "هل أنت متأكد من حذف هذا المستخدم؟"
     },
     "orders": {
-      "title": "إدارة الطلبات",
-      "allOrders": "جميع الطلبات",
-      "orderNumber": "طلب رقم",
+      "title": "الطلبات",
+      "subtitle": "إدارة طلبات العملاء والتنفيذ",
+      "searchPlaceholder": "البحث عن طلبات...",
+      "totalOrders": "إجمالي الطلبات",
+      "totalRevenue": "إجمالي الإيرادات",
+      "pending": "قيد الانتظار",
+      "shipped": "تم الشحن",
+      "order": "الطلب",
       "customer": "العميل",
-      "date": "التاريخ",
+      "items": "العناصر",
+      "itemsCount": "عناصر",
       "total": "الإجمالي",
-      "status": "الحالة"
+      "date": "التاريخ",
+      "status": "الحالة",
+      "actions": "الإجراءات",
+      "processing": "قيد المعالجة",
+      "delivered": "تم التوصيل",
+      "cancelled": "ملغى",
+      "paid": "مدفوع",
+      "failed": "فشل",
+      "noOrdersFound": "لم يتم العثور على طلبات"
     }
   },
   "storeOwner": {

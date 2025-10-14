@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { Search, Eye, Package } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { OrderDetailsModal } from "@/components/admin/order-details-modal"
@@ -131,6 +132,7 @@ const statusColors = {
 }
 
 export default function OrdersManagement() {
+  const t = useTranslations('admin.orders')
   const [orders, setOrders] = useState<Order[]>(mockOrders)
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
@@ -159,26 +161,26 @@ export default function OrdersManagement() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="font-serif text-3xl font-semibold mb-2">Orders</h1>
-        <p className="text-muted-foreground">Manage customer orders and fulfillment</p>
+        <h1 className="font-serif text-3xl font-semibold mb-2">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <div className="bg-background border border-border rounded-lg p-4">
-          <p className="text-sm text-muted-foreground mb-1">Total Orders</p>
+          <p className="text-sm text-muted-foreground mb-1">{t('totalOrders')}</p>
           <p className="text-2xl font-bold">{orders.length}</p>
         </div>
         <div className="bg-background border border-border rounded-lg p-4">
-          <p className="text-sm text-muted-foreground mb-1">Total Revenue</p>
+          <p className="text-sm text-muted-foreground mb-1">{t('totalRevenue')}</p>
           <p className="text-2xl font-bold">${totalRevenue.toFixed(2)}</p>
         </div>
         <div className="bg-background border border-border rounded-lg p-4">
-          <p className="text-sm text-muted-foreground mb-1">Pending</p>
+          <p className="text-sm text-muted-foreground mb-1">{t('pending')}</p>
           <p className="text-2xl font-bold">{pendingOrders}</p>
         </div>
         <div className="bg-background border border-border rounded-lg p-4">
-          <p className="text-sm text-muted-foreground mb-1">Shipped</p>
+          <p className="text-sm text-muted-foreground mb-1">{t('shipped')}</p>
           <p className="text-2xl font-bold">{shippedOrders}</p>
         </div>
       </div>
@@ -189,7 +191,7 @@ export default function OrdersManagement() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
           <Input
             type="text"
-            placeholder="Search orders..."
+            placeholder={t('searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
@@ -203,13 +205,13 @@ export default function OrdersManagement() {
           <table className="w-full">
             <thead className="bg-muted/50 border-b border-border">
               <tr>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Order</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Customer</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Items</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Total</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Date</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Status</th>
-                <th className="text-right px-6 py-4 text-sm font-semibold">Actions</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('order')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('customer')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('items')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('total')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('date')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('status')}</th>
+                <th className="text-right px-6 py-4 text-sm font-semibold">{t('actions')}</th>
               </tr>
             </thead>
             <tbody>
@@ -232,7 +234,7 @@ export default function OrdersManagement() {
                       <p className="text-sm text-muted-foreground">{order.customerEmail}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm">{order.items.length} items</td>
+                  <td className="px-6 py-4 text-sm">{order.items.length} {t('itemsCount')}</td>
                   <td className="px-6 py-4 font-medium">${order.total.toFixed(2)}</td>
                   <td className="px-6 py-4 text-sm">{new Date(order.orderDate).toLocaleDateString()}</td>
                   <td className="px-6 py-4">
@@ -240,12 +242,13 @@ export default function OrdersManagement() {
                       value={order.status}
                       onChange={(e) => handleStatusChange(order.id, e.target.value as Order["status"])}
                       className={`px-2 py-1 text-xs font-medium rounded capitalize ${statusColors[order.status]}`}
+                      aria-label={t('status')}
                     >
-                      <option value="pending">Pending</option>
-                      <option value="processing">Processing</option>
-                      <option value="shipped">Shipped</option>
-                      <option value="delivered">Delivered</option>
-                      <option value="cancelled">Cancelled</option>
+                      <option value="pending">{t('pending')}</option>
+                      <option value="processing">{t('processing')}</option>
+                      <option value="shipped">{t('shipped')}</option>
+                      <option value="delivered">{t('delivered')}</option>
+                      <option value="cancelled">{t('cancelled')}</option>
                     </select>
                   </td>
                   <td className="px-6 py-4">
@@ -253,6 +256,7 @@ export default function OrdersManagement() {
                       <button
                         onClick={() => handleViewOrder(order)}
                         className="p-2 hover:bg-muted rounded-lg transition-colors"
+                        title={t('actions')}
                       >
                         <Eye className="w-4 h-4" />
                       </button>
@@ -266,7 +270,7 @@ export default function OrdersManagement() {
 
         {filteredOrders.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">No orders found</p>
+            <p className="text-muted-foreground">{t('noOrdersFound')}</p>
           </div>
         )}
       </div>
