@@ -38,36 +38,32 @@ export default function ProfilePage() {
               <div className="bg-card border border-border rounded-lg p-4 space-y-2">
                 <button
                   onClick={() => setActiveTab("profile")}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                    activeTab === "profile" ? "bg-primary text-primary-foreground" : "hover:bg-muted"
-                  }`}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === "profile" ? "bg-primary text-primary-foreground" : "hover:bg-muted"
+                    }`}
                 >
                   <User className="w-5 h-5" />
                   {t("profile")}
                 </button>
                 <button
                   onClick={() => setActiveTab("orders")}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                    activeTab === "orders" ? "bg-primary text-primary-foreground" : "hover:bg-muted"
-                  }`}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === "orders" ? "bg-primary text-primary-foreground" : "hover:bg-muted"
+                    }`}
                 >
                   <Package className="w-5 h-5" />
                   {t("orders")}
                 </button>
                 <button
                   onClick={() => setActiveTab("wishlist")}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                    activeTab === "wishlist" ? "bg-primary text-primary-foreground" : "hover:bg-muted"
-                  }`}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === "wishlist" ? "bg-primary text-primary-foreground" : "hover:bg-muted"
+                    }`}
                 >
                   <Heart className="w-5 h-5" />
                   {t("myWishlist")}
                 </button>
                 <button
                   onClick={() => setActiveTab("settings")}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                    activeTab === "settings" ? "bg-primary text-primary-foreground" : "hover:bg-muted"
-                  }`}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === "settings" ? "bg-primary text-primary-foreground" : "hover:bg-muted"
+                    }`}
                 >
                   <Settings className="w-5 h-5" />
                   {t("settings")}

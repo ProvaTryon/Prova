@@ -5,10 +5,12 @@ import type React from "react"
 import { useState } from "react"
 import { useAuth } from "@/lib/auth-context"
 import { useRouter, useSearchParams } from "next/navigation"
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 import { Loader2 } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export default function LoginPage() {
+  const t = useTranslations("auth")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -45,7 +47,7 @@ export default function LoginPage() {
       await login(email, password)
       router.push(getRedirectPath())
     } catch (err) {
-      setError("Invalid email or password")
+      setError(t("invalidCredentials"))
     } finally {
       setIsLoading(false)
     }
@@ -59,7 +61,7 @@ export default function LoginPage() {
       await signInWithGoogle()
       router.push(getRedirectPath())
     } catch (err) {
-      setError("Failed to sign in with Google")
+      setError(t("googleSignInFailed"))
     } finally {
       setIsGoogleLoading(false)
     }
@@ -75,10 +77,10 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <span className="font-serif text-3xl font-semibold">Pròva</span>
+            <span className="font-serif text-3xl font-semibold no-flip">Pròva</span>
           </Link>
-          <h1 className="font-serif text-3xl font-medium mt-6 mb-2">Welcome back</h1>
-          <p className="text-muted-foreground">Sign in to your account to continue</p>
+          <h1 className="font-serif text-3xl font-medium mt-6 mb-2">{t("welcomeBack")}</h1>
+          <p className="text-muted-foreground">{t("signInSubtitle")}</p>
         </div>
 
         <div className="bg-background border border-border rounded-lg p-8">
@@ -91,7 +93,7 @@ export default function LoginPage() {
             {isGoogleLoading ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                Signing in...
+                {t("signingIn")}
               </>
             ) : (
               <>
@@ -113,7 +115,7 @@ export default function LoginPage() {
                     d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                   />
                 </svg>
-                Continue with Google
+                {t("continueWithGoogle")}
               </>
             )}
           </button>
@@ -123,7 +125,7 @@ export default function LoginPage() {
               <div className="w-full border-t border-border"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-background text-muted-foreground">Or continue with email</span>
+              <span className="px-4 bg-background text-muted-foreground">{t("orContinueWithEmail")}</span>
             </div>
           </div>
 
@@ -132,7 +134,7 @@ export default function LoginPage() {
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium mb-2">
-                Email
+                {t("email")}
               </label>
               <input
                 id="email"
@@ -140,14 +142,14 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="you@example.com"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary no-flip"
+                placeholder={t("emailPlaceholder")}
               />
             </div>
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium mb-2">
-                Password
+                {t("password")}
               </label>
               <input
                 id="password"
@@ -155,18 +157,18 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="••••••••"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary no-flip"
+                placeholder={t("passwordPlaceholder")}
               />
             </div>
 
             <div className="flex items-center justify-between text-sm">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input type="checkbox" className="w-4 h-4 rounded text-primary focus:ring-primary" />
-                <span>Remember me</span>
+                <span>{t("rememberMe")}</span>
               </label>
               <Link href="/forgot-password" className="text-primary hover:underline">
-                Forgot password?
+                {t("forgotPassword")}
               </Link>
             </div>
 
@@ -178,10 +180,10 @@ export default function LoginPage() {
               {isLoading ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  Signing in...
+                  {t("signingIn")}
                 </>
               ) : (
-                "Sign In"
+                t("signIn")
               )}
             </button>
           </form>
@@ -191,7 +193,7 @@ export default function LoginPage() {
               <div className="w-full border-t border-border"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-background text-muted-foreground">Or</span>
+              <span className="px-4 bg-background text-muted-foreground">{t("or")}</span>
             </div>
           </div>
 
@@ -200,19 +202,19 @@ export default function LoginPage() {
             onClick={handleGuestCheckout}
             className="w-full py-3 border border-border rounded-lg font-medium hover:bg-muted/50 transition-all"
           >
-            Continue as Guest
+            {t("continueAsGuest")}
           </button>
 
           <div className="mt-6 text-center text-sm">
-            <span className="text-muted-foreground">Don't have an account? </span>
+            <span className="text-muted-foreground">{t("noAccount")} </span>
             <Link href="/signup" className="text-primary hover:underline font-medium">
-              Sign up
+              {t("signUp")}
             </Link>
           </div>
 
           <div className="mt-6 p-4 bg-muted/50 rounded-lg">
-            <p className="text-xs font-medium mb-2">Test Accounts:</p>
-            <div className="text-xs space-y-1 text-muted-foreground">
+            <p className="text-xs font-medium mb-2">{t("testAccounts")}</p>
+            <div className="text-xs space-y-1 text-muted-foreground no-flip">
               <p>Admin: admin@prova.com / admin123</p>
               <p>Store Owner: store@prova.com / store123</p>
               <p>Customer Service: cs@prova.com / cs123</p>

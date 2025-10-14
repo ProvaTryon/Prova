@@ -5,10 +5,12 @@ import type React from "react"
 import { useState } from "react"
 import { useAuth } from "@/lib/auth-context"
 import { useRouter } from "next/navigation"
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 import { Loader2 } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export default function SignupPage() {
+  const t = useTranslations("auth")
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -26,12 +28,12 @@ export default function SignupPage() {
     setError("")
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match")
+      setError(t("passwordsDoNotMatch"))
       return
     }
 
     if (password.length < 8) {
-      setError("Password must be at least 8 characters")
+      setError(t("passwordTooShort"))
       return
     }
 
@@ -41,7 +43,7 @@ export default function SignupPage() {
       await signup(name, email, password, accountType)
       router.push("/")
     } catch (err) {
-      setError("Failed to create account. Please try again.")
+      setError(t("signupFailed"))
     } finally {
       setIsLoading(false)
     }
@@ -55,7 +57,7 @@ export default function SignupPage() {
       await signInWithGoogle()
       router.push("/")
     } catch (err) {
-      setError("Failed to sign in with Google")
+      setError(t("googleSignInFailed"))
     } finally {
       setIsGoogleLoading(false)
     }
@@ -66,10 +68,10 @@ export default function SignupPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <span className="font-serif text-3xl font-semibold">Pròva</span>
+            <span className="font-serif text-3xl font-semibold no-flip">Pròva</span>
           </Link>
-          <h1 className="font-serif text-3xl font-medium mt-6 mb-2">Create your account</h1>
-          <p className="text-muted-foreground">Join Pròva and start your fashion journey</p>
+          <h1 className="font-serif text-3xl font-medium mt-6 mb-2">{t("createAccount")}</h1>
+          <p className="text-muted-foreground">{t("signUpSubtitle")}</p>
         </div>
 
         <div className="bg-background border border-border rounded-lg p-8">
@@ -82,7 +84,7 @@ export default function SignupPage() {
             {isGoogleLoading ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                Signing in...
+                {t("signingIn")}
               </>
             ) : (
               <>
@@ -104,7 +106,7 @@ export default function SignupPage() {
                     d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                   />
                 </svg>
-                Continue with Google
+                {t("continueWithGoogle")}
               </>
             )}
           </button>
@@ -114,7 +116,7 @@ export default function SignupPage() {
               <div className="w-full border-t border-border"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-background text-muted-foreground">Or continue with email</span>
+              <span className="px-4 bg-background text-muted-foreground">{t("orContinueWithEmail")}</span>
             </div>
           </div>
 
@@ -122,7 +124,7 @@ export default function SignupPage() {
             {error && <div className="p-3 bg-destructive/10 text-destructive rounded-lg text-sm">{error}</div>}
 
             <div>
-              <label className="block text-sm font-medium mb-3">Account Type</label>
+              <label className="block text-sm font-medium mb-3">{t("accountType")}</label>
               <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
@@ -133,7 +135,7 @@ export default function SignupPage() {
                       : "border-border hover:border-primary"
                   }`}
                 >
-                  Customer
+                  {t("customer")}
                 </button>
                 <button
                   type="button"
@@ -144,14 +146,14 @@ export default function SignupPage() {
                       : "border-border hover:border-primary"
                   }`}
                 >
-                  Brand
+                  {t("brand")}
                 </button>
               </div>
             </div>
 
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-2">
-                Full Name
+                {t("fullName")}
               </label>
               <input
                 id="name"
@@ -159,14 +161,14 @@ export default function SignupPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="John Doe"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary no-flip"
+                placeholder={t("namePlaceholder")}
               />
             </div>
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium mb-2">
-                Email
+                {t("email")}
               </label>
               <input
                 id="email"
@@ -174,14 +176,14 @@ export default function SignupPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="you@example.com"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary no-flip"
+                placeholder={t("emailPlaceholder")}
               />
             </div>
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium mb-2">
-                Password
+                {t("password")}
               </label>
               <input
                 id="password"
@@ -189,14 +191,14 @@ export default function SignupPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="••••••••"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary no-flip"
+                placeholder={t("passwordPlaceholder")}
               />
             </div>
 
             <div>
               <label htmlFor="confirmPassword" className="block text-sm font-medium mb-2">
-                Confirm Password
+                {t("confirmPassword")}
               </label>
               <input
                 id="confirmPassword"
@@ -204,8 +206,8 @@ export default function SignupPage() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="••••••••"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary no-flip"
+                placeholder={t("passwordPlaceholder")}
               />
             </div>
 
@@ -213,13 +215,13 @@ export default function SignupPage() {
               <label className="flex items-start gap-2 cursor-pointer">
                 <input type="checkbox" required className="w-4 h-4 mt-0.5 rounded text-primary focus:ring-primary" />
                 <span>
-                  I agree to the{" "}
+                  {t("agreeToTerms")}{" "}
                   <Link href="/terms" className="text-primary hover:underline">
-                    Terms of Service
+                    {t("termsOfService")}
                   </Link>{" "}
-                  and{" "}
+                  {t("and")}{" "}
                   <Link href="/privacy" className="text-primary hover:underline">
-                    Privacy Policy
+                    {t("privacyPolicy")}
                   </Link>
                 </span>
               </label>
@@ -233,18 +235,18 @@ export default function SignupPage() {
               {isLoading ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  Creating account...
+                  {t("creatingAccount")}
                 </>
               ) : (
-                "Create Account"
+                t("signUp")
               )}
             </button>
           </form>
 
           <div className="mt-6 text-center text-sm">
-            <span className="text-muted-foreground">Already have an account? </span>
+            <span className="text-muted-foreground">{t("hasAccount")} </span>
             <Link href="/login" className="text-primary hover:underline font-medium">
-              Sign in
+              {t("signIn")}
             </Link>
           </div>
         </div>
