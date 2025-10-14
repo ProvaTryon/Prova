@@ -182,11 +182,10 @@ export default function UsersManagement() {
                   <td className="px-6 py-4">
                     <button
                       onClick={() => handleToggleRole(user.id)}
-                      className={`px-2 py-1 text-xs font-medium rounded ${
-                        user.role === "admin"
+                      className={`px-2 py-1 text-xs font-medium rounded ${user.role === "admin"
                           ? "bg-primary/10 text-primary hover:bg-primary/20"
                           : "bg-muted hover:bg-muted/80"
-                      }`}
+                        }`}
                     >
                       {user.role === "admin" ? t('admin') : t('userRole')}
                     </button>
@@ -196,11 +195,10 @@ export default function UsersManagement() {
                   <td className="px-6 py-4">
                     <button
                       onClick={() => handleToggleStatus(user.id)}
-                      className={`px-2 py-1 text-xs font-medium rounded ${
-                        user.status === "active"
+                      className={`px-2 py-1 text-xs font-medium rounded ${user.status === "active"
                           ? "bg-green-50 text-green-700 hover:bg-green-100"
                           : "bg-red-50 text-red-700 hover:bg-red-100"
-                      }`}
+                        }`}
                     >
                       {user.status === "active" ? t('active') : t('suspended')}
                     </button>
