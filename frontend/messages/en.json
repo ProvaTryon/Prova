@@ -225,7 +225,13 @@
         "revenue": "Revenue"
       },
       "recentActivity": "Recent Activity",
-      "viewDetails": "View Details"
+      "viewDetails": "View Details",
+      "pendingStoreApprovals": "Pending Store Approvals",
+      "noPendingApprovals": "No pending approvals",
+      "recentOrders": "Recent Orders",
+      "items": "items",
+      "pending": "Pending",
+      "completed": "Completed"
     },
     "sidebar": {
       "dashboard": "Dashboard",
@@ -322,7 +328,14 @@
       },
       "recentConversations": "Recent Conversations",
       "viewAll": "View All Conversations",
-      "noConversations": "No conversations yet"
+      "noConversations": "No conversations yet",
+      "priorityQueue": "Priority Queue",
+      "noPriorityConversations": "No high priority conversations",
+      "high": "HIGH",
+      "new": "new",
+      "statusWaiting": "waiting",
+      "statusActive": "active",
+      "statusResolved": "resolved"
     },
     "sidebar": {
       "dashboard": "Dashboard",

@@ -11,7 +11,7 @@ export default function CustomerServiceDashboard() {
   const tStats = useTranslations('customerService.dashboard.stats')
   const params = useParams()
   const locale = params.locale as string
-  
+
   const waitingConversations = mockConversations.filter((c) => c.status === "waiting")
   const activeConversations = mockConversations.filter((c) => c.status === "active")
   const resolvedToday = mockConversations.filter((c) => c.status === "resolved")
@@ -78,7 +78,20 @@ export default function CustomerServiceDashboard() {
         <div className="bg-card p-6 rounded-lg border">
           <h2 className="text-xl font-serif mb-4">{t('recentConversations')}</h2>
           <div className="space-y-3">
-            {recentConversations.map((conv) => (
+            {recentConversations.map((conv) => {
+              const getStatusColor = (status: string) => {
+                if (status === "waiting") return "bg-yellow-100 text-yellow-700";
+                if (status === "active") return "bg-blue-100 text-blue-700";
+                return "bg-green-100 text-green-700";
+              };
+
+              const getStatusText = (status: string) => {
+                if (status === "waiting") return t('statusWaiting');
+                if (status === "active") return t('statusActive');
+                return t('statusResolved');
+              };
+
+              return (
               <Link
                 key={conv.id}
                 href={`/customer-service/conversations/${conv.id}`}
@@ -90,15 +103,9 @@ export default function CustomerServiceDashboard() {
                     <p className="text-sm text-muted-foreground">{conv.subject}</p>
                   </div>
                   <span
-                    className={`text-xs px-2 py-1 rounded-full ${
-                      conv.status === "waiting"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : conv.status === "active"
-                          ? "bg-blue-100 text-blue-700"
-                          : "bg-green-100 text-green-700"
-                    }`}
+                    className={`text-xs px-2 py-1 rounded-full ${getStatusColor(conv.status)}`}
                   >
-                    {conv.status}
+                    {getStatusText(conv.status)}
                   </span>
                 </div>
                 <p className="text-sm text-muted-foreground line-clamp-1">{conv.lastMessage}</p>
@@ -108,12 +115,12 @@ export default function CustomerServiceDashboard() {
                   </span>
                   {conv.unreadCount > 0 && (
                     <span className="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">
-                      {conv.unreadCount} new
+                      {conv.unreadCount} {t('new')}
                     </span>
                   )}
                 </div>
               </Link>
-            ))}
+            )})}
           </div>
           <Link
             href={`/${locale}/customer-service/conversations`}
@@ -124,14 +131,14 @@ export default function CustomerServiceDashboard() {
         </div>
 
         <div className="bg-card p-6 rounded-lg border">
-          <h2 className="text-xl font-serif mb-4">Priority Queue</h2>
+          <h2 className="text-xl font-serif mb-4">{t('priorityQueue')}</h2>
           <div className="space-y-3">
             {mockConversations
               .filter((c) => c.priority === "high" && c.status !== "resolved")
               .map((conv) => (
                 <Link
                   key={conv.id}
-                  href={`/customer-service/conversations/${conv.id}`}
+                  href={`/${locale}/customer-service/conversations/${conv.id}`}
                   className="block p-4 border border-red-200 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
                 >
                   <div className="flex items-start justify-between mb-2">
@@ -139,13 +146,13 @@ export default function CustomerServiceDashboard() {
                       <h3 className="font-medium">{conv.customerName}</h3>
                       <p className="text-sm text-muted-foreground">{conv.subject}</p>
                     </div>
-                    <span className="text-xs px-2 py-1 rounded-full bg-red-600 text-white">HIGH</span>
+                    <span className="text-xs px-2 py-1 rounded-full bg-red-600 text-white">{t('high')}</span>
                   </div>
                   <p className="text-sm text-muted-foreground line-clamp-1">{conv.lastMessage}</p>
                 </Link>
               ))}
             {mockConversations.filter((c) => c.priority === "high" && c.status !== "resolved").length === 0 && (
-              <p className="text-sm text-muted-foreground text-center py-8">No high priority conversations</p>
+              <p className="text-sm text-muted-foreground text-center py-8">{t('noPriorityConversations')}</p>
             )}
           </div>
         </div>

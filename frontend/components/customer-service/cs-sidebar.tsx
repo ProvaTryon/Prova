@@ -43,9 +43,8 @@ export function CSSidebar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                isActive ? "bg-primary-foreground text-primary" : "hover:bg-primary-foreground/10"
-              }`}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive ? "bg-primary-foreground text-primary" : "hover:bg-primary-foreground/10"
+                }`}
             >
               <Icon className="w-5 h-5" />
               <span>{link.label}</span>

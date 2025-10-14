@@ -225,7 +225,13 @@
         "revenue": "الإيرادات"
       },
       "recentActivity": "النشاط الأخير",
-      "viewDetails": "عرض التفاصيل"
+      "viewDetails": "عرض التفاصيل",
+      "pendingStoreApprovals": "موافقات المتاجر المعلقة",
+      "noPendingApprovals": "لا توجد موافقات معلقة",
+      "recentOrders": "الطلبات الأخيرة",
+      "items": "منتج",
+      "pending": "قيد الانتظار",
+      "completed": "مكتمل"
     },
     "sidebar": {
       "dashboard": "لوحة التحكم",
@@ -322,7 +328,14 @@
       },
       "recentConversations": "المحادثات الأخيرة",
       "viewAll": "عرض جميع المحادثات",
-      "noConversations": "لا توجد محادثات بعد"
+      "noConversations": "لا توجد محادثات بعد",
+      "priorityQueue": "قائمة الأولوية",
+      "noPriorityConversations": "لا توجد محادثات ذات أولوية عالية",
+      "high": "عالي",
+      "new": "جديد",
+      "statusWaiting": "في الانتظار",
+      "statusActive": "نشط",
+      "statusResolved": "تم الحل"
     },
     "sidebar": {
       "dashboard": "لوحة التحكم",

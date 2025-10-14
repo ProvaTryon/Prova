@@ -7,7 +7,7 @@ import { mockStores } from "@/lib/mock-data"
 export default function AdminDashboard() {
   const t = useTranslations('admin.dashboard')
   const tStats = useTranslations('admin.dashboard.stats')
-  
+
   const totalStores = mockStores.length
   const activeStores = mockStores.filter((s) => s.status === "active").length
   const pendingStoresList = mockStores.filter((s) => s.status === "pending")
@@ -79,7 +79,7 @@ export default function AdminDashboard() {
       {/* Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-background border border-border rounded-lg p-6">
-          <h2 className="font-serif text-xl font-semibold mb-4">Pending Store Approvals</h2>
+          <h2 className="font-serif text-xl font-semibold mb-4">{t('pendingStoreApprovals')}</h2>
           <div className="space-y-4">
             {pendingStoresList.length > 0 ? (
               pendingStoresList.map((store) => (
@@ -92,26 +92,26 @@ export default function AdminDashboard() {
                     <p className="text-sm text-muted-foreground">{store.ownerEmail}</p>
                   </div>
                   <span className="px-3 py-1 bg-yellow-50 text-yellow-700 text-xs font-medium rounded-full">
-                    Pending
+                    {t('pending')}
                   </span>
                 </div>
               ))
             ) : (
-              <p className="text-sm text-muted-foreground text-center py-4">No pending approvals</p>
+              <p className="text-sm text-muted-foreground text-center py-4">{t('noPendingApprovals')}</p>
             )}
           </div>
         </div>
 
         <div className="bg-background border border-border rounded-lg p-6">
-          <h2 className="font-serif text-xl font-semibold mb-4">Recent Orders</h2>
+          <h2 className="font-serif text-xl font-semibold mb-4">{t('recentOrders')}</h2>
           <div className="space-y-4">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="flex items-center justify-between py-3 border-b border-border last:border-0">
                 <div>
-                  <p className="font-medium">Order #{1000 + i}</p>
-                  <p className="text-sm text-muted-foreground">2 items • $129.99</p>
+                  <p className="font-medium">{useTranslations('admin.orders')('orderNumber')}{1000 + i}</p>
+                  <p className="text-sm text-muted-foreground">2 {t('items')} • $129.99</p>
                 </div>
-                <span className="px-3 py-1 bg-green-50 text-green-700 text-xs font-medium rounded-full">Completed</span>
+                <span className="px-3 py-1 bg-green-50 text-green-700 text-xs font-medium rounded-full">{t('completed')}</span>
               </div>
             ))}
           </div>
