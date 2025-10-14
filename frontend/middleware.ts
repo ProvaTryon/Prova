@@ -4,14 +4,14 @@ import { defaultLocale, locales } from './lib/i18n-config';
 export default createMiddleware({
   // A list of all locales that are supported
   locales,
-  
+
   // Default locale
   defaultLocale,
-  
+
   // Don't use locale prefix for default locale
   // This means /shop works (defaults to /en/shop internally)
   localePrefix: 'as-needed',
-  
+
   // Always use locale detection
   localeDetection: true
 });

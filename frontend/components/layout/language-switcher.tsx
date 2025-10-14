@@ -18,20 +18,20 @@ export function LanguageSwitcher() {
 
     // Store preference in cookie (more reliable than localStorage)
     document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
-    
+
     startTransition(() => {
       // Handle URL with or without locale prefix
       let newPath = pathname;
-      
+
       // Remove existing locale prefix if present
       const localePattern = new RegExp(`^/(${locales.join('|')})(/|$)`);
       newPath = pathname.replace(localePattern, '/');
-      
+
       // Add new locale prefix only if not default English
       if (newLocale !== 'en') {
         newPath = `/${newLocale}${newPath}`;
       }
-      
+
       // Navigate to new path
       router.push(newPath);
       router.refresh();
@@ -53,11 +53,11 @@ export function LanguageSwitcher() {
       {isOpen && (
         <>
           {/* Backdrop */}
-          <div 
-            className="fixed inset-0 z-10" 
+          <div
+            className="fixed inset-0 z-10"
             onClick={() => setIsOpen(false)}
           />
-          
+
           {/* Dropdown */}
           <div className="absolute right-0 mt-2 w-48 bg-background border border-border rounded-lg shadow-lg py-2 z-20">
             {locales.map((loc) => (

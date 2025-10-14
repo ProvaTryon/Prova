@@ -5,7 +5,7 @@ import { locales, type Locale, defaultLocale } from './lib/i18n-config';
 export default getRequestConfig(async ({ locale }) => {
   // Use default locale if none provided
   const validLocale = locale || defaultLocale;
-  
+
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(validLocale as Locale)) {
     notFound();

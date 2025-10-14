@@ -46,8 +46,8 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html 
-      lang={locale} 
+    <html
+      lang={locale}
       dir={isRTL(locale) ? 'rtl' : 'ltr'}
       className={`${playfair.variable} ${dmSans.variable} ${notoArabic.variable}`}
     >
