@@ -244,14 +244,25 @@
     },
     "stores": {
       "title": "Store Management",
+      "subtitle": "Manage all stores and store owners on the platform",
+      "addStore": "Add Store",
       "allStores": "All Stores",
+      "activeStores": "Active Stores",
+      "pendingApproval": "Pending Approval",
+      "suspended": "Suspended",
+      "searchPlaceholder": "Search stores...",
+      "all": "All",
       "active": "Active",
       "pending": "Pending",
-      "suspended": "Suspended",
       "status": "Status",
+      "storeName": "Store Name",
       "owner": "Owner",
-      "totalSales": "Total Sales",
-      "actions": "Actions"
+      "products": "Products",
+      "sales": "Sales",
+      "revenue": "Revenue",
+      "actions": "Actions",
+      "noStoresFound": "No stores found",
+      "deleteConfirm": "Are you sure you want to delete this store? This action cannot be undone."
     },
     "products": {
       "title": "Product Management",

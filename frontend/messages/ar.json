@@ -244,14 +244,25 @@
     },
     "stores": {
       "title": "إدارة المتاجر",
+      "subtitle": "إدارة جميع المتاجر وأصحاب المتاجر على المنصة",
+      "addStore": "إضافة متجر",
       "allStores": "جميع المتاجر",
+      "activeStores": "المتاجر النشطة",
+      "pendingApproval": "في انتظار الموافقة",
+      "suspended": "معلق",
+      "searchPlaceholder": "البحث عن متاجر...",
+      "all": "الكل",
       "active": "نشط",
       "pending": "قيد الانتظار",
-      "suspended": "معلق",
       "status": "الحالة",
+      "storeName": "اسم المتجر",
       "owner": "المالك",
-      "totalSales": "إجمالي المبيعات",
-      "actions": "الإجراءات"
+      "products": "المنتجات",
+      "sales": "المبيعات",
+      "revenue": "الإيرادات",
+      "actions": "الإجراءات",
+      "noStoresFound": "لم يتم العثور على متاجر",
+      "deleteConfirm": "هل أنت متأكد من حذف هذا المتجر؟ لا يمكن التراجع عن هذا الإجراء."
     },
     "products": {
       "title": "إدارة المنتجات",

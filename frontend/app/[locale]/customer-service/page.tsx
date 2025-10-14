@@ -92,35 +92,36 @@ export default function CustomerServiceDashboard() {
               };
 
               return (
-              <Link
-                key={conv.id}
-                href={`/customer-service/conversations/${conv.id}`}
-                className="block p-4 border rounded-lg hover:bg-accent transition-colors"
-              >
-                <div className="flex items-start justify-between mb-2">
-                  <div>
-                    <h3 className="font-medium">{conv.customerName}</h3>
-                    <p className="text-sm text-muted-foreground">{conv.subject}</p>
-                  </div>
-                  <span
-                    className={`text-xs px-2 py-1 rounded-full ${getStatusColor(conv.status)}`}
-                  >
-                    {getStatusText(conv.status)}
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground line-clamp-1">{conv.lastMessage}</p>
-                <div className="flex items-center justify-between mt-2">
-                  <span className="text-xs text-muted-foreground">
-                    {new Date(conv.lastMessageTime).toLocaleString()}
-                  </span>
-                  {conv.unreadCount > 0 && (
-                    <span className="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">
-                      {conv.unreadCount} {t('new')}
+                <Link
+                  key={conv.id}
+                  href={`/customer-service/conversations/${conv.id}`}
+                  className="block p-4 border rounded-lg hover:bg-accent transition-colors"
+                >
+                  <div className="flex items-start justify-between mb-2">
+                    <div>
+                      <h3 className="font-medium">{conv.customerName}</h3>
+                      <p className="text-sm text-muted-foreground">{conv.subject}</p>
+                    </div>
+                    <span
+                      className={`text-xs px-2 py-1 rounded-full ${getStatusColor(conv.status)}`}
+                    >
+                      {getStatusText(conv.status)}
                     </span>
-                  )}
-                </div>
-              </Link>
-            )})}
+                  </div>
+                  <p className="text-sm text-muted-foreground line-clamp-1">{conv.lastMessage}</p>
+                  <div className="flex items-center justify-between mt-2">
+                    <span className="text-xs text-muted-foreground">
+                      {new Date(conv.lastMessageTime).toLocaleString()}
+                    </span>
+                    {conv.unreadCount > 0 && (
+                      <span className="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">
+                        {conv.unreadCount} {t('new')}
+                      </span>
+                    )}
+                  </div>
+                </Link>
+              )
+            })}
           </div>
           <Link
             href={`/${locale}/customer-service/conversations`}
