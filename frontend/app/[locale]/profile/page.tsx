@@ -6,8 +6,10 @@ import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { useEffect, useState } from "react"
 import { User, Package, Heart, Settings } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export default function ProfilePage() {
+  const t = useTranslations("profile")
   const { user, isAuthenticated } = useAuth()
   const router = useRouter()
   const [activeTab, setActiveTab] = useState("profile")
@@ -28,7 +30,7 @@ export default function ProfilePage() {
 
       <main className="flex-1">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="font-serif text-4xl font-medium mb-8">My Account</h1>
+          <h1 className="font-serif text-4xl font-medium mb-8">{t("myAccount")}</h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Sidebar */}
@@ -41,7 +43,7 @@ export default function ProfilePage() {
                   }`}
                 >
                   <User className="w-5 h-5" />
-                  Profile
+                  {t("profile")}
                 </button>
                 <button
                   onClick={() => setActiveTab("orders")}
@@ -50,7 +52,7 @@ export default function ProfilePage() {
                   }`}
                 >
                   <Package className="w-5 h-5" />
-                  Orders
+                  {t("orders")}
                 </button>
                 <button
                   onClick={() => setActiveTab("wishlist")}
@@ -59,7 +61,7 @@ export default function ProfilePage() {
                   }`}
                 >
                   <Heart className="w-5 h-5" />
-                  Wishlist
+                  {t("myWishlist")}
                 </button>
                 <button
                   onClick={() => setActiveTab("settings")}
@@ -68,7 +70,7 @@ export default function ProfilePage() {
                   }`}
                 >
                   <Settings className="w-5 h-5" />
-                  Settings
+                  {t("settings")}
                 </button>
               </div>
             </div>
@@ -78,35 +80,35 @@ export default function ProfilePage() {
               <div className="bg-card border border-border rounded-lg p-6">
                 {activeTab === "profile" && (
                   <div className="space-y-6">
-                    <h2 className="font-serif text-2xl font-medium">Profile Information</h2>
+                    <h2 className="font-serif text-2xl font-medium">{t("profileInformation")}</h2>
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium mb-2">Full Name</label>
+                        <label className="block text-sm font-medium mb-2">{t("fullName")}</label>
                         <input
                           type="text"
                           defaultValue={user.name}
-                          className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                          className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary no-flip"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2">Email</label>
+                        <label className="block text-sm font-medium mb-2">{t("email")}</label>
                         <input
                           type="email"
                           defaultValue={user.email}
-                          className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                          className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary no-flip"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2">Account Type</label>
+                        <label className="block text-sm font-medium mb-2">{t("accountType")}</label>
                         <input
                           type="text"
-                          value={user.accountType === "customer" ? "Customer" : "Brand"}
+                          value={user.accountType === "customer" ? t("customer") : t("brand")}
                           disabled
                           className="w-full px-4 py-3 border border-border rounded-lg bg-muted"
                         />
                       </div>
                       <button className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all">
-                        Save Changes
+                        {t("saveChanges")}
                       </button>
                     </div>
                   </div>
@@ -114,48 +116,48 @@ export default function ProfilePage() {
 
                 {activeTab === "orders" && (
                   <div className="space-y-6">
-                    <h2 className="font-serif text-2xl font-medium">Order History</h2>
+                    <h2 className="font-serif text-2xl font-medium">{t("orderHistory")}</h2>
                     <div className="text-center py-12">
                       <Package className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-                      <p className="text-muted-foreground">No orders yet</p>
+                      <p className="text-muted-foreground">{t("noOrders")}</p>
                     </div>
                   </div>
                 )}
 
                 {activeTab === "wishlist" && (
                   <div className="space-y-6">
-                    <h2 className="font-serif text-2xl font-medium">My Wishlist</h2>
+                    <h2 className="font-serif text-2xl font-medium">{t("myWishlist")}</h2>
                     <div className="text-center py-12">
                       <Heart className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-                      <p className="text-muted-foreground">No items in wishlist</p>
+                      <p className="text-muted-foreground">{t("noWishlistItems")}</p>
                     </div>
                   </div>
                 )}
 
                 {activeTab === "settings" && (
                   <div className="space-y-6">
-                    <h2 className="font-serif text-2xl font-medium">Account Settings</h2>
+                    <h2 className="font-serif text-2xl font-medium">{t("accountSettings")}</h2>
                     <div className="space-y-4">
                       <div>
-                        <h3 className="font-medium mb-2">Notifications</h3>
+                        <h3 className="font-medium mb-2">{t("notifications")}</h3>
                         <label className="flex items-center gap-2 cursor-pointer">
                           <input
                             type="checkbox"
                             defaultChecked
                             className="w-4 h-4 rounded text-primary focus:ring-primary"
                           />
-                          <span className="text-sm">Email notifications</span>
+                          <span className="text-sm">{t("emailNotifications")}</span>
                         </label>
                       </div>
                       <div>
-                        <h3 className="font-medium mb-2">Privacy</h3>
+                        <h3 className="font-medium mb-2">{t("privacy")}</h3>
                         <label className="flex items-center gap-2 cursor-pointer">
                           <input
                             type="checkbox"
                             defaultChecked
                             className="w-4 h-4 rounded text-primary focus:ring-primary"
                           />
-                          <span className="text-sm">Show profile to other users</span>
+                          <span className="text-sm">{t("showProfile")}</span>
                         </label>
                       </div>
                     </div>
