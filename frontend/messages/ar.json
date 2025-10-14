@@ -66,8 +66,11 @@
   "wishlist": {
     "title": "قائمة المفضلة",
     "empty": "قائمة المفضلة فارغة",
-    "moveToCart": "نقل إلى السلة",
-    "remove": "إزالة"
+    "emptySubtitle": "احفظ المنتجات المفضلة لديك في قائمة الرغبات وتسوقها لاحقاً.",
+    "itemCount": "{count} منتج",
+    "itemsCount": "{count} منتجات",
+    "addToCart": "إضافة إلى السلة",
+    "continueShopping": "متابعة التسوق"
   },
   "footer": {
     "description": "تسوق موضة بتقنية الذكاء الاصطناعي للمستهلك العصري.",

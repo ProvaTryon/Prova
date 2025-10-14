@@ -1,15 +1,18 @@
-"use client"
+"use client";
 
-import { useWishlist } from "@/lib/wishlist-context"
-import { useCart } from "@/lib/cart-context"
-import Image from "next/image"
-import Link from "next/link"
-import { X, ShoppingBag, Heart } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useWishlist } from "@/lib/wishlist-context";
+import { useCart } from "@/lib/cart-context";
+import Image from "next/image";
+import { Link } from "@/i18n/routing";
+import { Heart, X, ShoppingBag } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 export default function WishlistPage() {
-  const { wishlistItems, removeFromWishlist } = useWishlist()
-  const { addItem } = useCart()
+  const t = useTranslations("wishlist");
+  const tProduct = useTranslations("product");
+  const { wishlistItems, removeFromWishlist } = useWishlist();
+  const { addItem } = useCart();
 
   const handleAddToCart = (product: any) => {
     addItem({
@@ -31,10 +34,10 @@ export default function WishlistPage() {
             <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
               <Heart className="w-12 h-12 text-muted-foreground" />
             </div>
-            <h1 className="font-serif text-3xl font-medium mb-4">Your Wishlist is Empty</h1>
-            <p className="text-muted-foreground mb-8">Save your favorite items to your wishlist and shop them later.</p>
+            <h1 className="font-serif text-3xl font-medium mb-4">{t("empty")}</h1>
+            <p className="text-muted-foreground mb-8">{t("emptySubtitle")}</p>
             <Button asChild size="lg">
-              <Link href="/shop">Continue Shopping</Link>
+              <Link href="/shop">{t("continueShopping")}</Link>
             </Button>
           </div>
         </div>
@@ -47,9 +50,12 @@ export default function WishlistPage() {
       <div className="container mx-auto px-4 py-8 md:py-12">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="font-serif text-3xl md:text-4xl font-medium mb-2">My Wishlist</h1>
+          <h1 className="font-serif text-3xl md:text-4xl font-medium mb-2">{t("title")}</h1>
           <p className="text-muted-foreground">
-            {wishlistItems.length} {wishlistItems.length === 1 ? "item" : "items"}
+            {wishlistItems.length === 1 
+              ? t("itemCount", { count: wishlistItems.length })
+              : t("itemsCount", { count: wishlistItems.length })
+            }
           </p>
         </div>
 
@@ -77,7 +83,7 @@ export default function WishlistPage() {
                   />
                   {product.salePrice && (
                     <div className="absolute top-3 left-3 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
-                      Sale
+                      {tProduct("sale")}
                     </div>
                   )}
                 </div>
@@ -86,11 +92,11 @@ export default function WishlistPage() {
               {/* Product Info */}
               <div className="p-4 space-y-3">
                 <Link href={`/product/${product.id}`}>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wide">{product.brand}</p>
-                  <h3 className="font-medium text-sm group-hover:text-primary transition-colors line-clamp-2">
+                  <p className="text-xs text-muted-foreground uppercase tracking-wide no-flip">{product.brand}</p>
+                  <h3 className="font-medium text-sm group-hover:text-primary transition-colors line-clamp-2 no-flip">
                     {product.name}
                   </h3>
-                  <div className="flex items-center gap-2 mt-2">
+                  <div className="flex items-center gap-2 mt-2 no-flip">
                     {product.salePrice ? (
                       <>
                         <span className="font-semibold text-primary">${product.salePrice}</span>
@@ -105,7 +111,7 @@ export default function WishlistPage() {
                 {/* Add to Cart Button */}
                 <Button onClick={() => handleAddToCart(product)} className="w-full" size="sm">
                   <ShoppingBag className="w-4 h-4 mr-2" />
-                  Add to Cart
+                  {t("addToCart")}
                 </Button>
               </div>
             </div>

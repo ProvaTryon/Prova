@@ -65,9 +65,12 @@
   },
   "wishlist": {
     "title": "My Wishlist",
-    "empty": "Your wishlist is empty",
-    "moveToCart": "Move to Cart",
-    "remove": "Remove"
+    "empty": "Your Wishlist is Empty",
+    "emptySubtitle": "Save your favorite items to your wishlist and shop them later.",
+    "itemCount": "{count} item",
+    "itemsCount": "{count} items",
+    "addToCart": "Add to Cart",
+    "continueShopping": "Continue Shopping"
   },
   "footer": {
     "description": "AI-powered fashion shopping reimagined for the modern consumer.",

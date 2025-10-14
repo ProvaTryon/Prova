@@ -157,10 +157,9 @@ export function FilterSidebar({ isOpen, onClose, filters, onFilterChange }: Filt
                 }}
                 className={`
                   py-2 text-sm rounded-md border transition-all
-                  ${
-                    localFilters.sizes.includes(size)
-                      ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border hover:border-primary"
+                  ${localFilters.sizes.includes(size)
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border hover:border-primary"
                   }
                 `}
               >
