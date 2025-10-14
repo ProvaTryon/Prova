@@ -327,6 +327,11 @@
       "paid": "Paid",
       "failed": "Failed",
       "noOrdersFound": "No orders found"
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Configure your admin panel settings",
+      "comingSoon": "Settings page coming soon..."
     }
   },
   "storeOwner": {
