@@ -6,6 +6,8 @@ import { Menu, X, Search, ShoppingBag, Heart, User, LogOut, Shield, Store, Headp
 import { useCart } from "@/lib/cart-context"
 import { useWishlist } from "@/lib/wishlist-context"
 import { useAuth } from "@/lib/auth-context"
+import { useTranslations } from 'next-intl'
+import { LanguageSwitcher } from './language-switcher'
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -13,6 +15,7 @@ export function Navbar() {
   const { totalItems } = useCart()
   const { wishlistItems } = useWishlist()
   const { user, logout, isAuthenticated, isAdmin, isStoreOwner, isCustomerService } = useAuth()
+  const t = useTranslations('nav')
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
@@ -26,21 +29,22 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
-              Home
+              {t('home')}
             </Link>
             <Link href="/shop" className="text-sm font-medium hover:text-primary transition-colors">
-              Shop
+              {t('shop')}
             </Link>
             <Link href="/virtual-tryon" className="text-sm font-medium hover:text-primary transition-colors">
-              Virtual Try-On
+              {t('virtualTryon')}
             </Link>
             <Link href="/recommendations" className="text-sm font-medium hover:text-primary transition-colors">
-              For You
+              {t('forYou')}
             </Link>
           </div>
 
           {/* Right Icons */}
           <div className="flex items-center gap-4">
+            <LanguageSwitcher />
             <button className="hidden md:block p-2 hover:bg-muted rounded-full transition-colors">
               <Search className="w-5 h-5" />
             </button>
@@ -86,7 +90,7 @@ export function Navbar() {
                           onClick={() => setUserMenuOpen(false)}
                         >
                           <Shield className="w-4 h-4" />
-                          Admin Dashboard
+                          {t('adminDashboard')}
                         </Link>
                       )}
                       {isStoreOwner && (
@@ -96,7 +100,7 @@ export function Navbar() {
                           onClick={() => setUserMenuOpen(false)}
                         >
                           <Store className="w-4 h-4" />
-                          Store Dashboard
+                          {t('storeDashboard')}
                         </Link>
                       )}
                       {isCustomerService && (
@@ -106,7 +110,7 @@ export function Navbar() {
                           onClick={() => setUserMenuOpen(false)}
                         >
                           <Headphones className="w-4 h-4" />
-                          CS Dashboard
+                          {t('csDashboard')}
                         </Link>
                       )}
                       <Link
@@ -114,21 +118,21 @@ export function Navbar() {
                         className="block px-4 py-2 text-sm hover:bg-muted transition-colors"
                         onClick={() => setUserMenuOpen(false)}
                       >
-                        My Profile
+                        {t('profile')}
                       </Link>
                       <Link
                         href="/profile?tab=orders"
                         className="block px-4 py-2 text-sm hover:bg-muted transition-colors"
                         onClick={() => setUserMenuOpen(false)}
                       >
-                        Orders
+                        {t('orders')}
                       </Link>
                       <Link
                         href="/profile?tab=wishlist"
                         className="block px-4 py-2 text-sm hover:bg-muted transition-colors"
                         onClick={() => setUserMenuOpen(false)}
                       >
-                        Wishlist
+                        {t('wishlist')}
                       </Link>
                       <button
                         onClick={() => {
@@ -138,7 +142,7 @@ export function Navbar() {
                         className="w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors flex items-center gap-2 text-destructive"
                       >
                         <LogOut className="w-4 h-4" />
-                        Logout
+                        {t('logout')}
                       </button>
                     </div>
                   </>
@@ -149,7 +153,7 @@ export function Navbar() {
                 href="/login"
                 className="hidden md:block px-4 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
               >
-                Sign In
+                {t('login')}
               </Link>
             )}
 
@@ -170,28 +174,28 @@ export function Navbar() {
               className="block py-2 text-base font-medium hover:text-primary transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Home
+              {t('home')}
             </Link>
             <Link
               href="/shop"
               className="block py-2 text-base font-medium hover:text-primary transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Shop
+              {t('shop')}
             </Link>
             <Link
               href="/virtual-tryon"
               className="block py-2 text-base font-medium hover:text-primary transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Virtual Try-On
+              {t('virtualTryon')}
             </Link>
             <Link
               href="/recommendations"
               className="block py-2 text-base font-medium hover:text-primary transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
-              For You
+              {t('forYou')}
             </Link>
             {isAuthenticated ? (
               <>
@@ -200,7 +204,7 @@ export function Navbar() {
                   className="block py-2 text-base font-medium hover:text-primary transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Profile
+                  {t('profile')}
                 </Link>
                 {isAdmin && (
                   <Link
@@ -209,7 +213,7 @@ export function Navbar() {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <Shield className="w-5 h-5" />
-                    Admin Dashboard
+                    {t('adminDashboard')}
                   </Link>
                 )}
                 {isStoreOwner && (
@@ -219,7 +223,7 @@ export function Navbar() {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <Store className="w-5 h-5" />
-                    Store Dashboard
+                    {t('storeDashboard')}
                   </Link>
                 )}
                 {isCustomerService && (
@@ -229,7 +233,7 @@ export function Navbar() {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <Headphones className="w-5 h-5" />
-                    CS Dashboard
+                    {t('csDashboard')}
                   </Link>
                 )}
                 <button
@@ -239,7 +243,7 @@ export function Navbar() {
                   }}
                   className="block w-full text-left py-2 text-base font-medium text-destructive"
                 >
-                  Logout
+                  {t('logout')}
                 </button>
               </>
             ) : (
@@ -248,7 +252,7 @@ export function Navbar() {
                 className="block py-2 text-base font-medium hover:text-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Sign In
+                {t('login')}
               </Link>
             )}
           </div>
