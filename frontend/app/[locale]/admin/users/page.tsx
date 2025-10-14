@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { Search, Pencil, Trash2, Shield, UserIcon } from "lucide-react"
 import { Input } from "@/components/ui/input"
 
@@ -69,6 +70,7 @@ const mockUsers: User[] = [
 ]
 
 export default function UsersManagement() {
+  const t = useTranslations('admin.users')
   const [users, setUsers] = useState<User[]>(mockUsers)
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -93,7 +95,7 @@ export default function UsersManagement() {
   }
 
   const handleDeleteUser = (userId: string) => {
-    if (confirm("Are you sure you want to delete this user?")) {
+    if (confirm(t('deleteConfirm'))) {
       setUsers(users.filter((user) => user.id !== userId))
     }
   }
@@ -101,8 +103,8 @@ export default function UsersManagement() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="font-serif text-3xl font-semibold mb-2">Users</h1>
-        <p className="text-muted-foreground">Manage user accounts and permissions</p>
+        <h1 className="font-serif text-3xl font-semibold mb-2">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       {/* Search */}
@@ -111,7 +113,7 @@ export default function UsersManagement() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
           <Input
             type="text"
-            placeholder="Search users..."
+            placeholder={t('searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
@@ -122,19 +124,19 @@ export default function UsersManagement() {
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <div className="bg-background border border-border rounded-lg p-4">
-          <p className="text-sm text-muted-foreground mb-1">Total Users</p>
+          <p className="text-sm text-muted-foreground mb-1">{t('totalUsers')}</p>
           <p className="text-2xl font-bold">{users.length}</p>
         </div>
         <div className="bg-background border border-border rounded-lg p-4">
-          <p className="text-sm text-muted-foreground mb-1">Active Users</p>
+          <p className="text-sm text-muted-foreground mb-1">{t('activeUsers')}</p>
           <p className="text-2xl font-bold">{users.filter((u) => u.status === "active").length}</p>
         </div>
         <div className="bg-background border border-border rounded-lg p-4">
-          <p className="text-sm text-muted-foreground mb-1">Customers</p>
+          <p className="text-sm text-muted-foreground mb-1">{t('customers')}</p>
           <p className="text-2xl font-bold">{users.filter((u) => u.accountType === "customer").length}</p>
         </div>
         <div className="bg-background border border-border rounded-lg p-4">
-          <p className="text-sm text-muted-foreground mb-1">Brands</p>
+          <p className="text-sm text-muted-foreground mb-1">{t('brands')}</p>
           <p className="text-2xl font-bold">{users.filter((u) => u.accountType === "brand").length}</p>
         </div>
       </div>
@@ -145,13 +147,13 @@ export default function UsersManagement() {
           <table className="w-full">
             <thead className="bg-muted/50 border-b border-border">
               <tr>
-                <th className="text-left px-6 py-4 text-sm font-semibold">User</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Account Type</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Role</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Orders</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Joined</th>
-                <th className="text-left px-6 py-4 text-sm font-semibold">Status</th>
-                <th className="text-right px-6 py-4 text-sm font-semibold">Actions</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('user')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('accountType')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('role')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('orders')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('joined')}</th>
+                <th className="text-left px-6 py-4 text-sm font-semibold">{t('status')}</th>
+                <th className="text-right px-6 py-4 text-sm font-semibold">{t('actions')}</th>
               </tr>
             </thead>
             <tbody>
@@ -186,7 +188,7 @@ export default function UsersManagement() {
                           : "bg-muted hover:bg-muted/80"
                       }`}
                     >
-                      {user.role === "admin" ? "Admin" : "User"}
+                      {user.role === "admin" ? t('admin') : t('userRole')}
                     </button>
                   </td>
                   <td className="px-6 py-4 text-sm">{user.orders}</td>
@@ -200,18 +202,19 @@ export default function UsersManagement() {
                           : "bg-red-50 text-red-700 hover:bg-red-100"
                       }`}
                     >
-                      {user.status === "active" ? "Active" : "Suspended"}
+                      {user.status === "active" ? t('active') : t('suspended')}
                     </button>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-end gap-2">
-                      <button className="p-2 hover:bg-muted rounded-lg transition-colors">
+                      <button className="p-2 hover:bg-muted rounded-lg transition-colors" title={t('actions')}>
                         <Pencil className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteUser(user.id)}
                         className="p-2 hover:bg-red-50 text-red-600 rounded-lg transition-colors"
                         disabled={user.role === "admin"}
+                        title={t('actions')}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -225,7 +228,7 @@ export default function UsersManagement() {
 
         {filteredUsers.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">No users found</p>
+            <p className="text-muted-foreground">{t('noUsersFound')}</p>
           </div>
         )}
       </div>

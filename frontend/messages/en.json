@@ -282,10 +282,28 @@
       "deleteConfirm": "Are you sure you want to delete this product?"
     },
     "users": {
-      "title": "User Management",
-      "allUsers": "All Users",
+      "title": "Users",
+      "subtitle": "Manage user accounts and permissions",
+      "searchPlaceholder": "Search users...",
+      "totalUsers": "Total Users",
+      "activeUsers": "Active Users",
+      "customers": "Customers",
+      "brands": "Brands",
+      "user": "User",
+      "accountType": "Account Type",
       "role": "Role",
-      "joinedDate": "Joined Date"
+      "orders": "Orders",
+      "joined": "Joined",
+      "status": "Status",
+      "actions": "Actions",
+      "admin": "Admin",
+      "userRole": "User",
+      "customer": "Customer",
+      "brand": "Brand",
+      "active": "Active",
+      "suspended": "Suspended",
+      "noUsersFound": "No users found",
+      "deleteConfirm": "Are you sure you want to delete this user?"
     },
     "orders": {
       "title": "Order Management",
