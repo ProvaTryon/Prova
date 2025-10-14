@@ -49,13 +49,19 @@
   "cart": {
     "title": "Shopping Cart",
     "empty": "Your cart is empty",
+    "emptySubtitle": "Start shopping to add items to your cart",
     "subtotal": "Subtotal",
     "shipping": "Shipping",
+    "shippingFree": "Free",
+    "tax": "Tax",
     "total": "Total",
     "checkout": "Proceed to Checkout",
     "continueShopping": "Continue Shopping",
-    "remove": "Remove",
-    "updateCart": "Update Cart"
+    "clearAll": "Clear All",
+    "size": "Size",
+    "color": "Color",
+    "orderSummary": "Order Summary",
+    "freeShippingMessage": "Add {amount} more for free shipping"
   },
   "wishlist": {
     "title": "My Wishlist",

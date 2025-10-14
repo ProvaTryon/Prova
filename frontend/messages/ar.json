@@ -49,13 +49,19 @@
   "cart": {
     "title": "سلة التسوق",
     "empty": "سلتك فارغة",
+    "emptySubtitle": "ابدأ التسوق لإضافة منتجات إلى سلتك",
     "subtotal": "المجموع الفرعي",
     "shipping": "الشحن",
+    "shippingFree": "مجاني",
+    "tax": "الضريبة",
     "total": "المجموع الكلي",
     "checkout": "إتمام الطلب",
     "continueShopping": "متابعة التسوق",
-    "remove": "إزالة",
-    "updateCart": "تحديث السلة"
+    "clearAll": "مسح الكل",
+    "size": "المقاس",
+    "color": "اللون",
+    "orderSummary": "ملخص الطلب",
+    "freeShippingMessage": "أضف {amount} أخرى للحصول على شحن مجاني"
   },
   "wishlist": {
     "title": "قائمة المفضلة",
