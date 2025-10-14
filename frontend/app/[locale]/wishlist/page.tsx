@@ -52,7 +52,7 @@ export default function WishlistPage() {
         <div className="mb-8">
           <h1 className="font-serif text-3xl md:text-4xl font-medium mb-2">{t("title")}</h1>
           <p className="text-muted-foreground">
-            {wishlistItems.length === 1 
+            {wishlistItems.length === 1
               ? t("itemCount", { count: wishlistItems.length })
               : t("itemsCount", { count: wishlistItems.length })
             }

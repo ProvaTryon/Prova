@@ -72,6 +72,25 @@
     "addToCart": "Add to Cart",
     "continueShopping": "Continue Shopping"
   },
+  "productDetail": {
+    "home": "Home",
+    "color": "Color",
+    "size": "Size",
+    "quantity": "Quantity",
+    "addToCart": "Add to Cart",
+    "addedToCart": "Added to Cart",
+    "tryOnVirtually": "Try On Virtually",
+    "addToWishlist": "Add to Wishlist",
+    "removeFromWishlist": "Remove from Wishlist",
+    "selectSizeAndColor": "Please select size and color",
+    "save": "Save",
+    "productDetails": "Product Details",
+    "premiumMaterials": "Premium quality materials",
+    "craftedConstruction": "Carefully crafted construction",
+    "availableMultiple": "Available in multiple colors and sizes",
+    "freeShipping": "Free shipping on orders over $100",
+    "youMayLike": "You May Also Like"
+  },
   "footer": {
     "description": "AI-powered fashion shopping reimagined for the modern consumer.",
     "shop": "Shop",

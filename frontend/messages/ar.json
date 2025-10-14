@@ -72,6 +72,25 @@
     "addToCart": "إضافة إلى السلة",
     "continueShopping": "متابعة التسوق"
   },
+  "productDetail": {
+    "home": "الرئيسية",
+    "color": "اللون",
+    "size": "المقاس",
+    "quantity": "الكمية",
+    "addToCart": "إضافة إلى السلة",
+    "addedToCart": "تمت الإضافة إلى السلة",
+    "tryOnVirtually": "تجربة افتراضية",
+    "addToWishlist": "إضافة إلى المفضلة",
+    "removeFromWishlist": "إزالة من المفضلة",
+    "selectSizeAndColor": "يرجى اختيار المقاس واللون",
+    "save": "توفير",
+    "productDetails": "تفاصيل المنتج",
+    "premiumMaterials": "مواد عالية الجودة",
+    "craftedConstruction": "تصنيع دقيق ومتقن",
+    "availableMultiple": "متوفر بألوان ومقاسات متعددة",
+    "freeShipping": "شحن مجاني للطلبات أكثر من 100$",
+    "youMayLike": "قد يعجبك أيضاً"
+  },
   "footer": {
     "description": "تسوق موضة بتقنية الذكاء الاصطناعي للمستهلك العصري.",
     "shop": "المتجر",
