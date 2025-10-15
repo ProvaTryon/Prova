@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { useAuth } from "@/lib/auth-context"
 import { mockStores, mockProducts, type Product } from "@/lib/mock-data"
 import { Search, Plus, Edit, Trash2, Package } from "lucide-react"
@@ -8,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 export default function StoreOwnerProducts() {
+  const t = useTranslations("storeOwner.products")
   const { user } = useAuth()
   const store = mockStores.find((s) => s.id === user?.storeId)
   const [products, setProducts] = useState<Product[]>(mockProducts.filter((p) => p.brand === store?.name))
@@ -21,7 +23,7 @@ export default function StoreOwnerProducts() {
   )
 
   const handleDelete = (id: string) => {
-    if (confirm("Are you sure you want to delete this product?")) {
+    if (confirm(t("deleteConfirm"))) {
       setProducts(products.filter((p) => p.id !== id))
     }
   }
@@ -30,12 +32,12 @@ export default function StoreOwnerProducts() {
     <div className="p-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-serif mb-2">My Products</h1>
-          <p className="text-muted-foreground">Manage your store's product catalog</p>
+          <h1 className="text-3xl font-serif mb-2">{t("title")}</h1>
+          <p className="text-muted-foreground">{t("subtitle")}</p>
         </div>
         <Button onClick={() => setIsAddModalOpen(true)} className="gap-2">
           <Plus className="w-4 h-4" />
-          Add Product
+          {t("addProduct")}
         </Button>
       </div>
 
@@ -44,7 +46,7 @@ export default function StoreOwnerProducts() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
           <Input
             type="text"
-            placeholder="Search products..."
+            placeholder={t("searchPlaceholder")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
@@ -56,12 +58,12 @@ export default function StoreOwnerProducts() {
         <table className="w-full">
           <thead className="bg-muted">
             <tr>
-              <th className="text-left p-4 font-medium">Product</th>
-              <th className="text-left p-4 font-medium">Category</th>
-              <th className="text-left p-4 font-medium">Price</th>
-              <th className="text-left p-4 font-medium">Stock</th>
-              <th className="text-left p-4 font-medium">Status</th>
-              <th className="text-right p-4 font-medium">Actions</th>
+              <th className="text-left p-4 font-medium">{t("product")}</th>
+              <th className="text-left p-4 font-medium">{t("category")}</th>
+              <th className="text-left p-4 font-medium">{t("price")}</th>
+              <th className="text-left p-4 font-medium">{t("stock")}</th>
+              <th className="text-left p-4 font-medium">{t("status")}</th>
+              <th className="text-right p-4 font-medium">{t("actions")}</th>
             </tr>
           </thead>
           <tbody>
@@ -91,22 +93,22 @@ export default function StoreOwnerProducts() {
                     <span className="font-medium">${product.price}</span>
                   )}
                 </td>
-                <td className="p-4">{product.sizes.length} sizes</td>
+                <td className="p-4">{product.sizes.length} {t("sizes")}</td>
                 <td className="p-4">
                   <span
                     className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
                       product.inStock ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
                     }`}
                   >
-                    {product.inStock ? "In Stock" : "Out of Stock"}
+                    {product.inStock ? t("inStock") : t("outOfStock")}
                   </span>
                 </td>
                 <td className="p-4">
                   <div className="flex items-center justify-end gap-2">
-                    <Button variant="ghost" size="sm">
+                    <Button variant="ghost" size="sm" title={t("editProduct")}>
                       <Edit className="w-4 h-4" />
                     </Button>
-                    <Button variant="ghost" size="sm" onClick={() => handleDelete(product.id)}>
+                    <Button variant="ghost" size="sm" onClick={() => handleDelete(product.id)} title={t("actions")}>
                       <Trash2 className="w-4 h-4 text-red-600" />
                     </Button>
                   </div>
@@ -120,14 +122,14 @@ export default function StoreOwnerProducts() {
       {filteredProducts.length === 0 && (
         <div className="text-center py-12">
           <Package className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-lg font-medium mb-2">No products found</h3>
+          <h3 className="text-lg font-medium mb-2">{t("noProductsFound")}</h3>
           <p className="text-muted-foreground mb-4">
-            {searchQuery ? "Try adjusting your search" : "Get started by adding your first product"}
+            {searchQuery ? t("tryAdjusting") : t("getStarted")}
           </p>
           {!searchQuery && (
             <Button onClick={() => setIsAddModalOpen(true)}>
               <Plus className="w-4 h-4 mr-2" />
-              Add Product
+              {t("addProduct")}
             </Button>
           )}
         </div>

@@ -372,10 +372,23 @@
     },
     "products": {
       "title": "My Products",
-      "addProduct": "Add New Product",
+      "subtitle": "Manage your store's product catalog",
+      "addProduct": "Add Product",
       "editProduct": "Edit Product",
-      "noProducts": "You haven't added any products yet",
-      "startAdding": "Start adding products to your store"
+      "searchPlaceholder": "Search products...",
+      "product": "Product",
+      "category": "Category",
+      "price": "Price",
+      "stock": "Stock",
+      "status": "Status",
+      "actions": "Actions",
+      "sizes": "sizes",
+      "inStock": "In Stock",
+      "outOfStock": "Out of Stock",
+      "noProductsFound": "No products found",
+      "tryAdjusting": "Try adjusting your search",
+      "getStarted": "Get started by adding your first product",
+      "deleteConfirm": "Are you sure you want to delete this product?"
     },
     "analytics": {
       "title": "Analytics",

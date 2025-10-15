@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 
 export default function SettingsPage() {
   const t = useTranslations('admin.settings')
-  
+
   return (
     <div>
       <div className="mb-8">

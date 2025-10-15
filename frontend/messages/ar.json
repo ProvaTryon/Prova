@@ -372,10 +372,23 @@
     },
     "products": {
       "title": "منتجاتي",
-      "addProduct": "إضافة منتج جديد",
+      "subtitle": "إدارة كتالوج منتجات متجرك",
+      "addProduct": "إضافة منتج",
       "editProduct": "تعديل المنتج",
-      "noProducts": "لم تضف أي منتجات بعد",
-      "startAdding": "ابدأ بإضافة منتجات إلى متجرك"
+      "searchPlaceholder": "البحث عن منتجات...",
+      "product": "المنتج",
+      "category": "الفئة",
+      "price": "السعر",
+      "stock": "المخزون",
+      "status": "الحالة",
+      "actions": "الإجراءات",
+      "sizes": "المقاسات",
+      "inStock": "متوفر",
+      "outOfStock": "غير متوفر",
+      "noProductsFound": "لم يتم العثور على منتجات",
+      "tryAdjusting": "حاول تعديل بحثك",
+      "getStarted": "ابدأ بإضافة منتجك الأول",
+      "deleteConfirm": "هل أنت متأكد أنك تريد حذف هذا المنتج؟"
     },
     "analytics": {
       "title": "التحليلات",
