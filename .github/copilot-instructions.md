@@ -2,6 +2,51 @@
 
 This document provides essential guidance for AI agents working on this codebase. Understanding these concepts is critical for making effective contributions.
 
+## 0. Professional Workflow Principles
+
+When working on any task in this project, follow this systematic approach:
+
+### Phase 1: Analysis & Planning
+1. **Understand the Request**: Clarify the user's goal and identify all affected areas
+2. **Analyze Scope**: Use semantic search and grep to understand the current state
+3. **Identify Dependencies**: Find related files, components, and patterns already in use
+4. **Create Design Plan**: Present a clear, structured plan with:
+   - All files that need changes
+   - Estimated complexity and time
+   - Multiple approach options when applicable
+   - Potential conflicts or issues
+
+### Phase 2: Verification & Alignment
+1. **Present Options**: Offer choices (e.g., Option A: comprehensive, Option B: minimal, Option C: custom)
+2. **Get User Confirmation**: Wait for user to select approach before proceeding
+3. **Set Expectations**: Be clear about what will be done and what won't
+
+### Phase 3: Systematic Implementation
+1. **Break Down Work**: Divide large tasks into logical, trackable phases
+2. **Incremental Progress**: Complete one section at a time, test, then move forward
+3. **Use Todo Lists**: Maintain visible progress tracking with `manage_todo_list`
+4. **Commit Frequently**: Make atomic commits with descriptive messages after each completed unit
+5. **Quality Checks**: Run error checks and validation after each change
+
+### Phase 4: Quality Assurance
+1. **Test for Errors**: Use `get_errors` to verify no compilation/lint issues
+2. **Cross-Reference**: Ensure consistency with existing patterns and conventions
+3. **Document Changes**: Update relevant docs if architecture or patterns change
+4. **Final Verification**: Check that all original requirements are met
+
+### Phase 5: Completion & Documentation
+1. **Comprehensive Report**: Summarize what was done, files changed, metrics
+2. **Handoff Information**: Provide clear next steps or testing instructions
+3. **Update Project Context**: Note any new patterns or conventions established
+
+### Key Principles
+- **Don't Assume**: Always gather context first, never guess at implementations
+- **Think Systematically**: Large changes need planning, small changes need context
+- **Be Transparent**: Show your reasoning, present trade-offs, explain decisions
+- **Track Progress**: Make work visible through todos, commits, and status updates
+- **Maintain Quality**: Follow existing patterns, add improvements where logical
+- **Verify Everything**: Check for errors, conflicts, and regressions after changes
+
 ## 1. High-Level Architecture: 3-Service Microservices
 
 The application consists of three separate services. Changes in one service often require corresponding changes in another.
@@ -67,3 +112,17 @@ Without this, the `colab_client.py` service will fail to connect.
 
 -   **Proxy Logic:** The main purpose of this service is to receive file uploads from `backend-web` and forward them to the Colab API. The core logic is in `app/services/colab_client.py`.
 -   **Configuration:** Settings are managed via `pydantic-settings` in `app/core/config.py` and loaded from a `.env` file.
+
+### Internationalization (i18n)
+
+-   **Translation System:** The app uses `next-intl` for full English/Arabic bilingual support
+-   **File Structure:** Translation files are in `frontend/messages/en.json` and `frontend/messages/ar.json` with hierarchical namespaces
+-   **Usage Pattern:** Components use `const t = useTranslations('namespace')` then call `t('key')` for translations
+-   **Namespaces:** Organized by feature/page (e.g., `nav`, `footer`, `admin`, `shop`, `virtualTryOn`, etc.)
+-   **RTL Support:** Arabic uses RTL layout automatically; use `no-flip` class for elements that shouldn't reverse (brand names, numbers, prices)
+-   **Adding Translations:**
+    1. Add keys to both `en.json` and `ar.json` in the same namespace
+    2. Import `useTranslations` in your component
+    3. Replace hardcoded strings with `t('key')` calls
+    4. Test in both `/en` and `/ar` routes
+-   **Translation Coverage:** Currently at 820 keys (410 per language) with 100% page coverage
