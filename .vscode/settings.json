@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.md": "markdown",
+    "copilot-instructions.md": "markdown"
+  },
+  "makefile.configureOnOpen": false,
+  "makefile.extensionOutputFolder": "./.vscode"
+}
