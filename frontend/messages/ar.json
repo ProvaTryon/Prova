@@ -465,6 +465,18 @@
       "low": "منخفضة",
       "noConversationsFound": "لم يتم العثور على محادثات"
     },
+    "conversationDetail": {
+      "back": "العودة",
+      "conversationNotFound": "لم يتم العثور على المحادثة",
+      "waiting": "في الانتظار",
+      "active": "نشط",
+      "resolved": "تم الحل",
+      "high": "عالية",
+      "medium": "متوسطة",
+      "low": "منخفضة",
+      "typeMessage": "اكتب رسالتك...",
+      "send": "إرسال"
+    },
     "analytics": {
       "title": "التحليلات",
       "responseTime": "متوسط وقت الاستجابة",

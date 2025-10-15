@@ -1,6 +1,7 @@
 "use client"
 
 import { use, useState, useRef, useEffect } from "react"
+import { useTranslations } from "next-intl"
 import { mockConversations } from "@/lib/mock-data"
 import { useAuth } from "@/lib/auth-context"
 import { Send, ArrowLeft } from "lucide-react"
@@ -8,6 +9,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export default function ConversationDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const t = useTranslations("customerService.conversationDetail")
   const { id } = use(params)
   const { user } = useAuth()
   const [conversation, setConversation] = useState(mockConversations.find((c) => c.id === id))
@@ -25,7 +27,7 @@ export default function ConversationDetailPage({ params }: { params: Promise<{ i
   if (!conversation) {
     return (
       <div className="p-8">
-        <p>Conversation not found</p>
+        <p>{t("conversationNotFound")}</p>
       </div>
     )
   }
@@ -66,7 +68,7 @@ export default function ConversationDetailPage({ params }: { params: Promise<{ i
           <Link href="/customer-service/conversations">
             <Button variant="ghost" size="sm">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back
+              {t("back")}
             </Button>
           </Link>
         </div>
@@ -81,10 +83,11 @@ export default function ConversationDetailPage({ params }: { params: Promise<{ i
               value={conversation.status}
               onChange={(e) => handleStatusChange(e.target.value as any)}
               className="px-3 py-1.5 border rounded-lg text-sm"
+              aria-label="Status"
             >
-              <option value="waiting">Waiting</option>
-              <option value="active">Active</option>
-              <option value="resolved">Resolved</option>
+              <option value="waiting">{t("waiting")}</option>
+              <option value="active">{t("active")}</option>
+              <option value="resolved">{t("resolved")}</option>
             </select>
             <span
               className={`px-3 py-1.5 rounded-lg text-sm font-medium ${
@@ -95,7 +98,7 @@ export default function ConversationDetailPage({ params }: { params: Promise<{ i
                     : "bg-gray-100 text-gray-700"
               }`}
             >
-              {conversation.priority.toUpperCase()}
+              {t(conversation.priority)}
             </span>
           </div>
         </div>
@@ -127,12 +130,12 @@ export default function ConversationDetailPage({ params }: { params: Promise<{ i
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && handleSend()}
-            placeholder="Type your message..."
+            placeholder={t("typeMessage")}
             className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           />
           <Button onClick={handleSend} disabled={!message.trim()}>
             <Send className="w-4 h-4 mr-2" />
-            Send
+            {t("send")}
           </Button>
         </div>
       </div>

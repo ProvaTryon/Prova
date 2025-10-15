@@ -465,6 +465,18 @@
       "low": "low",
       "noConversationsFound": "No conversations found"
     },
+    "conversationDetail": {
+      "back": "Back",
+      "conversationNotFound": "Conversation not found",
+      "waiting": "Waiting",
+      "active": "Active",
+      "resolved": "Resolved",
+      "high": "HIGH",
+      "medium": "MEDIUM",
+      "low": "LOW",
+      "typeMessage": "Type your message...",
+      "send": "Send"
+    },
     "analytics": {
       "title": "Analytics",
       "responseTime": "Avg. Response Time",
