@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { mockProducts } from "@/lib/mock-data"
@@ -11,6 +12,7 @@ import { Upload, X, Loader2, Download, Share2, ShoppingBag, Info } from "lucide-
 import { useCart } from "@/lib/cart-context"
 
 export default function VirtualTryOnPage() {
+  const t = useTranslations("virtualTryOn")
   const [userImage, setUserImage] = useState<string | null>(null)
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
@@ -33,7 +35,7 @@ export default function VirtualTryOnPage() {
 
   const handleGenerate = async () => {
     if (!userImage || !selectedProduct) {
-      alert("Please upload your photo and select a clothing item")
+      alert(t("uploadAlert"))
       return
     }
 
@@ -50,7 +52,7 @@ export default function VirtualTryOnPage() {
       const product = mockProducts.find((p) => p.id === selectedProduct)
       if (product) {
         addItem(product, product.sizes[0], product.colors[0])
-        alert("Added to cart!")
+        alert(t("addedToCart"))
       }
     }
   }
@@ -65,9 +67,9 @@ export default function VirtualTryOnPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="font-serif text-4xl sm:text-5xl font-medium mb-4">Virtual Try-On Studio</h1>
+            <h1 className="font-serif text-4xl sm:text-5xl font-medium mb-4">{t("title")}</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              See how clothes look on you before buying. Upload your photo and select any item from our catalog.
+              {t("subtitle")}
             </p>
           </div>
 
@@ -76,12 +78,12 @@ export default function VirtualTryOnPage() {
             <div className="flex items-start gap-3">
               <Info className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
               <div className="text-sm">
-                <p className="font-semibold mb-1">Photo Guidelines for Best Results:</p>
+                <p className="font-semibold mb-1">{t("photoGuidelines")}</p>
                 <ul className="text-muted-foreground space-y-1">
-                  <li>• Full body photo with good lighting</li>
-                  <li>• Stand straight facing the camera</li>
-                  <li>• Plain background preferred</li>
-                  <li>• Wear fitted clothing for accurate visualization</li>
+                  <li>• {t("fullBody")}</li>
+                  <li>• {t("standStraight")}</li>
+                  <li>• {t("plainBackground")}</li>
+                  <li>• {t("fittedClothing")}</li>
                 </ul>
               </div>
             </div>
@@ -92,7 +94,7 @@ export default function VirtualTryOnPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
               {/* Upload Photo */}
               <div className="space-y-4">
-                <h2 className="font-serif text-2xl font-medium">1. Upload Your Photo</h2>
+                <h2 className="font-serif text-2xl font-medium">1. {t("uploadPhoto")}</h2>
                 <div className="relative aspect-[3/4] border-2 border-dashed border-border rounded-lg overflow-hidden bg-muted hover:border-primary transition-colors">
                   {userImage ? (
                     <>
@@ -100,6 +102,7 @@ export default function VirtualTryOnPage() {
                       <button
                         onClick={() => setUserImage(null)}
                         className="absolute top-4 right-4 p-2 bg-background/80 backdrop-blur rounded-full hover:bg-background transition-colors"
+                        title="Remove"
                       >
                         <X className="w-5 h-5" />
                       </button>
@@ -107,8 +110,8 @@ export default function VirtualTryOnPage() {
                   ) : (
                     <label className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer">
                       <Upload className="w-12 h-12 text-muted-foreground mb-4" />
-                      <p className="text-lg font-medium mb-2">Click to upload or drag and drop</p>
-                      <p className="text-sm text-muted-foreground">PNG, JPG up to 10MB</p>
+                      <p className="text-lg font-medium mb-2">{t("clickUpload")}</p>
+                      <p className="text-sm text-muted-foreground">{t("fileSize")}</p>
                       <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
                     </label>
                   )}
@@ -117,7 +120,7 @@ export default function VirtualTryOnPage() {
 
               {/* Select Clothing */}
               <div className="space-y-4">
-                <h2 className="font-serif text-2xl font-medium">2. Select Clothing Item</h2>
+                <h2 className="font-serif text-2xl font-medium">2. {t("selectClothing")}</h2>
                 <div className="relative aspect-[3/4] border-2 border-dashed border-border rounded-lg overflow-hidden bg-muted hover:border-primary transition-colors">
                   {selectedProductData ? (
                     <>
@@ -128,15 +131,16 @@ export default function VirtualTryOnPage() {
                         className="object-cover"
                       />
                       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background to-transparent">
-                        <p className="text-sm text-muted-foreground">{selectedProductData.brand}</p>
-                        <p className="font-medium">{selectedProductData.name}</p>
-                        <p className="text-sm font-semibold">
+                        <p className="text-sm text-muted-foreground no-flip">{selectedProductData.brand}</p>
+                        <p className="font-medium no-flip">{selectedProductData.name}</p>
+                        <p className="text-sm font-semibold no-flip">
                           ${selectedProductData.salePrice || selectedProductData.price}
                         </p>
                       </div>
                       <button
                         onClick={() => setSelectedProduct(null)}
                         className="absolute top-4 right-4 p-2 bg-background/80 backdrop-blur rounded-full hover:bg-background transition-colors"
+                        title="Remove"
                       >
                         <X className="w-5 h-5" />
                       </button>
@@ -147,8 +151,8 @@ export default function VirtualTryOnPage() {
                       className="absolute inset-0 flex flex-col items-center justify-center"
                     >
                       <ShoppingBag className="w-12 h-12 text-muted-foreground mb-4" />
-                      <p className="text-lg font-medium mb-2">Select from catalog</p>
-                      <p className="text-sm text-muted-foreground">Browse our collection</p>
+                      <p className="text-lg font-medium mb-2">{t("selectFromCatalog")}</p>
+                      <p className="text-sm text-muted-foreground">{t("browseCatalog")}</p>
                     </button>
                   )}
                 </div>
@@ -160,7 +164,7 @@ export default function VirtualTryOnPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Original */}
                 <div className="space-y-4">
-                  <h2 className="font-serif text-2xl font-medium">Original Photo</h2>
+                  <h2 className="font-serif text-2xl font-medium">{t("originalPhoto")}</h2>
                   <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-muted">
                     <Image src={userImage! || "/placeholder.svg"} alt="Original" fill className="object-cover" />
                   </div>
@@ -168,11 +172,11 @@ export default function VirtualTryOnPage() {
 
                 {/* Result */}
                 <div className="space-y-4">
-                  <h2 className="font-serif text-2xl font-medium">Virtual Try-On Result</h2>
+                  <h2 className="font-serif text-2xl font-medium">{t("tryOnResult")}</h2>
                   <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-muted">
                     <Image src={result || "/placeholder.svg"} alt="Try-on result" fill className="object-cover" />
                     <div className="absolute top-4 right-4 px-3 py-1 bg-primary text-primary-foreground rounded-full text-sm font-medium">
-                      AI Generated
+                      {t("aiGenerated")}
                     </div>
                   </div>
                 </div>
@@ -185,15 +189,15 @@ export default function VirtualTryOnPage() {
                   className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all flex items-center justify-center gap-2"
                 >
                   <ShoppingBag className="w-5 h-5" />
-                  Add to Cart
+                  {t("addToCart")}
                 </button>
                 <button className="px-8 py-4 border-2 border-foreground text-foreground rounded-full font-medium hover:bg-foreground hover:text-background transition-all flex items-center justify-center gap-2">
                   <Download className="w-5 h-5" />
-                  Download Result
+                  {t("downloadResult")}
                 </button>
                 <button className="px-8 py-4 border border-border rounded-full font-medium hover:bg-muted transition-all flex items-center justify-center gap-2">
                   <Share2 className="w-5 h-5" />
-                  Share
+                  {t("share")}
                 </button>
               </div>
 
@@ -206,7 +210,7 @@ export default function VirtualTryOnPage() {
                   }}
                   className="text-primary hover:underline"
                 >
-                  Try Another Item
+                  {t("tryAnotherItem")}
                 </button>
               </div>
             </div>
@@ -223,15 +227,15 @@ export default function VirtualTryOnPage() {
                 {isProcessing ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    Generating Try-On...
+                    {t("generating")}
                   </>
                 ) : (
-                  "Generate Virtual Try-On"
+                  t("generateTryOn")
                 )}
               </button>
               {isProcessing && (
                 <p className="text-sm text-muted-foreground mt-4">
-                  AI is processing your image... This may take 15-30 seconds
+                  {t("processingTime")}
                 </p>
               )}
             </div>
@@ -239,28 +243,28 @@ export default function VirtualTryOnPage() {
 
           {/* How It Works */}
           <div className="mt-24 pt-12 border-t border-border">
-            <h2 className="font-serif text-3xl font-medium text-center mb-12">How It Works</h2>
+            <h2 className="font-serif text-3xl font-medium text-center mb-12">{t("howItWorks")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-2xl font-serif font-semibold mx-auto mb-4 text-primary">
                   1
                 </div>
-                <h3 className="font-serif text-xl font-medium mb-2">Upload Your Photo</h3>
-                <p className="text-muted-foreground">Take or upload a full-body photo following our guidelines</p>
+                <h3 className="font-serif text-xl font-medium mb-2">{t("step1Title")}</h3>
+                <p className="text-muted-foreground">{t("step1Desc")}</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-2xl font-serif font-semibold mx-auto mb-4 text-primary">
                   2
                 </div>
-                <h3 className="font-serif text-xl font-medium mb-2">Choose Clothing</h3>
-                <p className="text-muted-foreground">Select any item from our catalog to try on virtually</p>
+                <h3 className="font-serif text-xl font-medium mb-2">{t("step2Title")}</h3>
+                <p className="text-muted-foreground">{t("step2Desc")}</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-2xl font-serif font-semibold mx-auto mb-4 text-primary">
                   3
                 </div>
-                <h3 className="font-serif text-xl font-medium mb-2">See the Result</h3>
-                <p className="text-muted-foreground">Our AI generates a realistic visualization in seconds</p>
+                <h3 className="font-serif text-xl font-medium mb-2">{t("step3Title")}</h3>
+                <p className="text-muted-foreground">{t("step3Desc")}</p>
               </div>
             </div>
           </div>
@@ -272,8 +276,8 @@ export default function VirtualTryOnPage() {
         <div className="fixed inset-0 bg-foreground/20 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-background rounded-lg max-w-4xl w-full max-h-[80vh] overflow-hidden flex flex-col">
             <div className="flex items-center justify-between p-6 border-b border-border">
-              <h2 className="font-serif text-2xl font-medium">Select Clothing Item</h2>
-              <button onClick={() => setShowProductSelector(false)} className="p-2 hover:bg-muted rounded-full">
+              <h2 className="font-serif text-2xl font-medium">{t("selectItem")}</h2>
+              <button onClick={() => setShowProductSelector(false)} className="p-2 hover:bg-muted rounded-full" title="Close">
                 <X className="w-5 h-5" />
               </button>
             </div>
