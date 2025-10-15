@@ -402,6 +402,18 @@
       "topProducts": "Top Products",
       "sales": "sales",
       "revenue": "revenue"
+    },
+    "settings": {
+      "title": "Store Settings",
+      "subtitle": "Manage your store information and preferences",
+      "storeName": "Store Name",
+      "description": "Description",
+      "ownerName": "Owner Name",
+      "email": "Email",
+      "storeStatus": "Store Status",
+      "saveChanges": "Save Changes",
+      "saving": "Saving...",
+      "savedSuccessfully": "Settings saved successfully!"
     }
   },
   "customerService": {

@@ -402,6 +402,18 @@
       "topProducts": "المنتجات الأكثر مبيعاً",
       "sales": "مبيعات",
       "revenue": "الإيرادات"
+    },
+    "settings": {
+      "title": "إعدادات المتجر",
+      "subtitle": "إدارة معلومات متجرك والتفضيلات",
+      "storeName": "اسم المتجر",
+      "description": "الوصف",
+      "ownerName": "اسم المالك",
+      "email": "البريد الإلكتروني",
+      "storeStatus": "حالة المتجر",
+      "saveChanges": "حفظ التغييرات",
+      "saving": "جاري الحفظ...",
+      "savedSuccessfully": "تم حفظ الإعدادات بنجاح!"
     }
   },
   "customerService": {
