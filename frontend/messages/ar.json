@@ -448,11 +448,22 @@
     },
     "conversations": {
       "title": "المحادثات",
+      "subtitle": "إدارة جميع محادثات العملاء",
       "all": "الكل",
       "waiting": "في الانتظار",
       "active": "نشط",
       "resolved": "تم الحل",
-      "searchConversations": "البحث في المحادثات..."
+      "searchPlaceholder": "البحث في المحادثات...",
+      "customer": "العميل",
+      "subject": "الموضوع",
+      "status": "الحالة",
+      "priority": "الأولوية",
+      "lastMessage": "آخر رسالة",
+      "unread": "غير مقروء",
+      "high": "عالية",
+      "medium": "متوسطة",
+      "low": "منخفضة",
+      "noConversationsFound": "لم يتم العثور على محادثات"
     },
     "analytics": {
       "title": "التحليلات",

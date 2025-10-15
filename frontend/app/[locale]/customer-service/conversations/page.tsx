@@ -1,12 +1,14 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { mockConversations } from "@/lib/mock-data"
 import { Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 
 export default function ConversationsPage() {
+  const t = useTranslations("customerService.conversations")
   const [searchQuery, setSearchQuery] = useState("")
   const [statusFilter, setStatusFilter] = useState<"all" | "waiting" | "active" | "resolved">("all")
 
@@ -21,8 +23,8 @@ export default function ConversationsPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-serif mb-2">Conversations</h1>
-        <p className="text-muted-foreground">Manage all customer conversations</p>
+        <h1 className="text-3xl font-serif mb-2">{t("title")}</h1>
+        <p className="text-muted-foreground">{t("subtitle")}</p>
       </div>
 
       <div className="flex gap-4 mb-6">
@@ -30,7 +32,7 @@ export default function ConversationsPage() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
           <Input
             type="text"
-            placeholder="Search conversations..."
+            placeholder={t("searchPlaceholder")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
@@ -43,7 +45,7 @@ export default function ConversationsPage() {
               statusFilter === "all" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
             }`}
           >
-            All
+            {t("all")}
           </button>
           <button
             onClick={() => setStatusFilter("waiting")}
@@ -51,7 +53,7 @@ export default function ConversationsPage() {
               statusFilter === "waiting" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
             }`}
           >
-            Waiting
+            {t("waiting")}
           </button>
           <button
             onClick={() => setStatusFilter("active")}
@@ -59,7 +61,7 @@ export default function ConversationsPage() {
               statusFilter === "active" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
             }`}
           >
-            Active
+            {t("active")}
           </button>
           <button
             onClick={() => setStatusFilter("resolved")}
@@ -67,7 +69,7 @@ export default function ConversationsPage() {
               statusFilter === "resolved" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
             }`}
           >
-            Resolved
+            {t("resolved")}
           </button>
         </div>
       </div>
@@ -76,12 +78,12 @@ export default function ConversationsPage() {
         <table className="w-full">
           <thead className="bg-muted">
             <tr>
-              <th className="text-left p-4 font-medium">Customer</th>
-              <th className="text-left p-4 font-medium">Subject</th>
-              <th className="text-left p-4 font-medium">Status</th>
-              <th className="text-left p-4 font-medium">Priority</th>
-              <th className="text-left p-4 font-medium">Last Message</th>
-              <th className="text-left p-4 font-medium">Unread</th>
+              <th className="text-left p-4 font-medium">{t("customer")}</th>
+              <th className="text-left p-4 font-medium">{t("subject")}</th>
+              <th className="text-left p-4 font-medium">{t("status")}</th>
+              <th className="text-left p-4 font-medium">{t("priority")}</th>
+              <th className="text-left p-4 font-medium">{t("lastMessage")}</th>
+              <th className="text-left p-4 font-medium">{t("unread")}</th>
             </tr>
           </thead>
           <tbody>
@@ -104,7 +106,7 @@ export default function ConversationsPage() {
                           : "bg-green-100 text-green-700"
                     }`}
                   >
-                    {conv.status}
+                    {t(conv.status)}
                   </span>
                 </td>
                 <td className="p-4">
@@ -117,7 +119,7 @@ export default function ConversationsPage() {
                           : "bg-gray-100 text-gray-700"
                     }`}
                   >
-                    {conv.priority}
+                    {t(conv.priority)}
                   </span>
                 </td>
                 <td className="p-4 text-sm text-muted-foreground">{new Date(conv.lastMessageTime).toLocaleString()}</td>
@@ -136,7 +138,7 @@ export default function ConversationsPage() {
 
       {filteredConversations.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-muted-foreground">No conversations found</p>
+          <p className="text-muted-foreground">{t("noConversationsFound")}</p>
         </div>
       )}
     </div>

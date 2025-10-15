@@ -448,11 +448,22 @@
     },
     "conversations": {
       "title": "Conversations",
+      "subtitle": "Manage all customer conversations",
       "all": "All",
       "waiting": "Waiting",
       "active": "Active",
       "resolved": "Resolved",
-      "searchConversations": "Search conversations..."
+      "searchPlaceholder": "Search conversations...",
+      "customer": "Customer",
+      "subject": "Subject",
+      "status": "Status",
+      "priority": "Priority",
+      "lastMessage": "Last Message",
+      "unread": "Unread",
+      "high": "high",
+      "medium": "medium",
+      "low": "low",
+      "noConversationsFound": "No conversations found"
     },
     "analytics": {
       "title": "Analytics",
