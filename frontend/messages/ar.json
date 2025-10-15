@@ -392,10 +392,16 @@
     },
     "analytics": {
       "title": "التحليلات",
-      "overview": "نظرة عامة",
-      "salesTrend": "اتجاه المبيعات",
+      "subtitle": "تتبع أداء متجرك والرؤى",
+      "totalRevenue": "إجمالي الإيرادات",
+      "totalOrders": "إجمالي الطلبات",
+      "avgOrderValue": "متوسط قيمة الطلب",
+      "customers": "العملاء",
+      "fromLastMonth": "من الشهر الماضي",
+      "salesOverview": "نظرة عامة على المبيعات",
       "topProducts": "المنتجات الأكثر مبيعاً",
-      "customerInsights": "رؤى العملاء"
+      "sales": "مبيعات",
+      "revenue": "الإيرادات"
     }
   },
   "customerService": {

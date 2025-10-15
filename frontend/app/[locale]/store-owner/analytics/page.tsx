@@ -1,10 +1,12 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { useAuth } from "@/lib/auth-context"
 import { mockStores } from "@/lib/mock-data"
 import { TrendingUp, DollarSign, ShoppingCart, Users } from "lucide-react"
 
 export default function StoreOwnerAnalytics() {
+  const t = useTranslations("storeOwner.analytics")
   const { user } = useAuth()
   const store = mockStores.find((s) => s.id === user?.storeId)
 
@@ -26,53 +28,53 @@ export default function StoreOwnerAnalytics() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-serif mb-2">Analytics</h1>
-        <p className="text-muted-foreground">Track your store's performance and insights</p>
+        <h1 className="text-3xl font-serif mb-2">{t("title")}</h1>
+        <p className="text-muted-foreground">{t("subtitle")}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div className="bg-card p-6 rounded-lg border">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-sm text-muted-foreground">Total Revenue</span>
+            <span className="text-sm text-muted-foreground">{t("totalRevenue")}</span>
             <DollarSign className="w-5 h-5 text-muted-foreground" />
           </div>
           <div className="text-3xl font-bold mb-2">${(store?.revenue || 0).toLocaleString()}</div>
-          <p className="text-sm text-green-600">+12% from last month</p>
+          <p className="text-sm text-green-600">+12% {t("fromLastMonth")}</p>
         </div>
 
         <div className="bg-card p-6 rounded-lg border">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-sm text-muted-foreground">Total Orders</span>
+            <span className="text-sm text-muted-foreground">{t("totalOrders")}</span>
             <ShoppingCart className="w-5 h-5 text-muted-foreground" />
           </div>
           <div className="text-3xl font-bold mb-2">{store?.totalSales || 0}</div>
-          <p className="text-sm text-green-600">+8% from last month</p>
+          <p className="text-sm text-green-600">+8% {t("fromLastMonth")}</p>
         </div>
 
         <div className="bg-card p-6 rounded-lg border">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-sm text-muted-foreground">Avg Order Value</span>
+            <span className="text-sm text-muted-foreground">{t("avgOrderValue")}</span>
             <TrendingUp className="w-5 h-5 text-muted-foreground" />
           </div>
           <div className="text-3xl font-bold mb-2">
             ${store?.totalSales ? Math.round((store.revenue / store.totalSales) * 100) / 100 : 0}
           </div>
-          <p className="text-sm text-green-600">+3% from last month</p>
+          <p className="text-sm text-green-600">+3% {t("fromLastMonth")}</p>
         </div>
 
         <div className="bg-card p-6 rounded-lg border">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-sm text-muted-foreground">Customers</span>
+            <span className="text-sm text-muted-foreground">{t("customers")}</span>
             <Users className="w-5 h-5 text-muted-foreground" />
           </div>
           <div className="text-3xl font-bold mb-2">1,234</div>
-          <p className="text-sm text-green-600">+15% from last month</p>
+          <p className="text-sm text-green-600">+15% {t("fromLastMonth")}</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-card p-6 rounded-lg border">
-          <h2 className="text-xl font-serif mb-6">Sales Overview</h2>
+          <h2 className="text-xl font-serif mb-6">{t("salesOverview")}</h2>
           <div className="space-y-4">
             {salesData.map((data, index) => (
               <div key={data.month} className="flex items-center gap-4">
@@ -92,7 +94,7 @@ export default function StoreOwnerAnalytics() {
         </div>
 
         <div className="bg-card p-6 rounded-lg border">
-          <h2 className="text-xl font-serif mb-6">Top Products</h2>
+          <h2 className="text-xl font-serif mb-6">{t("topProducts")}</h2>
           <div className="space-y-4">
             {topProducts.map((product, index) => (
               <div key={product.name} className="flex items-center gap-4 p-4 border rounded-lg">
@@ -101,11 +103,11 @@ export default function StoreOwnerAnalytics() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-medium">{product.name}</h3>
-                  <p className="text-sm text-muted-foreground">{product.sales} sales</p>
+                  <p className="text-sm text-muted-foreground">{product.sales} {t("sales")}</p>
                 </div>
                 <div className="text-right">
                   <div className="font-bold">${product.revenue.toLocaleString()}</div>
-                  <div className="text-sm text-muted-foreground">revenue</div>
+                  <div className="text-sm text-muted-foreground">{t("revenue")}</div>
                 </div>
               </div>
             ))}

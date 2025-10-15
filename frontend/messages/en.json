@@ -392,10 +392,16 @@
     },
     "analytics": {
       "title": "Analytics",
-      "overview": "Overview",
-      "salesTrend": "Sales Trend",
+      "subtitle": "Track your store's performance and insights",
+      "totalRevenue": "Total Revenue",
+      "totalOrders": "Total Orders",
+      "avgOrderValue": "Avg Order Value",
+      "customers": "Customers",
+      "fromLastMonth": "from last month",
+      "salesOverview": "Sales Overview",
       "topProducts": "Top Products",
-      "customerInsights": "Customer Insights"
+      "sales": "sales",
+      "revenue": "revenue"
     }
   },
   "customerService": {
