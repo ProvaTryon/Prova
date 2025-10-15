@@ -5,20 +5,22 @@ services:
     build: ./frontend
     ports:
       - "3000:3000"
-    
+
   backend-web:
     build: ./backend-web
     ports:
       - "5000:5000"
     environment:
-      - AI_SERVICE_URL=http://ai-backend:8000
-    
-  ai-backend:  # Updated service name
-    build: ./ai-backend
+      - AI_SERVICE_URL=http://cloth-store-app-tryon:8000
+
+  cloth-store-app-tryon:
+    build: ./cloth-store-app-tryon
     ports:
       - "8000:8000"
     volumes:
-      - ./ai-backend/models:/app/models
+      - ./cloth-store-app-tryon/models:/app/models
+    environment:
+      - COLAB_API_URL=${COLAB_API_URL}
 
   db:
     image: postgres:13

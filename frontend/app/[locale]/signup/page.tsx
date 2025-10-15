@@ -11,6 +11,7 @@ import { useTranslations } from "next-intl"
 
 export default function SignupPage() {
   const t = useTranslations("auth")
+  const siteName = useTranslations()('siteName')
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -68,7 +69,7 @@ export default function SignupPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <span className="font-serif text-3xl font-semibold no-flip">Pròva</span>
+            <span className="font-serif text-3xl font-semibold">{siteName}</span>
           </Link>
           <h1 className="font-serif text-3xl font-medium mt-6 mb-2">{t("createAccount")}</h1>
           <p className="text-muted-foreground">{t("signUpSubtitle")}</p>
@@ -130,8 +131,8 @@ export default function SignupPage() {
                   type="button"
                   onClick={() => setAccountType("customer")}
                   className={`py-3 px-4 border-2 rounded-lg transition-all ${accountType === "customer"
-                      ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border hover:border-primary"
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border hover:border-primary"
                     }`}
                 >
                   {t("customer")}
@@ -140,8 +141,8 @@ export default function SignupPage() {
                   type="button"
                   onClick={() => setAccountType("brand")}
                   className={`py-3 px-4 border-2 rounded-lg transition-all ${accountType === "brand"
-                      ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border hover:border-primary"
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border hover:border-primary"
                     }`}
                 >
                   {t("brand")}

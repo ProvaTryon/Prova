@@ -1,6 +1,57 @@
 # AI Agent Instructions for the Clothing Store App
 
+> **Quick Start for New Agents**: Read sections 0-2 first (Critical Rules + Architecture). Reference sections 3-15 as needed.
+
 This document provides essential guidance for AI agents working on this codebase. Understanding these concepts is critical for making effective contributions.
+
+## 📍 Quick Reference Card
+
+**3-Service Microservices Architecture:**
+- `frontend/` (Next.js + TypeScript + pnpm) → Port 3000
+- `backend-web/` (Node.js + Express + npm) → Port 5000  
+- `cloth-store-app-tryon/` (FastAPI + Python) → Port 8000 → **Proxies to Google Colab** ⚠️
+
+**Critical Workflows:**
+```bash
+# Run full stack
+docker-compose up --build
+
+# Individual services
+cd frontend && pnpm dev              # ⚠️ Use pnpm, not npm
+cd backend-web && npm run dev        # ⚠️ Use npm, not pnpm
+cd cloth-store-app-tryon && uvicorn app.main:app --reload
+```
+
+**Before Any Changes:**
+1. Run `get_errors` to check TypeScript/lint issues
+2. Test in both `/en` and `/ar` locales
+3. Verify dark mode still works
+4. Check mobile responsiveness
+
+**State Management:** React Context API (no Redux) - see `lib/auth-context.tsx`, `lib/cart-context.tsx`  
+**UI Components:** shadcn/ui (61 components in `components/ui/`) - use these, don't create custom  
+**i18n:** `useTranslations('namespace')` - add keys to both `messages/en.json` and `messages/ar.json`  
+**Auth:** Mock authentication in dev (see credentials in section 3)
+
+### 🔑 Most Critical Non-Obvious Patterns
+
+1. **Virtual Try-On is NOT Local**: The `cloth-store-app-tryon` service is a **proxy only**. It forwards requests to Google Colab via ngrok. Without setting `COLAB_API_URL` in `.env`, the entire feature fails silently. See Section 2 for setup.
+
+2. **Package Managers are Strict**: Frontend uses `pnpm` ONLY. Backend uses `npm` ONLY. Mixing them breaks lock files and dependencies.
+
+3. **All Data is Mock**: The frontend uses `lib/mock-data.ts` for all data. Backend API routes exist but are commented out in `backend-web/index.js`. No real database connections yet.
+
+4. **i18n is Mandatory**: Every user-facing string MUST have entries in both `messages/en.json` AND `messages/ar.json`. Routes are prefixed with locale: `/en/shop` and `/ar/shop`. Use `useTranslations('namespace')` - never hardcode strings.
+
+5. **Auth is Simulated**: `lib/auth-context.tsx` simulates authentication with a 1-second delay. Test credentials: `admin@prova.com/admin123`, `store@prova.com/store123`, `cs@prova.com/cs123`. No backend API calls.
+
+6. **shadcn/ui is the Standard**: All UI components should use the 61 pre-built components in `components/ui/`. Creating custom components instead of using existing ones violates project conventions.
+
+7. **Dark Mode Uses CSS Variables**: Theme switching is instant (100ms) using CSS custom properties in `globals.css`. Always use semantic color variables like `bg-background`, `text-foreground` - never hardcode colors.
+
+8. **RTL is Automatic**: Arabic routes automatically apply RTL layout. Only add `no-flip` class to elements that shouldn't reverse (brand names, prices, numbers).
+
+---
 
 ## ⚠️ CRITICAL: Agent Mode Rules
 

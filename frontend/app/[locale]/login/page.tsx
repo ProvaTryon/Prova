@@ -11,6 +11,7 @@ import { useTranslations } from "next-intl"
 
 export default function LoginPage() {
   const t = useTranslations("auth")
+  const siteName = useTranslations()('siteName')
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -77,7 +78,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <span className="font-serif text-3xl font-semibold no-flip">Pròva</span>
+            <span className="font-serif text-3xl font-semibold">{siteName}</span>
           </Link>
           <h1 className="font-serif text-3xl font-medium mt-6 mb-2">{t("welcomeBack")}</h1>
           <p className="text-muted-foreground">{t("signInSubtitle")}</p>

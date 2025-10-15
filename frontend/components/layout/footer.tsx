@@ -6,6 +6,7 @@ import { Link } from "@/i18n/routing"
 
 export function Footer() {
   const t = useTranslations('footer')
+  const siteName = useTranslations()('siteName')
 
   return (
     <footer className="bg-secondary text-secondary-foreground mt-24">
@@ -13,7 +14,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="font-serif text-2xl font-semibold no-flip">Pròva</h3>
+            <h3 className="font-serif text-2xl font-semibold">{siteName}</h3>
             <p className="text-sm text-secondary-foreground/80">
               {t('description')}
             </p>
@@ -126,7 +127,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-secondary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-secondary-foreground/60">
-          <p className="no-flip">{t('copyright')}</p>
+          <p>{t('copyright', { siteName })}</p>
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-primary transition-colors">
               {t('privacyPolicy')}

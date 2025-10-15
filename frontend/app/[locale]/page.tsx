@@ -8,6 +8,7 @@ import { Link } from "@/i18n/routing"
 export default function HomePage() {
   const t = useTranslations('home')
   const tProduct = useTranslations('product')
+  const siteName = useTranslations()('siteName')
 
   // Get best selling products (first 8 products)
   const bestSellers = products.slice(0, 8)
@@ -121,7 +122,7 @@ export default function HomePage() {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-serif font-medium text-center mb-12">
-              <span className="no-flip">Pròva</span> {t('collections.title').replace('Pròva ', '')}
+              {t('collections.title', { siteName })}
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -135,8 +136,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
                   <h3 className="text-2xl font-serif font-medium mb-2">
-                    {t('collections.casual').split('Pròva')[0]}
-                    <span className="no-flip">Pròva</span>
+                    {t('collections.casual', { siteName })}
                   </h3>
                   <div className="flex items-center gap-2">
                     <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
@@ -156,8 +156,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
                   <h3 className="text-2xl font-serif font-medium mb-2">
-                    {t('collections.shirts').split('Pròva')[0]}
-                    <span className="no-flip">Pròva</span>
+                    {t('collections.shirts', { siteName })}
                   </h3>
                   <div className="flex items-center gap-2">
                     <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
@@ -177,8 +176,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
                   <h3 className="text-2xl font-serif font-medium mb-2">
-                    {t('collections.pants').split('Pròva')[0]}
-                    <span className="no-flip">Pròva</span>
+                    {t('collections.pants', { siteName })}
                   </h3>
                   <div className="flex items-center gap-2">
                     <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
@@ -198,8 +196,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
                   <h3 className="text-2xl font-serif font-medium mb-2">
-                    {t('collections.formal').split('Pròva')[0]}
-                    <span className="no-flip">Pròva</span>
+                    {t('collections.formal', { siteName })}
                   </h3>
                   <div className="flex items-center gap-2">
                     <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
@@ -219,8 +216,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
                   <h3 className="text-2xl font-serif font-medium mb-2">
-                    {t('collections.shorts').split('Pròva')[0]}
-                    <span className="no-flip">Pròva</span>
+                    {t('collections.shorts', { siteName })}
                   </h3>
                   <div className="flex items-center gap-2">
                     <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
@@ -240,8 +236,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
                   <h3 className="text-2xl font-serif font-medium mb-2">
-                    {t('collections.accessories').split('Pròva')[0]}
-                    <span className="no-flip">Pròva</span>
+                    {t('collections.accessories', { siteName })}
                   </h3>
                   <div className="flex items-center gap-2">
                     <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center">

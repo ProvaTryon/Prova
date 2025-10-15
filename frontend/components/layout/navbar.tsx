@@ -17,6 +17,7 @@ export function Navbar() {
   const { wishlistItems } = useWishlist()
   const { user, logout, isAuthenticated, isAdmin, isStoreOwner, isCustomerService } = useAuth()
   const t = useTranslations('nav')
+  const siteName = useTranslations()('siteName')
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
@@ -24,7 +25,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="font-serif text-2xl font-semibold tracking-tight">Pròva</span>
+            <span className="font-serif text-2xl font-semibold tracking-tight">{siteName}</span>
           </Link>
 
           {/* Desktop Navigation */}

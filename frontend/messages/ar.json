@@ -1,4 +1,5 @@
 {
+  "siteName": "بروفة",
   "nav": {
     "home": "الرئيسية",
     "shop": "المتجر",
@@ -38,13 +39,13 @@
     "bestSellers": "الأكثر مبيعاً",
     "viewAll": "عرض الكل",
     "collections": {
-      "title": "مجموعات Pròva",
-      "casual": "الكاجوال من Pròva",
-      "shirts": "القمصان من Pròva",
-      "pants": "البناطيل من Pròva",
-      "formal": "الرسمي من Pròva",
-      "shorts": "الشورتات من Pròva",
-      "accessories": "الإكسسوارات من Pròva"
+      "title": "مجموعات {siteName}",
+      "casual": "الكاجوال من {siteName}",
+      "shirts": "القمصان من {siteName}",
+      "pants": "البناطيل من {siteName}",
+      "formal": "الرسمي من {siteName}",
+      "shorts": "الشورتات من {siteName}",
+      "accessories": "الإكسسوارات من {siteName}"
     }
   },
   "product": {
@@ -122,7 +123,7 @@
     "subscribeText": "اشترك للحصول على عروض حصرية ونصائح الأناقة.",
     "emailPlaceholder": "بريدك الإلكتروني",
     "joinButton": "انضم",
-    "copyright": "© 2025 Pròva. جميع الحقوق محفوظة.",
+    "copyright": "© 2025 {siteName}. جميع الحقوق محفوظة.",
     "privacyPolicy": "سياسة الخصوصية",
     "termsOfService": "شروط الخدمة"
   },
@@ -133,7 +134,7 @@
     "signingIn": "جاري تسجيل الدخول...",
     "signUp": "إنشاء حساب",
     "createAccount": "إنشاء حسابك",
-    "signUpSubtitle": "انضم إلى Pròva وابدأ رحلتك في عالم الموضة",
+    "signUpSubtitle": "انضم إلى {siteName} وابدأ رحلتك في عالم الموضة",
     "creatingAccount": "جاري إنشاء الحساب...",
     "email": "البريد الإلكتروني",
     "emailPlaceholder": "you@example.com",
@@ -231,7 +232,7 @@
     "title": "لوحة الإدارة",
     "dashboard": {
       "title": "لوحة التحكم",
-      "welcome": "مرحباً بك في لوحة إدارة Pròva",
+      "welcome": "مرحباً بك في لوحة إدارة {siteName}",
       "stats": {
         "totalStores": "إجمالي المتاجر",
         "active": "نشط",
