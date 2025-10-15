@@ -82,6 +82,8 @@ export function ProductDetailClient({ product, relatedProducts }: ProductDetailC
                   onClick={() => setSelectedImage(idx)}
                   className={`relative aspect-square overflow-hidden rounded-lg border-2 transition-colors ${selectedImage === idx ? "border-primary" : "border-transparent"
                     }`}
+                  aria-label={`View image ${idx + 1} of ${product.name}`}
+                  title={`View image ${idx + 1}`}
                 >
                   <Image
                     src={img || "/placeholder.svg"}
@@ -127,8 +129,8 @@ export function ProductDetailClient({ product, relatedProducts }: ProductDetailC
                     key={color}
                     onClick={() => setSelectedColor(color)}
                     className={`px-4 py-2 border-2 rounded-lg transition-all no-flip ${selectedColor === color
-                        ? "border-primary bg-primary text-primary-foreground"
-                        : "border-border hover:border-primary"
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border hover:border-primary"
                       }`}
                   >
                     {color}
@@ -148,8 +150,8 @@ export function ProductDetailClient({ product, relatedProducts }: ProductDetailC
                     key={size}
                     onClick={() => setSelectedSize(size)}
                     className={`px-4 py-2 border-2 rounded-lg transition-all no-flip ${selectedSize === size
-                        ? "border-primary bg-primary text-primary-foreground"
-                        : "border-border hover:border-primary"
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border hover:border-primary"
                       }`}
                   >
                     {size}

@@ -191,6 +191,7 @@ button {
 /* Hide scrollbar for horizontal scroll */
 .scrollbar-hide {
   -ms-overflow-style: none;
+  /* scrollbar-width is supported in Firefox and modern Chrome (121+), Safari still requires -webkit-scrollbar */
   scrollbar-width: none;
 }
 

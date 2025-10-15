@@ -50,7 +50,16 @@ export function FilterSidebar({ isOpen, onClose, filters, onFilterChange }: Filt
   return (
     <>
       {/* Mobile Overlay */}
-      {isOpen && <div className="fixed inset-0 bg-foreground/20 backdrop-blur-sm z-40 lg:hidden" onClick={onClose} />}
+      {isOpen && (
+        <button
+          className="fixed inset-0 bg-foreground/20 backdrop-blur-sm z-40 lg:hidden cursor-default border-0"
+          onClick={onClose}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') onClose()
+          }}
+          aria-label="Close filters"
+        />
+      )}
 
       {/* Sidebar */}
       <aside
@@ -132,6 +141,8 @@ export function FilterSidebar({ isOpen, onClose, filters, onFilterChange }: Filt
                 onFilterChange(newFilters)
               }}
               className="w-full accent-primary"
+              aria-label={t('priceRange')}
+              title={t('priceRange')}
             />
             <div className="flex items-center justify-between text-sm text-muted-foreground">
               <span>${localFilters.priceRange[0]}</span>

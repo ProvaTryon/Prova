@@ -1,6 +1,6 @@
 'use client'
 
-import { Instagram, Facebook, Twitter } from "lucide-react"
+import { Instagram, Facebook, X } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/routing"
 
@@ -18,14 +18,35 @@ export function Footer() {
               {t('description')}
             </p>
             <div className="flex gap-4">
-              <a href="#" className="hover:text-primary transition-colors">
+              <a
+                href="https://instagram.com"
+                className="hover:text-primary transition-colors"
+                aria-label="Instagram"
+                title="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-primary transition-colors">
+              <a
+                href="https://facebook.com"
+                className="hover:text-primary transition-colors"
+                aria-label="Facebook"
+                title="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-primary transition-colors">
-                <Twitter className="w-5 h-5" />
+              <a
+                href="https://twitter.com"
+                className="hover:text-primary transition-colors"
+                aria-label="Twitter"
+                title="Twitter"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <X className="w-5 h-5" />
               </a>
             </div>
           </div>

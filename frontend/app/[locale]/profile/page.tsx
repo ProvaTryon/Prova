@@ -79,24 +79,27 @@ export default function ProfilePage() {
                     <h2 className="font-serif text-2xl font-medium">{t("profileInformation")}</h2>
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium mb-2">{t("fullName")}</label>
+                        <label htmlFor="fullName" className="block text-sm font-medium mb-2">{t("fullName")}</label>
                         <input
+                          id="fullName"
                           type="text"
                           defaultValue={user.name}
                           className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary no-flip"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2">{t("email")}</label>
+                        <label htmlFor="email" className="block text-sm font-medium mb-2">{t("email")}</label>
                         <input
+                          id="email"
                           type="email"
                           defaultValue={user.email}
                           className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary no-flip"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2">{t("accountType")}</label>
+                        <label htmlFor="accountType" className="block text-sm font-medium mb-2">{t("accountType")}</label>
                         <input
+                          id="accountType"
                           type="text"
                           value={user.accountType === "customer" ? t("customer") : t("brand")}
                           disabled

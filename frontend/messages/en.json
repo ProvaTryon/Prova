@@ -12,7 +12,10 @@
     "orders": "Orders",
     "adminDashboard": "Admin Dashboard",
     "storeDashboard": "Store Dashboard",
-    "csDashboard": "CS Dashboard"
+    "csDashboard": "CS Dashboard",
+    "search": "Search",
+    "userMenu": "User menu",
+    "closeMenu": "Close menu"
   },
   "theme": {
     "toggleTheme": "Toggle theme",

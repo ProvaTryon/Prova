@@ -43,6 +43,7 @@ export default function StoreOwnerSettings() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className="mt-2 w-full min-h-[100px] px-3 py-2 border rounded-md"
+            aria-label={t("description")}
           />
         </div>
 
@@ -60,11 +61,11 @@ export default function StoreOwnerSettings() {
           <Label>{t("storeStatus")}</Label>
           <div className="mt-2">
             <span
-              className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${store?.status === "active"
-                  ? "bg-green-100 text-green-700"
-                  : store?.status === "pending"
-                    ? "bg-yellow-100 text-yellow-700"
-                    : "bg-red-100 text-red-700"
+              className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${(() => {
+                  if (store?.status === "active") return "bg-green-100 text-green-700"
+                  if (store?.status === "pending") return "bg-yellow-100 text-yellow-700"
+                  return "bg-red-100 text-red-700"
+                })()
                 }`}
             >
               {store?.status}

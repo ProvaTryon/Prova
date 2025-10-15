@@ -47,7 +47,11 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
             <ThemeToggle />
-            <button className="hidden md:block p-2 hover:bg-muted rounded-full transition-colors">
+            <button
+              className="hidden md:block p-2 hover:bg-muted rounded-full transition-colors"
+              aria-label={t('search')}
+              title={t('search')}
+            >
               <Search className="w-5 h-5" />
             </button>
             <Link href="/wishlist" className="relative p-2 hover:bg-muted rounded-full transition-colors">
@@ -73,13 +77,24 @@ export function Navbar() {
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
                   className="flex items-center gap-2 p-2 hover:bg-muted rounded-full transition-colors"
+                  aria-label={t('userMenu')}
+                  title={t('userMenu')}
+                  {...(userMenuOpen && { 'aria-expanded': true })}
+                  aria-haspopup="true"
                 >
                   <User className="w-5 h-5" />
                 </button>
 
                 {userMenuOpen && (
                   <>
-                    <div className="fixed inset-0 z-10" onClick={() => setUserMenuOpen(false)} />
+                    <button
+                      className="fixed inset-0 z-10 cursor-default bg-transparent border-0"
+                      onClick={() => setUserMenuOpen(false)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Escape') setUserMenuOpen(false)
+                      }}
+                      aria-label={t('closeMenu')}
+                    />
                     <div className="absolute right-0 mt-2 w-56 bg-background border border-border rounded-lg shadow-lg py-2 z-20">
                       <div className="px-4 py-3 border-b border-border">
                         <p className="text-sm font-medium">{user?.name}</p>

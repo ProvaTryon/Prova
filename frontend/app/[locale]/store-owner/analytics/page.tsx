@@ -76,20 +76,24 @@ export default function StoreOwnerAnalytics() {
         <div className="bg-card p-6 rounded-lg border">
           <h2 className="text-xl font-serif mb-6">{t("salesOverview")}</h2>
           <div className="space-y-4">
-            {salesData.map((data, index) => (
-              <div key={data.month} className="flex items-center gap-4">
-                <span className="text-sm text-muted-foreground w-12">{data.month}</span>
-                <div className="flex-1 bg-muted rounded-full h-8 relative overflow-hidden">
-                  <div
-                    className="bg-primary h-full rounded-full transition-all"
-                    style={{ width: `${(data.sales / 10000) * 100}%` }}
-                  />
-                  <span className="absolute inset-0 flex items-center justify-center text-sm font-medium">
-                    ${data.sales.toLocaleString()}
-                  </span>
+            {salesData.map((data, index) => {
+              const widthPercentage = (data.sales / 10000) * 100
+              return (
+                <div key={data.month} className="flex items-center gap-4">
+                  <span className="text-sm text-muted-foreground w-12">{data.month}</span>
+                  <div className="flex-1 bg-muted rounded-full h-8 relative overflow-hidden">
+                    {/* Dynamic width based on sales data - inline style necessary for data visualization */}
+                    <div
+                      className="bg-primary h-full rounded-full transition-all"
+                      style={{ width: `${widthPercentage}%` } as React.CSSProperties}
+                    />
+                    <span className="absolute inset-0 flex items-center justify-center text-sm font-medium">
+                      ${data.sales.toLocaleString()}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
 

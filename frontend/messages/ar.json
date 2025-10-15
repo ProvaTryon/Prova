@@ -12,7 +12,10 @@
     "orders": "الطلبات",
     "adminDashboard": "لوحة الإدارة",
     "storeDashboard": "لوحة المتجر",
-    "csDashboard": "لوحة خدمة العملاء"
+    "csDashboard": "لوحة خدمة العملاء",
+    "search": "بحث",
+    "userMenu": "قائمة المستخدم",
+    "closeMenu": "إغلاق القائمة"
   },
   "theme": {
     "toggleTheme": "تبديل المظهر",
