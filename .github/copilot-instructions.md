@@ -2,6 +2,198 @@
 
 This document provides essential guidance for AI agents working on this codebase. Understanding these concepts is critical for making effective contributions.
 
+## ⚠️ CRITICAL: Agent Mode Rules
+
+**These rules are MANDATORY when operating in autonomous agent mode. Violations will result in wasted time, broken code, or security issues.**
+
+### Rule 1: NEVER Assume - Always Verify
+- ❌ **NEVER** guess at file contents, API signatures, or implementation details
+- ✅ **ALWAYS** use `read_file`, `semantic_search`, or `grep_search` to verify before making changes
+- ✅ **ALWAYS** check if a file/component/function exists before referencing it
+- ✅ **ALWAYS** read the full function/component before modifying it
+
+**Example:**
+```
+❌ BAD: "I'll update the login function" → proceeds without reading it
+✅ GOOD: Uses read_file to check auth-context.tsx → sees mock auth → updates accordingly
+```
+
+### Rule 2: Test Before Declaring Success
+- ❌ **NEVER** say "done" or "complete" without verification
+- ✅ **ALWAYS** run `get_errors` after file modifications
+- ✅ **ALWAYS** check both `/en` and `/ar` routes for i18n changes
+- ✅ **ALWAYS** test in light AND dark mode for UI changes
+- ✅ **ALWAYS** verify mobile responsiveness for layout changes
+
+**Verification Checklist:**
+```typescript
+✅ TypeScript compilation errors checked
+✅ Both locales tested (if i18n affected)
+✅ Dark mode verified (if UI affected)
+✅ Mobile view tested (if layout affected)
+✅ Console errors checked in browser
+```
+
+### Rule 3: Maintain Consistency - Follow Existing Patterns
+- ❌ **NEVER** introduce new patterns when existing ones work
+- ❌ **NEVER** mix styling approaches (e.g., inline styles + Tailwind)
+- ✅ **ALWAYS** use existing components from `components/ui/` before creating new ones
+- ✅ **ALWAYS** follow the translation namespace structure
+- ✅ **ALWAYS** use the same state management approach (React Context, not Redux)
+- ✅ **ALWAYS** match the existing authentication pattern (mock for now)
+
+**Pattern Enforcement:**
+```tsx
+❌ BAD: Creating custom modal when Dialog component exists
+❌ BAD: Adding a new state library when Context API is standard
+✅ GOOD: Using shadcn/ui Dialog component
+✅ GOOD: Following existing auth-context pattern
+```
+
+### Rule 4: Document As You Go
+- ❌ **NEVER** make architectural changes without updating docs
+- ✅ **ALWAYS** update `docs/features/` when completing features
+- ✅ **ALWAYS** update this file when introducing new patterns
+- ✅ **ALWAYS** add JSDoc comments for complex functions
+- ✅ **ALWAYS** update API documentation when adding endpoints
+
+### Rule 5: Safe File Operations
+- ❌ **NEVER** delete files without explicit user confirmation
+- ❌ **NEVER** overwrite files without reading them first
+- ❌ **NEVER** modify configuration files without understanding impact
+- ✅ **ALWAYS** create backups for risky operations (suggest git commit first)
+- ✅ **ALWAYS** use `replace_string_in_file` with sufficient context (3-5 lines)
+
+### Rule 6: Security First
+- ❌ **NEVER** commit API keys, tokens, or secrets
+- ❌ **NEVER** disable security features without explicit approval
+- ❌ **NEVER** expose sensitive user data in logs or error messages
+- ✅ **ALWAYS** validate user inputs
+- ✅ **ALWAYS** use parameterized queries (when DB is connected)
+- ✅ **ALWAYS** follow principle of least privilege
+
+### Rule 7: Error Handling is Mandatory
+- ❌ **NEVER** leave try-catch blocks empty
+- ❌ **NEVER** suppress errors without logging
+- ✅ **ALWAYS** provide meaningful error messages
+- ✅ **ALWAYS** handle edge cases (null, undefined, empty arrays)
+- ✅ **ALWAYS** fail gracefully with user-friendly messages
+
+**Error Handling Pattern:**
+```tsx
+❌ BAD:
+try { await api.call() } catch {}
+
+✅ GOOD:
+try {
+  await api.call()
+} catch (error) {
+  console.error('API call failed:', error)
+  toast.error(t('errors.apiCallFailed'))
+  return null
+}
+```
+
+### Rule 8: Performance Awareness
+- ❌ **NEVER** create infinite loops or recursive calls without bounds
+- ❌ **NEVER** load all data at once without pagination
+- ✅ **ALWAYS** use proper React keys in lists
+- ✅ **ALWAYS** memoize expensive computations
+- ✅ **ALWAYS** lazy load heavy components
+
+### Rule 9: Accessibility is Non-Negotiable
+- ❌ **NEVER** create UI without keyboard navigation
+- ❌ **NEVER** use color as the only indicator
+- ✅ **ALWAYS** add ARIA labels to interactive elements
+- ✅ **ALWAYS** ensure proper heading hierarchy
+- ✅ **ALWAYS** test with screen readers in mind
+- ✅ **ALWAYS** maintain focus management in modals
+
+### Rule 10: Communication & Transparency
+- ❌ **NEVER** make silent changes without explanation
+- ❌ **NEVER** skip steps in the workflow phases
+- ✅ **ALWAYS** explain your reasoning for technical decisions
+- ✅ **ALWAYS** present trade-offs when multiple approaches exist
+- ✅ **ALWAYS** ask for clarification when requirements are ambiguous
+- ✅ **ALWAYS** provide a summary of changes with file counts and metrics
+
+### Rule 11: Code Quality Standards
+- ❌ **NEVER** commit code with console.log statements (except intentional logging)
+- ❌ **NEVER** leave commented-out code blocks
+- ❌ **NEVER** use magic numbers without constants
+- ✅ **ALWAYS** use TypeScript types/interfaces properly
+- ✅ **ALWAYS** follow DRY principle (Don't Repeat Yourself)
+- ✅ **ALWAYS** write self-documenting code with clear variable names
+
+**Code Quality Example:**
+```tsx
+❌ BAD:
+const x = products.filter(p => p.price < 100)
+console.log(x)
+
+✅ GOOD:
+const PRICE_THRESHOLD = 100
+const affordableProducts = products.filter(
+  product => product.price < PRICE_THRESHOLD
+)
+```
+
+### Rule 12: Respect Project Constraints
+- ❌ **NEVER** use `npm` in frontend (use `pnpm` only)
+- ❌ **NEVER** use `pnpm` in backend (use `npm` only)
+- ❌ **NEVER** bypass the i18n system with hardcoded strings
+- ❌ **NEVER** ignore the RTL requirement for Arabic
+- ✅ **ALWAYS** check package manager before running install commands
+- ✅ **ALWAYS** add translations to BOTH `en.json` and `ar.json`
+
+### Agent Mode Workflow Summary
+
+```
+1. 📋 READ & UNDERSTAND
+   → Use semantic_search, grep_search, read_file
+   → Verify current implementation
+   → Check for existing patterns
+
+2. 🎯 PLAN & PRESENT
+   → Create detailed plan with file list
+   → Present options with trade-offs
+   → Get user confirmation
+
+3. 🔨 IMPLEMENT INCREMENTALLY
+   → Make small, testable changes
+   → Use manage_todo_list for tracking
+   → Commit at logical milestones
+
+4. ✅ VERIFY & VALIDATE
+   → Run get_errors after each change
+   → Test in multiple scenarios
+   → Check accessibility and i18n
+
+5. 📝 DOCUMENT & REPORT
+   → Update feature docs
+   → Update this file if patterns changed
+   → Provide comprehensive summary
+```
+
+### Failure Recovery Protocol
+
+**If something breaks:**
+1. ✅ Immediately stop and assess the damage
+2. ✅ Use `get_errors` to identify the issue
+3. ✅ Read the affected files completely
+4. ✅ Explain what went wrong and why
+5. ✅ Present fix options before proceeding
+6. ✅ Suggest git revert if fix is complex
+
+**If requirements are unclear:**
+1. ✅ List what you understand
+2. ✅ List what's ambiguous
+3. ✅ Ask specific questions
+4. ✅ Suggest alternatives
+5. ✅ Wait for clarification (don't guess)
+
+---
+
 ## Table of Contents
 1. [Professional Workflow Principles](#0-professional-workflow-principles)
 2. [Feature Documentation Management](#01-feature-documentation-management)
@@ -9,6 +201,7 @@ This document provides essential guidance for AI agents working on this codebase
 4. [Architecture Overview](#1-high-level-architecture-3-service-microservices)
 5. [Developer Workflows](#2-critical-developer-workflows)
 6. [Code Conventions & Patterns](#3-code-conventions--patterns)
+7. [Environment & Configuration](#4-environment--configuration)
 
 ## 0. Professional Workflow Principles
 
@@ -367,19 +560,265 @@ Without this, the `colab_client.py` service will fail to connect.
 
 ### Frontend (Next.js)
 
--   **UI Components:** The project uses `shadcn/ui`. When adding new UI, prefer composing existing components from `frontend/components/ui/`.
--   **Authentication & Authorization:** Client-side route guards are used to protect routes. See `components/admin/admin-route-guard.tsx` for an example of role-based protection. The core logic is in `lib/auth-context.tsx`.
--   **Styling:** Use TailwindCSS utility classes directly in your components. Global styles are in `frontend/app/globals.css`.
+#### UI Component Library (shadcn/ui)
 
-### Backend (Node.js)
+**Available Components:** 61 pre-built components in `components/ui/` including:
+- Layout: `card`, `sheet`, `dialog`, `drawer`, `tabs`, `accordion`, `sidebar`
+- Forms: `input`, `textarea`, `select`, `checkbox`, `radio-group`, `switch`, `form`
+- Feedback: `alert`, `toast`, `spinner`, `skeleton`, `progress`
+- Navigation: `navigation-menu`, `menubar`, `breadcrumb`, `pagination`
+- Data Display: `table`, `badge`, `avatar`, `tooltip`, `hover-card`
+- Advanced: `command`, `calendar`, `chart`, `carousel`, `resizable`
 
--   **API Structure:** The API follows a standard MVC-like pattern: `routes` define the endpoints, `controllers` handle the request/response logic, and `models` define the data structures.
--   **Cross-Service Communication:** When `backend-web` needs an AI function, it makes an HTTP request to the `cloth-store-app-tryon` service. The base URL for this is configured via the `AI_SERVICE_URL` environment variable.
+**Usage Pattern:**
+```tsx
+import { Button } from "@/components/ui/button"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+
+<Card>
+  <CardHeader>
+    <CardTitle>{t('title')}</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <Button variant="default">Click Me</Button>
+  </CardContent>
+</Card>
+```
+
+**Component Composition:** Always compose from existing UI components rather than creating custom styled divs. Example from `ProductCard`:
+```tsx
+// ✅ Good - Uses shadcn components
+<Card className="group">
+  <CardContent className="p-0">
+    <Image src={product.image} alt={product.name} />
+  </CardContent>
+</Card>
+
+// ❌ Avoid - Custom styled divs
+<div className="border rounded-lg p-4 shadow">
+  <img src={product.image} alt={product.name} />
+</div>
+```
+
+#### Authentication & Authorization
+
+**Authentication Context Pattern:**
+```tsx
+// In any component
+import { useAuth } from "@/lib/auth-context"
+
+const { user, isAuthenticated, isAdmin, isStoreOwner, login, logout } = useAuth()
+
+// Role-based rendering
+{isAdmin && <AdminControls />}
+{isStoreOwner && <StoreManagement />}
+```
+
+**Route Protection:** Use `RoleRouteGuard` wrapper in layouts:
+```tsx
+// Example: frontend/app/[locale]/admin/layout.tsx
+import { RoleRouteGuard } from "@/components/admin/role-route-guard"
+
+export default function AdminLayout({ children }) {
+  return (
+    <RoleRouteGuard allowedRoles={["admin"]}>
+      {children}
+    </RoleRouteGuard>
+  )
+}
+```
+
+**Mock Authentication (Development):**
+- All authentication is currently mocked in `auth-context.tsx`
+- No real API calls - simulated 1s delay with `setTimeout`
+- Test credentials are checked in the `login` function
+- Real implementation TODO: Replace with backend API calls
+
+#### Styling Conventions
+
+**TailwindCSS Patterns:**
+```tsx
+// Semantic colors (theme-aware)
+className="bg-background text-foreground"
+className="bg-primary text-primary-foreground"
+className="bg-muted text-muted-foreground"
+className="bg-destructive text-destructive-foreground"
+
+// Transitions (100ms standard)
+className="transition-colors duration-100"
+className="hover:bg-muted transition-colors"
+
+// RTL-safe (use no-flip for brand names, prices)
+className="no-flip"  // Prevents RTL reversal
+
+// Responsive
+className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+```
+
+**Global Styles:** Defined in `frontend/app/globals.css`
+- CSS variables for theming (e.g., `--background`, `--primary`)
+- Base resets and typography
+- Dark mode handled automatically via CSS variables
+
+### Backend (Node.js/Express)
+
+#### API Structure & Current State
+
+**Current Implementation:** Minimal skeleton with Swagger docs
+- `backend-web/index.js` - Express server with CORS, Helmet, Morgan
+- Only endpoint: `GET /health` (health check)
+- **All API routes are commented out** - not yet implemented
+- Swagger UI available at `http://localhost:5000/api-docs`
+
+**Planned API Structure (from comments in index.js):**
+```javascript
+// TODO: Implement these routes
+app.use('/api/auth', require('./routes/auth'))
+app.use('/api/products', require('./routes/products'))
+app.use('/api/companies', require('./routes/companies'))
+app.use('/api/orders', require('./routes/orders'))
+app.use('/api/ai', require('./routes/ai'))
+```
+
+**API Documentation:** See `docs/api-contract.md` for full endpoint specifications
+
+#### Database Models (MongoDB/Mongoose)
+
+**All models defined but not yet connected:**
+
+1. **User.js** - Basic user with name, email, password, phone, address
+2. **Product.js** - Product with name, description, price, stock, merchant ref, category, images
+3. **Order.js** - Order with user ref, products array, total, status, address, payment method
+4. **Review.js** - Product reviews (file exists, check schema)
+5. **Merchant.js** - Store owner/merchant data
+6. **Branch.js** - Physical store branches
+7. **Admin.js** - Admin-specific data
+8. **CustomerService.js** - CS tickets and conversations
+9. **BodyMeasurements.js** - User measurements for AI try-on sizing
+
+**Schema Pattern Example:**
+```javascript
+const mongoose = require('mongoose');
+
+const productSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  price: { type: Number, required: true },
+  merchant: { type: mongoose.Schema.Types.ObjectId, ref: 'Merchant' },
+  images: [{ type: String }],
+}, { timestamps: true });
+
+module.exports = mongoose.model('Product', productSchema);
+```
+
+#### Cross-Service Communication
+
+**Backend-Web → AI Service:**
+```javascript
+// Pattern for calling AI service
+const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000'
+
+// Example: Virtual try-on request
+const response = await fetch(`${AI_SERVICE_URL}/api/tryon/process`, {
+  method: 'POST',
+  body: formData
+})
+```
+
+**Middleware Stack:**
+- `helmet()` - Security headers
+- `cors()` - CORS handling (currently allows all origins)
+- `morgan('combined')` - HTTP request logging
+- `express.json()` - JSON body parser
+- `express.urlencoded({ extended: true })` - URL-encoded body parser
+
+**Error Handling:**
+```javascript
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Something went wrong!' });
+});
+
+// 404 handler
+app.use('*', (req, res) => {
+  res.status(404).json({ error: 'Route not found' });
+});
+```
 
 ### AI Service (FastAPI)
 
--   **Proxy Logic:** The main purpose of this service is to receive file uploads from `backend-web` and forward them to the Colab API. The core logic is in `app/services/colab_client.py`.
--   **Configuration:** Settings are managed via `pydantic-settings` in `app/core/config.py` and loaded from a `.env` file.
+#### Architecture & Purpose
+
+**Key Concept:** This service is a **proxy**, not the AI model itself.
+- Does NOT run OOTDiffusion locally
+- Forwards requests to Google Colab via ngrok tunnel
+- Lightweight: only 8 Python dependencies
+- Handles image upload/download between backend and Colab
+
+**Service Flow:**
+```
+Frontend → Backend-Web → FastAPI (Local) → ngrok → Google Colab (GPU) → Results back
+```
+
+#### API Endpoints (app/routers/)
+
+**Health Check (health.py):**
+```python
+GET /api/health/live     # Local FastAPI status
+GET /api/health/colab    # Colab connection status
+```
+
+**Virtual Try-On (tryon.py):**
+```python
+POST /api/tryon/process
+  - person_image: UploadFile
+  - garment_image: UploadFile
+  - model_type: str = "dc"  # 'dc' (full body) or 'hd' (half body)
+  - category: int = 2        # 0=upperbody, 1=lowerbody, 2=dress
+  - scale: float = 2.0       # Guidance scale
+  - sample: int = 4          # Number of samples
+
+GET /api/tryon/status       # Check Colab service availability
+```
+
+#### Proxy Logic (app/services/colab_client.py)
+
+**Core Pattern:**
+```python
+class ColabClient:
+    def __init__(self, colab_url: str):
+        self.colab_url = colab_url
+        self.client = httpx.AsyncClient(timeout=300.0)
+    
+    async def process_tryon(self, person_img, garment_img, ...):
+        # 1. Forward files to Colab
+        # 2. Wait for processing (can take 30-60 seconds)
+        # 3. Return result image
+```
+
+**Critical:** Without `COLAB_API_URL` in `.env`, all requests fail immediately
+
+#### Configuration (app/core/config.py)
+
+**Settings Pattern (Pydantic):**
+```python
+from pydantic_settings import BaseSettings
+
+class Settings(BaseSettings):
+    COLAB_API_URL: str  # REQUIRED!
+    HOST: str = "0.0.0.0"
+    PORT: int = 8000
+    DEBUG: bool = True
+    ALLOWED_ORIGINS: list = ["http://localhost:3000"]
+    
+    class Config:
+        env_file = ".env"
+```
+
+**Logging (app/core/logging_config.py):**
+- Structured logging with timestamps
+- Color-coded console output
+- File logging to `logs/` directory
 
 ### Internationalization (i18n)
 
@@ -394,3 +833,963 @@ Without this, the `colab_client.py` service will fail to connect.
     3. Replace hardcoded strings with `t('key')` calls
     4. Test in both `/en` and `/ar` routes
 -   **Translation Coverage:** Currently at 820 keys (410 per language) with 100% page coverage
+
+### Theme System (Dark Mode)
+
+-   **Provider:** `ThemeProvider` wraps the app in `frontend/app/layout.tsx` using `next-themes`
+-   **Component:** `ThemeToggle` button in navbar provides light/dark/system theme switching
+-   **Storage:** Theme preference persists in `localStorage` as `theme` key
+-   **Performance:** Fast transitions (100ms) with `transition-colors` utility class
+-   **Accessibility:** Proper ARIA labels, keyboard navigation, screen reader support
+-   **Adding Theme Support:** Use semantic color variables from `globals.css` (e.g., `bg-background`, `text-foreground`)
+
+### Role-Based Access Control
+
+-   **Authentication Context:** `lib/auth-context.tsx` provides user state and role checks
+-   **Available Roles:** `customer`, `admin`, `store_owner`, `customer_service`
+-   **Route Guards:** Use `RoleRouteGuard` component to protect role-specific routes
+-   **Mock Credentials (dev):**
+    - Admin: `admin@prova.com` / `admin123`
+    - Store Owner: `store@prova.com` / `store123`
+    - Customer Service: `cs@prova.com` / `cs123`
+-   **Role Checks:** `isAdmin`, `isStoreOwner`, `isCustomerService`, `isCustomer` helpers
+-   **Dashboard Routes:** Each role has dedicated dashboard under `/admin/*`, `/store-owner/*`, `/customer-service/*`
+
+### State Management
+
+-   **Pattern:** React Context API (no Redux or Zustand)
+-   **Global Contexts:**
+    - `AuthContext` (`lib/auth-context.tsx`) - user authentication and roles
+    - `CartContext` (`lib/cart-context.tsx`) - shopping cart state
+    - `WishlistContext` (`lib/wishlist-context.tsx`) - user wishlist
+-   **Usage:** Import hooks: `useAuth()`, `useCart()`, `useWishlist()`
+-   **Persistence:** Cart and wishlist use `localStorage` for client-side persistence
+
+## 4. Environment & Configuration
+
+### Frontend Configuration
+
+**Package Manager:** Use `pnpm` exclusively (not npm/yarn)
+```bash
+pnpm install    # Install dependencies
+pnpm dev        # Start dev server (port 3000)
+pnpm build      # Production build
+```
+
+**Environment Variables:**
+- No `.env` file required for basic development (using mock data)
+- Backend API URL defaults to `http://localhost:5000`
+- AI service URL configured via backend
+
+**Next.js Configuration:**
+- `next.config.mjs` uses `next-intl` plugin wrapper
+- Build errors ignored (`ignoreBuildErrors: true`) for rapid development
+- Images unoptimized for simplicity
+
+### Backend Configuration
+
+**Package Manager:** Use `npm` (not pnpm/yarn)
+```bash
+npm install     # Install dependencies
+npm run dev     # Start dev server (port 5000)
+npm start       # Production server
+```
+
+**Environment Variables (backend-web/.env):**
+```env
+PORT=5000
+AI_SERVICE_URL=http://localhost:8000
+DATABASE_URL=postgresql://user:password@localhost:5432/fashion_db
+JWT_SECRET=your_jwt_secret
+```
+
+### AI Service Configuration
+
+**Critical Setup:** The AI service requires external Colab setup (see Section 2)
+
+**Environment Variables (cloth-store-app-tryon/.env):**
+```env
+COLAB_API_URL="https://your-ngrok-url.ngrok-free.dev"  # REQUIRED!
+HOST="0.0.0.0"
+PORT=8000
+DEBUG=True
+```
+
+**Dependencies:** Only 8 Python packages (lightweight by design)
+```bash
+pip install -r requirements.txt
+python main.py  # or uvicorn app.main:app --reload
+```
+
+### Docker Setup
+
+**Full Stack (easiest for development):**
+```bash
+docker-compose up --build
+```
+
+**Services:**
+- Frontend: `http://localhost:3000`
+- Backend-Web: `http://localhost:5000`
+- AI Service: `http://localhost:8000`
+- PostgreSQL: `localhost:5432`
+
+**Note:** AI service in Docker won't work without Colab ngrok URL configured
+
+### Make Commands (Cross-Platform)
+
+The `Makefile` provides OS-agnostic commands:
+```bash
+make install          # Install all dependencies
+make backend-dev      # Start backend dev server
+make frontend-dev     # Start frontend dev server
+make backend-test     # Run backend tests
+```
+
+**Windows Note:** Uses PowerShell for colored output; works without `make` installed
+
+## 5. Data Patterns & Mock Data
+
+### Mock Data Structure (frontend/lib/mock-data.ts)
+
+**Purpose:** All frontend components use mock data for development. No backend API calls yet.
+
+**Data Models:**
+```typescript
+interface Product {
+  id: string
+  name: string
+  brand: string
+  price: number
+  salePrice?: number
+  category: string  // "women" | "men" | "accessories"
+  sizes: string[]   // ["XS", "S", "M", "L", "XL"]
+  colors: string[]
+  image: string
+  images: string[]
+  description: string
+  inStock: boolean
+}
+
+interface Store {
+  id: string
+  name: string
+  logo: string
+  description: string
+  status: "active" | "pending" | "suspended"
+  productsCount: number
+  joinDate: string
+}
+
+interface CSConversation {
+  id: string
+  customerName: string
+  subject: string
+  status: "open" | "in-progress" | "resolved" | "closed"
+  priority: "low" | "medium" | "high"
+  lastMessage: string
+  lastUpdate: string
+  messages: Message[]
+}
+```
+
+**Available Mock Data:**
+- `mockProducts` - 24 product items across all categories
+- `mockStores` - 5 sample stores with different statuses
+- `mockUsers` - User data for testing
+- `mockOrders` - Order history with multiple statuses
+- `mockConversations` - Customer service tickets with message threads
+
+**Usage Pattern:**
+```tsx
+import { mockProducts, mockStores } from "@/lib/mock-data"
+
+// Filter by category
+const womenProducts = mockProducts.filter(p => p.category === "women")
+
+// Find by ID
+const product = mockProducts.find(p => p.id === id)
+
+// Search/filter
+const results = mockProducts.filter(p => 
+  p.name.toLowerCase().includes(query.toLowerCase())
+)
+```
+
+### State Persistence Patterns
+
+**localStorage Keys:**
+- `theme` - User's theme preference (light/dark/system)
+- `cart` - Shopping cart items (JSON array)
+- `wishlist` - Wishlist product IDs (JSON array)
+- Future: `auth-token`, `user-preferences`
+
+**Context Persistence Example (cart-context.tsx):**
+```tsx
+// Load from localStorage on mount
+useEffect(() => {
+  const saved = localStorage.getItem('cart')
+  if (saved) setItems(JSON.parse(saved))
+}, [])
+
+// Save to localStorage on change
+useEffect(() => {
+  localStorage.setItem('cart', JSON.stringify(items))
+}, [items])
+```
+
+## 6. Component Patterns & Best Practices
+
+### Page Structure Pattern
+
+**Standard Page Layout:**
+```tsx
+import { Navbar } from "@/components/layout/navbar"
+import { Footer } from "@/components/layout/footer"
+import { useTranslations } from "next-intl"
+
+export default function MyPage() {
+  const t = useTranslations('namespace')
+  
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-1">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Page content */}
+        </div>
+      </main>
+      <Footer />
+    </div>
+  )
+}
+```
+
+### Client vs Server Components
+
+**Client Components ("use client"):**
+- Any component using hooks (`useState`, `useEffect`, `useContext`)
+- Event handlers (`onClick`, `onChange`)
+- Browser APIs (`localStorage`, `window`)
+- All pages with interactivity
+
+**Server Components (default):**
+- Static content rendering
+- Data fetching (when backend is ready)
+- Metadata generation
+- Currently: mostly product detail pages
+
+### Image Handling
+
+**Next.js Image Component:**
+```tsx
+import Image from "next/image"
+
+// Responsive images
+<Image 
+  src={product.image} 
+  alt={product.name}
+  fill  // For aspect-ratio containers
+  className="object-cover"
+/>
+
+// Fixed size
+<Image 
+  src="/logo.png" 
+  width={200} 
+  height={50}
+  alt="Logo"
+/>
+```
+
+**Current Config:** Images are unoptimized (`unoptimized: true` in `next.config.mjs`)
+
+### Form Patterns
+
+**Standard Form with shadcn/ui:**
+```tsx
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+
+const [formData, setFormData] = useState({ name: "", email: "" })
+
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault()
+  // Handle form submission
+}
+
+<form onSubmit={handleSubmit} className="space-y-4">
+  <div>
+    <Label htmlFor="name">{t('name')}</Label>
+    <Input 
+      id="name"
+      value={formData.name}
+      onChange={(e) => setFormData({...formData, name: e.target.value})}
+    />
+  </div>
+  <Button type="submit">{t('submit')}</Button>
+</form>
+```
+
+### Modal Patterns
+
+**Dialog Component:**
+```tsx
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+
+const [isOpen, setIsOpen] = useState(false)
+
+<Dialog open={isOpen} onOpenChange={setIsOpen}>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>{t('title')}</DialogTitle>
+    </DialogHeader>
+    {/* Modal content */}
+  </DialogContent>
+</Dialog>
+```
+
+**Sheet Component (Side Panel):**
+```tsx
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
+
+<Sheet open={isOpen} onOpenChange={setIsOpen}>
+  <SheetContent side="right">
+    <SheetHeader>
+      <SheetTitle>{t('title')}</SheetTitle>
+    </SheetHeader>
+    {/* Panel content */}
+  </SheetContent>
+</Sheet>
+```
+
+## 7. Routing & Navigation
+
+### Next.js App Router with i18n
+
+**Route Structure:**
+```
+app/[locale]/           # Locale parameter (en|ar)
+  page.tsx              # Route: /en or /ar
+  layout.tsx            # Shared layout
+  shop/
+    page.tsx            # Route: /en/shop
+  product/[id]/
+    page.tsx            # Route: /en/product/123
+```
+
+**Link Component (i18n-aware):**
+```tsx
+import { Link } from "@/i18n/routing"
+
+// Automatically preserves current locale
+<Link href="/shop">Shop</Link>       // Goes to /en/shop or /ar/shop
+<Link href="/product/123">Product</Link>
+```
+
+**Programmatic Navigation:**
+```tsx
+import { useRouter } from "next/navigation"
+import { useParams } from "next/navigation"
+
+const router = useRouter()
+const params = useParams()
+const locale = params.locale as string
+
+// Navigate with locale
+router.push(`/${locale}/shop`)
+```
+
+### Route Guards & Protection
+
+**Layout-Based Protection:**
+```tsx
+// app/[locale]/admin/layout.tsx
+import { RoleRouteGuard } from "@/components/admin/role-route-guard"
+
+export default function AdminLayout({ children }) {
+  return (
+    <RoleRouteGuard allowedRoles={["admin"]}>
+      <div className="flex">
+        <AdminSidebar />
+        <main className="flex-1">{children}</main>
+      </div>
+    </RoleRouteGuard>
+  )
+}
+```
+
+**Component-Level Protection:**
+```tsx
+const { isAuthenticated, isAdmin } = useAuth()
+
+if (!isAuthenticated) {
+  return <LoginPrompt />
+}
+
+if (!isAdmin) {
+  return <AccessDenied />
+}
+
+return <AdminContent />
+```
+
+## 8. Common Tasks & Workflows
+
+### Adding a New Page
+
+1. **Create page file:** `frontend/app/[locale]/my-page/page.tsx`
+2. **Add translations:** Add keys to `messages/en.json` and `messages/ar.json`
+3. **Import translations:** `const t = useTranslations('myPage')`
+4. **Add navigation link:** Update navbar or sidebar
+5. **Test both locales:** Visit `/en/my-page` and `/ar/my-page`
+
+### Adding a New Component
+
+1. **Check shadcn/ui first:** See if component exists in `components/ui/`
+2. **Create component:** `components/feature/my-component.tsx`
+3. **Use TypeScript:** Define props interface
+4. **Add i18n:** Use `useTranslations` if displaying text
+5. **Follow styling:** Use Tailwind + semantic color variables
+
+### Adding a New Translation Namespace
+
+1. **Define structure in en.json:**
+```json
+{
+  "myFeature": {
+    "title": "My Feature",
+    "description": "Feature description",
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel"
+    }
+  }
+}
+```
+
+2. **Mirror in ar.json:**
+```json
+{
+  "myFeature": {
+    "title": "ميزتي",
+    "description": "وصف الميزة",
+    "actions": {
+      "save": "حفظ",
+      "cancel": "إلغاء"
+    }
+  }
+}
+```
+
+3. **Use in component:**
+```tsx
+const t = useTranslations('myFeature')
+<h1>{t('title')}</h1>
+<p>{t('description')}</p>
+<button>{t('actions.save')}</button>
+```
+
+### Implementing Backend API Endpoint
+
+**When backend routes are implemented:**
+
+1. **Create route file:** `backend-web/routes/myroute.js`
+```javascript
+const express = require('express');
+const router = express.Router();
+
+router.get('/', async (req, res) => {
+  // Handle GET request
+});
+
+module.exports = router;
+```
+
+2. **Create controller:** `backend-web/controllers/myController.js`
+3. **Uncomment in index.js:** `app.use('/api/myroute', require('./routes/myroute'))`
+4. **Update Swagger docs:** Add JSDoc comments for API documentation
+5. **Update frontend:** Replace mock data with API calls
+
+### Working with Virtual Try-On
+
+**Prerequisites:**
+1. Colab notebook running (see Section 2)
+2. ngrok URL in `cloth-store-app-tryon/.env`
+3. AI service running on port 8000
+
+**Testing Flow:**
+```bash
+# 1. Start AI service
+cd cloth-store-app-tryon
+python main.py
+
+# 2. Test health endpoint
+curl http://localhost:8000/api/health/colab
+
+# 3. Test try-on (from frontend or backend)
+POST http://localhost:8000/api/tryon/process
+  - person_image: file
+  - garment_image: file
+```
+
+## 9. Troubleshooting Common Issues
+
+### Frontend Issues
+
+**Translation missing:**
+- Check both `en.json` and `ar.json` have the key
+- Verify namespace name matches `useTranslations('namespace')`
+- Check for typos in nested keys (`t('section.subsection.key')`)
+
+**Component not rendering:**
+- Check if it needs `"use client"` directive
+- Verify all imports are correct
+- Check console for React errors
+
+**Styling not working:**
+- Ensure Tailwind class names are correct
+- Check for dark mode color variables
+- Verify `no-flip` class for RTL elements
+
+**Route not accessible:**
+- Check route guard permissions
+- Verify user role in `useAuth()`
+- Check file naming (must be `page.tsx` for routes)
+
+### Backend Issues
+
+**Server won't start:**
+- Check port 5000 is not in use
+- Verify `npm install` completed successfully
+- Check environment variables in `.env`
+
+**API endpoint not found:**
+- Check if route is uncommented in `index.js`
+- Verify route file exports router correctly
+- Check Swagger docs at `/api-docs`
+
+### AI Service Issues
+
+**Colab connection failed:**
+- Verify `COLAB_API_URL` is set in `.env`
+- Check ngrok tunnel is active in Colab
+- Test Colab endpoint directly: `curl https://your-ngrok-url.ngrok-free.dev/health`
+
+**Try-on request timeout:**
+- First request takes 30-60 seconds (model loading)
+- Subsequent requests faster (~10-15 seconds)
+- Check Colab hasn't timed out (12-hour limit)
+
+### Docker Issues
+
+**Services won't start:**
+- Run `docker-compose down` then `docker-compose up --build`
+- Check port conflicts (3000, 5000, 8000, 5432)
+- Verify environment variables are set
+
+**AI service not working in Docker:**
+- Remember: Colab ngrok URL still required even in Docker
+- Docker networking: Use service names (`backend-web`, not `localhost`)
+
+## 10. Git Workflow & Version Control
+
+### Commit Message Convention
+
+**Format:**
+```
+<type>: <description>
+
+[optional body]
+```
+
+**Types:**
+- `feat:` New feature
+- `fix:` Bug fix
+- `docs:` Documentation changes
+- `style:` Code style changes (formatting, etc.)
+- `refactor:` Code refactoring
+- `test:` Adding or updating tests
+- `chore:` Maintenance tasks
+
+**Examples:**
+```
+feat: Add dark mode toggle component
+fix: Resolve RTL layout issues in navbar
+docs: Update API contract with new endpoints
+refactor: Optimize product card rendering
+```
+
+### Branch Strategy
+
+**Main Branches:**
+- `main` - Production-ready code
+- `develop` - Integration branch (when implemented)
+
+**Feature Branches:**
+- `feature/[feature-name]` - New features
+- `fix/[issue-name]` - Bug fixes
+- `docs/[doc-name]` - Documentation updates
+
+### Before Committing
+
+**Checklist:**
+1. ✅ Run `get_errors` to check for TypeScript/lint errors
+2. ✅ Test in both English and Arabic (if UI changes)
+3. ✅ Verify dark mode still works (if styling changes)
+4. ✅ Check mobile responsiveness (if layout changes)
+5. ✅ Update relevant feature documentation
+6. ✅ Add/update translations if needed
+
+## 11. Performance & Optimization
+
+### Current Optimizations
+
+**Disabled for Development:**
+- Next.js image optimization (`unoptimized: true`)
+- TypeScript strict checking (`ignoreBuildErrors: true`)
+- ESLint during builds (`ignoreDuringBuilds: true`)
+
+**Active Optimizations:**
+- Fast transitions (100ms) for theme switching
+- localStorage caching for cart/wishlist
+- Lazy loading with Next.js dynamic imports
+- Component memoization where appropriate
+
+### Future Optimization Opportunities
+
+**When moving to production:**
+1. Enable Next.js image optimization
+2. Enable TypeScript strict mode
+3. Add build-time ESLint checks
+4. Implement API response caching
+5. Add CDN for static assets
+6. Optimize bundle size with tree shaking
+
+## 12. Security Considerations
+
+### Current Security Setup
+
+**Backend (Express):**
+- `helmet()` - Security headers
+- `cors()` - CORS policy (currently permissive)
+- Input validation (TODO: add validation middleware)
+- JWT authentication (TODO: implement)
+
+**Frontend:**
+- XSS protection via React's built-in escaping
+- CSRF protection (TODO: add tokens)
+- Secure localStorage usage
+- No sensitive data in client state
+
+### When Implementing Authentication
+
+**Required Steps:**
+1. Replace mock auth with real JWT tokens
+2. Add HTTP-only cookies for refresh tokens
+3. Implement rate limiting on auth endpoints
+4. Add password hashing (bcrypt)
+5. Validate all user inputs
+6. Implement CSRF protection
+7. Add security logging
+
+**Security Headers to Add:**
+```javascript
+// In backend-web/index.js
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'"],
+      imgSrc: ["'self'", "data:", "https:"],
+    }
+  }
+}))
+```
+
+## 13. Testing Guidelines
+
+### Current Testing State
+
+**Status:** No test files currently in the project
+**TODO:** Add testing infrastructure
+
+### Recommended Testing Setup
+
+**Frontend Testing:**
+```bash
+# Install dependencies
+pnpm add -D @testing-library/react @testing-library/jest-dom jest
+```
+
+**Backend Testing:**
+```bash
+# Install dependencies
+npm install --save-dev jest supertest
+```
+
+### Testing Patterns to Implement
+
+**Component Tests:**
+```tsx
+// __tests__/components/ProductCard.test.tsx
+import { render, screen } from '@testing-library/react'
+import { ProductCard } from '@/components/product/product-card'
+
+test('renders product name and price', () => {
+  const product = mockProducts[0]
+  render(<ProductCard product={product} />)
+  expect(screen.getByText(product.name)).toBeInTheDocument()
+})
+```
+
+**API Tests:**
+```javascript
+// __tests__/api/products.test.js
+const request = require('supertest')
+const app = require('../index')
+
+test('GET /api/products returns products', async () => {
+  const response = await request(app).get('/api/products')
+  expect(response.status).toBe(200)
+  expect(Array.isArray(response.body)).toBe(true)
+})
+```
+
+## 14. Deployment Considerations
+
+### Environment-Specific Configurations
+
+**Development:**
+- Mock authentication
+- Unoptimized images
+- Verbose logging
+- Hot reload enabled
+
+**Production (Future):**
+- Real authentication with JWT
+- Optimized images and bundles
+- Error logging to external service
+- Environment-specific API URLs
+
+### Deployment Checklist
+
+**Frontend (Vercel/Netlify):**
+- [ ] Set environment variables
+- [ ] Configure build command: `pnpm build`
+- [ ] Set output directory: `.next`
+- [ ] Configure redirects for i18n
+
+**Backend (Heroku/Railway):**
+- [ ] Set environment variables (DATABASE_URL, JWT_SECRET)
+- [ ] Configure MongoDB connection
+- [ ] Set up CI/CD pipeline
+- [ ] Configure logging service
+
+**AI Service (Cloud Run/Lambda):**
+- [ ] Note: Colab setup still required (or replace with dedicated GPU)
+- [ ] Set COLAB_API_URL in production environment
+- [ ] Configure timeout settings (5+ minutes)
+- [ ] Set up monitoring for Colab connection
+
+**Database:**
+- [ ] Set up MongoDB Atlas or PostgreSQL
+- [ ] Configure connection pooling
+- [ ] Set up backup strategy
+- [ ] Add database indexes
+
+**Windows Note:** Uses PowerShell for colored output; works without `make` installed
+
+---
+
+## 15. Agent Mode Quality Gates & Enforcement
+
+### Mandatory Pre-Commit Checks
+
+**Before ANY code changes, agents MUST verify:**
+
+```typescript
+interface PreCommitChecklist {
+  // Code Quality
+  typescriptErrors: boolean      // ✅ Must be ZERO
+  eslintWarnings: boolean        // ✅ Must be addressed or justified
+  unusedImports: boolean         // ✅ Must be removed
+  consoleStatements: boolean     // ✅ Must be intentional logging only
+  
+  // Functionality
+  bothLocalesTested: boolean     // ✅ /en AND /ar routes work
+  darkModeWorks: boolean         // ✅ Light and dark themes functional
+  mobileResponsive: boolean      // ✅ Layout works on mobile
+  errorHandling: boolean         // ✅ All try-catch blocks handle errors
+  
+  // Documentation
+  translationsAdded: boolean     // ✅ Both en.json and ar.json updated
+  featureDocUpdated: boolean     // ✅ docs/features/ updated if needed
+  commentedComplexCode: boolean  // ✅ Non-obvious logic explained
+  
+  // Security
+  noSecretsCommitted: boolean    // ✅ No API keys or tokens
+  inputsValidated: boolean       // ✅ User inputs sanitized
+  authorizationChecked: boolean  // ✅ Role guards in place
+}
+```
+
+### Automated Verification Commands
+
+**Agents must run these before claiming completion:**
+
+```bash
+# 1. Check TypeScript errors (MANDATORY)
+get_errors
+
+# 2. Verify no console.log left behind
+grep_search query="console\\.log" isRegexp=true
+
+# 3. Check for TODO comments added
+grep_search query="TODO|FIXME" isRegexp=true
+
+# 4. Verify translation coverage
+# Check both en.json and ar.json have matching keys
+
+# 5. Test both locales (visit both routes)
+# http://localhost:3000/en/[your-page]
+# http://localhost:3000/ar/[your-page]
+```
+
+### Quality Metrics for Completion
+
+**A task is NOT complete until:**
+
+| Metric | Requirement | How to Verify |
+|--------|-------------|---------------|
+| TypeScript Errors | 0 errors | `get_errors` returns empty |
+| Translation Coverage | 100% (en = ar) | Both files have same keys |
+| Code Comments | Complex logic documented | JSDoc for non-obvious functions |
+| Error Handling | All paths covered | No empty catch blocks |
+| Accessibility | ARIA labels present | Interactive elements labeled |
+| Mobile Responsive | Works < 640px | Test mobile view |
+| Dark Mode | Both themes work | Toggle theme, verify colors |
+| RTL Support | Arabic layout correct | Test `/ar` route |
+| Git History | Clean commits | Logical commit messages |
+| Documentation | Features documented | `docs/features/` updated |
+
+### Code Review Self-Checklist
+
+**Before declaring "task complete", answer YES to all:**
+
+- [ ] Did I read the existing code before modifying it?
+- [ ] Did I follow existing patterns rather than creating new ones?
+- [ ] Did I test in both English and Arabic?
+- [ ] Did I verify dark mode still works?
+- [ ] Did I check mobile responsiveness?
+- [ ] Did I run `get_errors` and fix all issues?
+- [ ] Did I add translations to BOTH language files?
+- [ ] Did I update documentation if I changed architecture?
+- [ ] Did I handle all error cases with meaningful messages?
+- [ ] Did I remove all debug console.log statements?
+- [ ] Did I use TypeScript types properly (no `any`)?
+- [ ] Did I add ARIA labels to new interactive elements?
+- [ ] Did I test keyboard navigation?
+- [ ] Did I verify no secrets were committed?
+- [ ] Did I follow the project's package manager rules (pnpm/npm)?
+- [ ] Did I provide a comprehensive summary with metrics?
+
+### Prohibited Actions (Will Cause Immediate Failure)
+
+| ❌ NEVER Do This | Why | Alternative |
+|------------------|-----|-------------|
+| Assume file contents | Leads to incorrect changes | Use `read_file` first |
+| Skip error checking | Breaks the build | Always run `get_errors` |
+| Hardcode strings | Breaks i18n | Use translation keys |
+| Use `any` type | Loses type safety | Define proper interfaces |
+| Empty catch blocks | Hides errors | Log and handle gracefully |
+| Delete without asking | Data loss risk | Ask user first |
+| Mix package managers | Breaks dependencies | Check project rules |
+| Ignore RTL | Breaks Arabic UI | Test `/ar` route |
+| Skip dark mode test | Visual bugs | Toggle and verify |
+| Commit secrets | Security breach | Use environment variables |
+| Create custom components | Code duplication | Use shadcn/ui first |
+| Bypass auth checks | Security hole | Use `RoleRouteGuard` |
+
+### Escalation Protocol
+
+**When to stop and ask for help:**
+
+1. 🚨 **TypeScript errors you can't resolve** after 2 attempts
+2. 🚨 **Breaking changes** that affect multiple features
+3. 🚨 **Security concerns** or potential vulnerabilities
+4. 🚨 **Performance issues** (slow rendering, infinite loops)
+5. 🚨 **Unclear requirements** that could lead to wrong implementation
+6. 🚨 **Need to modify** core configuration files (tsconfig, next.config, etc.)
+7. 🚨 **Database schema changes** that affect existing data
+8. 🚨 **API contract changes** that break existing clients
+
+**Escalation format:**
+```
+🚨 ESCALATION NEEDED
+
+Issue: [Brief description]
+Attempted: [What you tried]
+Impact: [What's affected]
+Risk: [Potential consequences]
+Options: [Possible approaches]
+Recommendation: [Your suggested path]
+
+Waiting for user decision before proceeding.
+```
+
+### Success Criteria for Agent Mode Tasks
+
+**Minimum requirements for "task complete":**
+
+✅ **Functional**: Feature works as requested in all scenarios  
+✅ **Tested**: Verified in en/ar, light/dark, desktop/mobile  
+✅ **Clean**: Zero TypeScript errors, no console.logs  
+✅ **Accessible**: ARIA labels, keyboard navigation works  
+✅ **Documented**: Feature docs updated, code commented  
+✅ **Secure**: No vulnerabilities, inputs validated  
+✅ **Consistent**: Follows existing patterns and conventions  
+✅ **Complete**: All edge cases handled with proper errors  
+✅ **Verified**: All quality gates passed  
+✅ **Summarized**: Comprehensive report with metrics provided  
+
+### Performance SLAs for Agent Mode
+
+**Expected completion times (for reference):**
+
+| Task Type | Expected Time | Max Acceptable Time |
+|-----------|---------------|---------------------|
+| Simple component | 5-10 minutes | 20 minutes |
+| New page with i18n | 15-30 minutes | 45 minutes |
+| Feature with multiple files | 30-60 minutes | 90 minutes |
+| API endpoint + frontend | 45-75 minutes | 2 hours |
+| Complex feature (5+ files) | 1-2 hours | 3 hours |
+
+**If exceeding max time:**
+- ✅ Reassess approach
+- ✅ Break into smaller tasks
+- ✅ Ask for clarification
+- ✅ Identify blockers
+
+### Final Agent Mode Reminder
+
+```
+═══════════════════════════════════════════════════════════
+  REMEMBER: Quality > Speed
+  
+  A working, tested, documented feature delivered in 2 hours
+  is better than a broken, untested feature in 30 minutes.
+  
+  When in doubt:
+  1. Stop and read the code
+  2. Ask for clarification
+  3. Follow existing patterns
+  4. Test thoroughly
+  5. Document your work
+  
+  Your reputation as an agent depends on reliability,
+  not speed.
+═══════════════════════════════════════════════════════════
+```
