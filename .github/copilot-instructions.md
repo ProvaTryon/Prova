@@ -2,6 +2,14 @@
 
 This document provides essential guidance for AI agents working on this codebase. Understanding these concepts is critical for making effective contributions.
 
+## Table of Contents
+1. [Professional Workflow Principles](#0-professional-workflow-principles)
+2. [Feature Documentation Management](#01-feature-documentation-management)
+3. [Project Structure](#02-project-structure)
+4. [Architecture Overview](#1-high-level-architecture-3-service-microservices)
+5. [Developer Workflows](#2-critical-developer-workflows)
+6. [Code Conventions & Patterns](#3-code-conventions--patterns)
+
 ## 0. Professional Workflow Principles
 
 When working on any task in this project, follow this systematic approach:
@@ -46,6 +54,225 @@ When working on any task in this project, follow this systematic approach:
 - **Track Progress**: Make work visible through todos, commits, and status updates
 - **Maintain Quality**: Follow existing patterns, add improvements where logical
 - **Verify Everything**: Check for errors, conflicts, and regressions after changes
+
+## 0.1. Feature Documentation Management
+
+### When a Feature is Complete
+
+After completing any significant feature or major functionality:
+
+1. **Create Feature Summary Document**
+   - Location: `docs/features/[feature-name].md`
+   - Structure:
+     ```markdown
+     # Feature: [Feature Name]
+     
+     ## Overview
+     Brief description of what the feature does
+     
+     ## Implementation Details
+     - Files modified/created
+     - Key components and their responsibilities
+     - Integration points with other features
+     
+     ## Configuration
+     - Environment variables
+     - Configuration files
+     - Setup requirements
+     
+     ## Usage
+     - How to use the feature
+     - API endpoints (if applicable)
+     - UI components (if applicable)
+     
+     ## Technical Decisions
+     - Architecture choices
+     - Libraries/frameworks used
+     - Trade-offs made
+     
+     ## Testing
+     - How to test
+     - Test coverage
+     
+     ## Future Enhancements
+     - Planned improvements
+     - Known limitations
+     ```
+
+2. **Consolidate Documentation**
+   - Move all scattered notes, TODOs, and temporary docs into the feature summary
+   - Delete redundant documentation files related to this feature
+   - Update this copilot-instructions.md if the feature introduces new patterns
+
+3. **Update Feature Registry**
+   - Add entry to `docs/features/README.md` with:
+     - Feature name
+     - Completion date
+     - Key files affected
+     - Related features
+
+### When Editing Existing Features
+
+- **Always check** `docs/features/` for existing feature documentation
+- **Update the feature summary** when making changes, don't create new docs
+- **Keep the summary as single source of truth** for that feature
+- If the feature pattern changes significantly, update this copilot-instructions.md
+
+### Documentation Hygiene
+
+- **Delete temporary docs** after consolidation
+- **Avoid duplicate documentation** across multiple files
+- **Use feature summaries** as the primary reference for completed work
+- **Link to feature docs** from code comments when explaining complex logic
+
+## 0.2. Project Structure
+
+### Frontend Architecture (`frontend/`)
+
+```
+frontend/
+├── app/[locale]/              # Next.js App Router with i18n
+│   ├── page.tsx               # Homepage
+│   ├── layout.tsx             # Root layout with locale
+│   ├── admin/                 # Admin dashboard (role: admin)
+│   │   ├── page.tsx           # Admin overview
+│   │   ├── layout.tsx         # Admin layout with sidebar
+│   │   ├── orders/            # Order management
+│   │   ├── products/          # Product management
+│   │   ├── settings/          # Admin settings
+│   │   ├── stores/            # Store management
+│   │   └── users/             # User management
+│   ├── cart/                  # Shopping cart
+│   ├── customer-service/      # CS dashboard (role: customer-service)
+│   │   ├── page.tsx           # CS overview
+│   │   ├── layout.tsx         # CS layout with sidebar
+│   │   ├── analytics/         # CS analytics
+│   │   ├── conversations/     # Customer conversations
+│   │   └── settings/          # CS settings
+│   ├── dashboard/             # User dashboard
+│   ├── login/                 # Authentication
+│   ├── signup/                # Registration
+│   ├── product/[id]/          # Product detail page
+│   ├── profile/               # User profile
+│   ├── recommendations/       # Personalized recommendations
+│   ├── shop/                  # Product catalog
+│   ├── store-owner/           # Store owner dashboard (role: store-owner)
+│   │   ├── page.tsx           # Store overview
+│   │   ├── layout.tsx         # Store layout with sidebar
+│   │   ├── analytics/         # Store analytics
+│   │   ├── products/          # Store product management
+│   │   └── settings/          # Store settings
+│   ├── virtual-tryon/         # AI virtual try-on feature
+│   └── wishlist/              # User wishlist
+├── components/                # React components
+│   ├── ui/                    # shadcn/ui base components
+│   ├── layout/                # Layout components (Navbar, Footer)
+│   ├── admin/                 # Admin-specific components
+│   ├── customer-service/      # CS-specific components
+│   ├── store-owner/           # Store owner components
+│   ├── product/               # Product components
+│   ├── shop/                  # Shop components
+│   └── chatbot/               # Chatbot components
+├── lib/                       # Utilities and contexts
+│   ├── auth-context.tsx       # Authentication context
+│   ├── cart-context.tsx       # Shopping cart context
+│   ├── wishlist-context.tsx   # Wishlist context
+│   ├── mock-data.ts           # Mock data for development
+│   └── utils.ts               # Utility functions
+├── messages/                  # i18n translations
+│   ├── en.json                # English translations (410 keys)
+│   └── ar.json                # Arabic translations (410 keys)
+├── public/                    # Static assets
+└── styles/                    # Global styles
+
+Key Routes:
+- `/[locale]` - Homepage (public)
+- `/[locale]/shop` - Product catalog (public)
+- `/[locale]/product/[id]` - Product details (public)
+- `/[locale]/virtual-tryon` - AI try-on (public)
+- `/[locale]/recommendations` - Personalized recommendations (public)
+- `/[locale]/cart` - Shopping cart (public)
+- `/[locale]/wishlist` - Wishlist (authenticated)
+- `/[locale]/profile` - User profile (authenticated)
+- `/[locale]/admin/*` - Admin dashboard (admin role)
+- `/[locale]/store-owner/*` - Store owner dashboard (store-owner role)
+- `/[locale]/customer-service/*` - CS dashboard (customer-service role)
+```
+
+### Backend Architecture (`backend-web/`)
+
+```
+backend-web/
+├── index.js                   # Express server entry point
+├── models/                    # MongoDB schemas
+│   ├── User.js                # User model (with roles)
+│   ├── Product.js             # Product model
+│   ├── Order.js               # Order model
+│   ├── Review.js              # Review model
+│   ├── Admin.js               # Admin-specific data
+│   ├── Merchant.js            # Store owner/merchant
+│   ├── Branch.js              # Physical store branches
+│   ├── BodyMeasurements.js    # User measurements for sizing
+│   └── CustomerService.js     # CS tickets and conversations
+├── routes/                    # API route definitions
+├── controllers/               # Business logic
+├── middleware/                # Express middleware (auth, validation)
+├── utils/                     # Backend utilities
+└── uploads/                   # File upload directory
+
+API Structure:
+- `/api/auth/*` - Authentication endpoints
+- `/api/products/*` - Product CRUD
+- `/api/orders/*` - Order management
+- `/api/users/*` - User management
+- `/api/reviews/*` - Product reviews
+- `/api/tryon/*` - Proxy to AI service
+```
+
+### AI Service Architecture (`cloth-store-app-tryon/`)
+
+```
+cloth-store-app-tryon/
+├── main.py                    # FastAPI entry point (deprecated, use app/)
+├── app/
+│   ├── __init__.py
+│   ├── main.py                # FastAPI application
+│   ├── core/                  # Core configurations
+│   │   ├── config.py          # Pydantic settings
+│   │   └── logging_config.py  # Logging setup
+│   ├── routers/               # API endpoints
+│   │   ├── health.py          # Health check
+│   │   └── tryon.py           # Try-on endpoints
+│   └── services/              # Business logic
+│       └── colab_client.py    # Proxy to Google Colab
+├── examples/                  # Example images for testing
+└── images/                    # Test images
+
+API Endpoints:
+- `/health` - Health check
+- `/tryon` - Virtual try-on (proxies to Colab)
+```
+
+### Documentation Structure (`docs/`)
+
+```
+docs/
+├── features/                  # Feature documentation (consolidated)
+│   ├── README.md              # Feature registry/index
+│   └── [feature-name].md      # Individual feature docs
+├── api-contract.md            # API documentation
+├── architecture.md            # System architecture
+└── roadmap.md                 # Future plans
+```
+
+### Configuration Files (Root)
+
+```
+├── docker-compose.yml         # Docker orchestration
+├── Makefile                   # Build scripts
+├── requirements.txt           # Python dependencies (AI service)
+└── README.md                  # Project overview
+```
 
 ## 1. High-Level Architecture: 3-Service Microservices
 
