@@ -14,6 +14,18 @@
     "storeDashboard": "Store Dashboard",
     "csDashboard": "CS Dashboard"
   },
+  "theme": {
+    "toggleTheme": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "appearance": "Appearance",
+    "themeSettings": "Theme Settings",
+    "selectTheme": "Select theme mode",
+    "lightMode": "Light mode",
+    "darkMode": "Dark mode",
+    "systemMode": "System preference"
+  },
   "home": {
     "hero": {
       "title": "It's Simply You",

@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Playfair_Display, DM_Sans, Noto_Sans_Arabic } from "next/font/google"
 import { isRTL } from "@/lib/i18n-config"
 import { routing } from '@/i18n/routing'
+import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
 const playfair = Playfair_Display({
@@ -50,9 +51,17 @@ export default async function RootLayout({
       lang={locale}
       dir={isRTL(locale) ? 'rtl' : 'ltr'}
       className={`${playfair.variable} ${dmSans.variable} ${notoArabic.variable}`}
+      suppressHydrationWarning
     >
       <body className="antialiased">
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange={false}
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -8,6 +8,7 @@ import { useWishlist } from "@/lib/wishlist-context"
 import { useAuth } from "@/lib/auth-context"
 import { useTranslations } from 'next-intl'
 import { LanguageSwitcher } from './language-switcher'
+import { ThemeToggle } from './theme-toggle'
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -45,6 +46,7 @@ export function Navbar() {
           {/* Right Icons */}
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
+            <ThemeToggle />
             <button className="hidden md:block p-2 hover:bg-muted rounded-full transition-colors">
               <Search className="w-5 h-5" />
             </button>
@@ -169,6 +171,11 @@ export function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-border bg-background">
           <div className="px-4 py-4 space-y-3">
+            {/* Theme and Language controls */}
+            <div className="flex items-center gap-3 pb-3 border-b border-border">
+              <ThemeToggle />
+              <LanguageSwitcher />
+            </div>
             <Link
               href="/"
               className="block py-2 text-base font-medium hover:text-primary transition-colors"
