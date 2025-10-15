@@ -533,5 +533,30 @@
     "selectItem": "Select Clothing Item",
     "uploadAlert": "Please upload your photo and select a clothing item",
     "addedToCart": "Added to cart!"
+  },
+  "recommendations": {
+    "personalizedBadge": "Personalized for You",
+    "title": "Your Style Recommendations",
+    "subtitle": "Curated selections based on your preferences and browsing history",
+    "forYou": {
+      "title": "Picked Just For You",
+      "refresh": "Refresh"
+    },
+    "completeLook": {
+      "title": "Complete the Look",
+      "subtitle": "Perfect combinations styled by our AI"
+    },
+    "trending": {
+      "title": "Trending in Your Style"
+    },
+    "newArrivals": {
+      "title": "New Arrivals You'll Love",
+      "subtitle": "Fresh styles that match your taste"
+    },
+    "cta": {
+      "title": "Want more personalized recommendations?",
+      "subtitle": "Create an account to save your preferences and get even better suggestions tailored to your unique style",
+      "button": "Create Account"
+    }
   }
 }

@@ -5,8 +5,10 @@ import { Footer } from "@/components/layout/footer"
 import { ProductCard } from "@/components/product/product-card"
 import { mockProducts } from "@/lib/mock-data"
 import { Sparkles, RefreshCw, TrendingUp, Heart } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export default function RecommendationsPage() {
+  const t = useTranslations("recommendations")
   // Mock personalized recommendations
   const forYou = mockProducts.slice(0, 4)
   const completeTheLook = mockProducts.slice(4, 7)
@@ -23,11 +25,11 @@ export default function RecommendationsPage() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
               <Sparkles className="w-4 h-4" />
-              Personalized for You
+              {t("personalizedBadge")}
             </div>
-            <h1 className="font-serif text-4xl sm:text-5xl font-medium mb-4">Your Style Recommendations</h1>
+            <h1 className="font-serif text-4xl sm:text-5xl font-medium mb-4">{t("title")}</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Curated selections based on your preferences and browsing history
+              {t("subtitle")}
             </p>
           </div>
 
@@ -36,11 +38,11 @@ export default function RecommendationsPage() {
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
                 <Heart className="w-6 h-6 text-primary" />
-                <h2 className="font-serif text-3xl font-medium">Picked Just For You</h2>
+                <h2 className="font-serif text-3xl font-medium">{t("forYou.title")}</h2>
               </div>
               <button className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                 <RefreshCw className="w-4 h-4" />
-                Refresh
+                {t("forYou.refresh")}
               </button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -53,8 +55,8 @@ export default function RecommendationsPage() {
           {/* Complete the Look */}
           <section className="mb-16 p-8 bg-muted rounded-2xl">
             <div className="mb-6">
-              <h2 className="font-serif text-3xl font-medium mb-2">Complete the Look</h2>
-              <p className="text-muted-foreground">Perfect combinations styled by our AI</p>
+              <h2 className="font-serif text-3xl font-medium mb-2">{t("completeLook.title")}</h2>
+              <p className="text-muted-foreground">{t("completeLook.subtitle")}</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {completeTheLook.map((product) => (
@@ -67,7 +69,7 @@ export default function RecommendationsPage() {
           <section className="mb-16">
             <div className="flex items-center gap-3 mb-6">
               <TrendingUp className="w-6 h-6 text-primary" />
-              <h2 className="font-serif text-3xl font-medium">Trending in Your Style</h2>
+              <h2 className="font-serif text-3xl font-medium">{t("trending.title")}</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {trending.map((product) => (
@@ -79,8 +81,8 @@ export default function RecommendationsPage() {
           {/* New Arrivals You'll Love */}
           <section className="mb-16">
             <div className="mb-6">
-              <h2 className="font-serif text-3xl font-medium mb-2">New Arrivals You'll Love</h2>
-              <p className="text-muted-foreground">Fresh styles that match your taste</p>
+              <h2 className="font-serif text-3xl font-medium mb-2">{t("newArrivals.title")}</h2>
+              <p className="text-muted-foreground">{t("newArrivals.subtitle")}</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {newArrivals.map((product) => (
@@ -91,12 +93,12 @@ export default function RecommendationsPage() {
 
           {/* CTA */}
           <section className="text-center py-16 px-4 bg-secondary text-secondary-foreground rounded-2xl">
-            <h2 className="font-serif text-3xl font-medium mb-4">Want more personalized recommendations?</h2>
+            <h2 className="font-serif text-3xl font-medium mb-4">{t("cta.title")}</h2>
             <p className="text-secondary-foreground/80 mb-6 max-w-xl mx-auto">
-              Create an account to save your preferences and get even better suggestions tailored to your unique style
+              {t("cta.subtitle")}
             </p>
             <button className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all">
-              Create Account
+              {t("cta.button")}
             </button>
           </section>
         </div>
