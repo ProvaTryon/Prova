@@ -1,9 +1,8 @@
 import type React from "react"
-import { Playfair_Display, DM_Sans } from "next/font/google"
-import { CartProvider } from "@/lib/cart-context"
-import { AuthProvider } from "@/lib/auth-context"
-import { WishlistProvider } from "@/lib/wishlist-context"
-import { ChatWidget } from "@/components/chatbot/chat-widget"
+import type { Metadata } from "next"
+import { Playfair_Display, DM_Sans, Noto_Sans_Arabic } from "next/font/google"
+import { isRTL } from "@/lib/i18n-config"
+import { routing } from '@/i18n/routing'
 import "./globals.css"
 
 const playfair = Playfair_Display({
@@ -18,29 +17,42 @@ const dmSans = DM_Sans({
   display: "swap",
 })
 
-export const metadata = {
+// Add Arabic font
+const notoArabic = Noto_Sans_Arabic({
+  subsets: ["arabic"],
+  variable: "--font-arabic",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+})
+
+export const metadata: Metadata = {
   title: "Pròva - AI-Powered Fashion Platform",
   description:
     "Experience the future of fashion with virtual try-on, smart recommendations, and personalized shopping.",
-    generator: 'v0.app'
+  generator: 'v0.app'
 }
 
-export default function RootLayout({
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function RootLayout({
   children,
-}: {
+  params
+}: Readonly<{
   children: React.ReactNode
-}) {
+  params: Promise<{ locale: string }>
+}>) {
+  const { locale } = await params;
+
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
+    <html
+      lang={locale}
+      dir={isRTL(locale) ? 'rtl' : 'ltr'}
+      className={`${playfair.variable} ${dmSans.variable} ${notoArabic.variable}`}
+    >
       <body className="antialiased">
-        <AuthProvider>
-          <WishlistProvider>
-            <CartProvider>
-              {children}
-              <ChatWidget />
-            </CartProvider>
-          </WishlistProvider>
-        </AuthProvider>
+        {children}
       </body>
     </html>
   )
