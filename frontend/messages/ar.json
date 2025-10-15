@@ -486,6 +486,17 @@
       "satisfactionRate": "معدل الرضا",
       "fromLastWeek": "من الأسبوع الماضي",
       "minFromLastWeek": "دقائق من الأسبوع الماضي"
+    },
+    "settings": {
+      "title": "الإعدادات",
+      "subtitle": "إدارة إعدادات حسابك",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "role": "الدور",
+      "customerService": "خدمة العملاء",
+      "saveChanges": "حفظ التغييرات",
+      "saving": "جاري الحفظ...",
+      "savedSuccessfully": "تم حفظ الإعدادات بنجاح!"
     }
   }
 }

@@ -486,6 +486,17 @@
       "satisfactionRate": "Satisfaction Rate",
       "fromLastWeek": "from last week",
       "minFromLastWeek": "min from last week"
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Manage your account settings",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "customerService": "Customer Service",
+      "saveChanges": "Save Changes",
+      "saving": "Saving...",
+      "savedSuccessfully": "Settings saved successfully!"
     }
   }
 }
