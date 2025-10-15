@@ -33,8 +33,42 @@ When working on any task in this project, follow this systematic approach:
 1. **Break Down Work**: Divide large tasks into logical, trackable phases
 2. **Incremental Progress**: Complete one section at a time, test, then move forward
 3. **Use Todo Lists**: Maintain visible progress tracking with `manage_todo_list`
-4. **Commit Frequently**: Make atomic commits with descriptive messages after each completed unit
+4. **Smart Commits**: Follow strategic commit timing (see commit strategy below)
 5. **Quality Checks**: Run error checks and validation after each change
+
+### Commit Strategy
+
+**Goal**: Balance progress visibility with avoiding excessive commits
+
+**When to Commit:**
+
+1. **After Completing a Logical Unit**:
+   - Completed a full feature module (not individual functions)
+   - Finished a complete page or component with all its translations
+   - Completed configuration setup that makes a feature functional
+   
+2. **At Natural Breakpoints**:
+   - For work with **many phases** (5+ phases): Commit after each phase completion
+   - For work with **12+ small parts**: Commit at 50% completion, then at 100%
+   - For work with **3-4 medium phases**: Commit at 50% and 100%
+   
+3. **After Significant Milestones**:
+   - All tests passing after major changes
+   - Feature fully functional and tested
+   - Documentation consolidated and updated
+   - Breaking points where code is stable and revertable
+
+**When NOT to Commit:**
+- After every small file edit (unless it's the only change for that task)
+- In the middle of a multi-file refactor before testing
+- After adding individual translation keys (wait for batch completion)
+- During exploratory changes that might be reverted
+
+**Examples:**
+- ✅ **Good**: "feat: Complete virtual-tryon page translation (34 keys, 12 sections)"
+- ✅ **Good**: "feat: Add admin dashboard with 5 sub-pages (Part 1/2)"
+- ❌ **Too Early**: "feat: Add title translation to virtual-tryon page"
+- ❌ **Too Late**: "feat: Complete entire i18n implementation" (if work took 20+ hours)
 
 ### Phase 4: Quality Assurance
 1. **Test for Errors**: Use `get_errors` to verify no compilation/lint issues
@@ -54,6 +88,7 @@ When working on any task in this project, follow this systematic approach:
 - **Track Progress**: Make work visible through todos, commits, and status updates
 - **Maintain Quality**: Follow existing patterns, add improvements where logical
 - **Verify Everything**: Check for errors, conflicts, and regressions after changes
+- **Update Instructions**: When completing major features or changing project structure, update this copilot-instructions.md file to reflect new patterns, conventions, or architectural decisions
 
 ## 0.1. Feature Documentation Management
 
@@ -101,7 +136,8 @@ After completing any significant feature or major functionality:
 
 2. **Consolidate Documentation**
    - Move all scattered notes, TODOs, and temporary docs into the feature summary
-   - Delete redundant documentation files related to this feature
+   - **DELETE all temporary/phase documentation files** (plans, progress reports, completion reports)
+   - Keep only: `api-contract.md`, `architecture.md`, `roadmap.md`, and `features/` directory
    - Update this copilot-instructions.md if the feature introduces new patterns
 
 3. **Update Feature Registry**
@@ -110,6 +146,11 @@ After completing any significant feature or major functionality:
      - Completion date
      - Key files affected
      - Related features
+
+4. **Update copilot-instructions.md**
+   - Add new patterns or conventions to Section 3 (Code Conventions)
+   - Update project structure (Section 0.2) if routes/components added
+   - Document architectural changes in relevant sections
 
 ### When Editing Existing Features
 
