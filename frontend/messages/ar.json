@@ -479,9 +479,13 @@
     },
     "analytics": {
       "title": "التحليلات",
-      "responseTime": "متوسط وقت الاستجابة",
-      "resolutionRate": "معدل الحل",
-      "customerSatisfaction": "رضا العملاء"
+      "subtitle": "تتبع أداء خدمة العملاء الخاص بك",
+      "totalConversations": "إجمالي المحادثات",
+      "resolved": "تم الحل",
+      "avgResponseTime": "متوسط وقت الاستجابة",
+      "satisfactionRate": "معدل الرضا",
+      "fromLastWeek": "من الأسبوع الماضي",
+      "minFromLastWeek": "دقائق من الأسبوع الماضي"
     }
   }
 }

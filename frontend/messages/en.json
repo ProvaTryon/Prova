@@ -479,9 +479,13 @@
     },
     "analytics": {
       "title": "Analytics",
-      "responseTime": "Avg. Response Time",
-      "resolutionRate": "Resolution Rate",
-      "customerSatisfaction": "Customer Satisfaction"
+      "subtitle": "Track your customer service performance",
+      "totalConversations": "Total Conversations",
+      "resolved": "Resolved",
+      "avgResponseTime": "Avg Response Time",
+      "satisfactionRate": "Satisfaction Rate",
+      "fromLastWeek": "from last week",
+      "minFromLastWeek": "min from last week"
     }
   }
 }

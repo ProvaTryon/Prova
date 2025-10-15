@@ -1,9 +1,11 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { mockConversations } from "@/lib/mock-data"
 import { MessageSquare, Clock, CheckCircle, TrendingUp } from "lucide-react"
 
 export default function CSAnalytics() {
+  const t = useTranslations("customerService.analytics")
   const totalConversations = mockConversations.length
   const resolvedConversations = mockConversations.filter((c) => c.status === "resolved").length
   const avgResponseTime = "12 min"
@@ -11,36 +13,36 @@ export default function CSAnalytics() {
 
   const stats = [
     {
-      label: "Total Conversations",
+      label: t("totalConversations"),
       value: totalConversations,
       icon: MessageSquare,
-      change: "+15% from last week",
+      change: `+15% ${t("fromLastWeek")}`,
     },
     {
-      label: "Resolved",
+      label: t("resolved"),
       value: resolvedConversations,
       icon: CheckCircle,
-      change: "+8% from last week",
+      change: `+8% ${t("fromLastWeek")}`,
     },
     {
-      label: "Avg Response Time",
+      label: t("avgResponseTime"),
       value: avgResponseTime,
       icon: Clock,
-      change: "-2 min from last week",
+      change: `-2 ${t("minFromLastWeek")}`,
     },
     {
-      label: "Satisfaction Rate",
+      label: t("satisfactionRate"),
       value: satisfactionRate,
       icon: TrendingUp,
-      change: "+2% from last week",
+      change: `+2% ${t("fromLastWeek")}`,
     },
   ]
 
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-serif mb-2">Analytics</h1>
-        <p className="text-muted-foreground">Track your customer service performance</p>
+        <h1 className="text-3xl font-serif mb-2">{t("title")}</h1>
+        <p className="text-muted-foreground">{t("subtitle")}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
