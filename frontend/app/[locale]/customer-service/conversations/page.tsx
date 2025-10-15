@@ -41,33 +41,29 @@ export default function ConversationsPage() {
         <div className="flex gap-2">
           <button
             onClick={() => setStatusFilter("all")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              statusFilter === "all" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
-            }`}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${statusFilter === "all" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
+              }`}
           >
             {t("all")}
           </button>
           <button
             onClick={() => setStatusFilter("waiting")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              statusFilter === "waiting" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
-            }`}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${statusFilter === "waiting" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
+              }`}
           >
             {t("waiting")}
           </button>
           <button
             onClick={() => setStatusFilter("active")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              statusFilter === "active" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
-            }`}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${statusFilter === "active" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
+              }`}
           >
             {t("active")}
           </button>
           <button
             onClick={() => setStatusFilter("resolved")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              statusFilter === "resolved" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
-            }`}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${statusFilter === "resolved" ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
+              }`}
           >
             {t("resolved")}
           </button>
@@ -98,26 +94,24 @@ export default function ConversationsPage() {
                 <td className="p-4">{conv.subject}</td>
                 <td className="p-4">
                   <span
-                    className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                      conv.status === "waiting"
+                    className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${conv.status === "waiting"
                         ? "bg-yellow-100 text-yellow-700"
                         : conv.status === "active"
                           ? "bg-blue-100 text-blue-700"
                           : "bg-green-100 text-green-700"
-                    }`}
+                      }`}
                   >
                     {t(conv.status)}
                   </span>
                 </td>
                 <td className="p-4">
                   <span
-                    className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                      conv.priority === "high"
+                    className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${conv.priority === "high"
                         ? "bg-red-100 text-red-700"
                         : conv.priority === "medium"
                           ? "bg-orange-100 text-orange-700"
                           : "bg-gray-100 text-gray-700"
-                    }`}
+                      }`}
                   >
                     {t(conv.priority)}
                   </span>

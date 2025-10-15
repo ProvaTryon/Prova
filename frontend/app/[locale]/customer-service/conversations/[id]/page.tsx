@@ -90,13 +90,12 @@ export default function ConversationDetailPage({ params }: { params: Promise<{ i
               <option value="resolved">{t("resolved")}</option>
             </select>
             <span
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium ${
-                conversation.priority === "high"
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium ${conversation.priority === "high"
                   ? "bg-red-100 text-red-700"
                   : conversation.priority === "medium"
                     ? "bg-orange-100 text-orange-700"
                     : "bg-gray-100 text-gray-700"
-              }`}
+                }`}
             >
               {t(conversation.priority)}
             </span>
@@ -108,9 +107,8 @@ export default function ConversationDetailPage({ params }: { params: Promise<{ i
         {conversation.messages.map((msg) => (
           <div key={msg.id} className={`flex ${msg.senderRole === "agent" ? "justify-end" : "justify-start"}`}>
             <div
-              className={`max-w-[70%] rounded-lg p-4 ${
-                msg.senderRole === "agent" ? "bg-primary text-primary-foreground" : "bg-muted"
-              }`}
+              className={`max-w-[70%] rounded-lg p-4 ${msg.senderRole === "agent" ? "bg-primary text-primary-foreground" : "bg-muted"
+                }`}
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-sm font-medium">{msg.senderName}</span>
