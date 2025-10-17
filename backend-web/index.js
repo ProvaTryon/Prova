@@ -6,8 +6,14 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 require('dotenv').config();
 
+// استيراد database config
+const connectDB = require('./config/database');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// الاتصال بقاعدة البيانات MongoDB
+connectDB();
 
 // Swagger configuration
 const swaggerOptions = {
