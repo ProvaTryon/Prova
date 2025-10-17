@@ -53,7 +53,7 @@ export default async function RootLayout({
       className={`${playfair.variable} ${dmSans.variable} ${notoArabic.variable}`}
       suppressHydrationWarning
     >
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
