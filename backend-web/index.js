@@ -57,7 +57,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // 🌐 API Routes
 // ==========================================
 app.use('/api/auth', require('./routes/auth'));
-// app.use('/api/products', require('./routes/products'));
+app.use('/api/products', require('./routes/products'));
+app.use('/api/merchants', require('./routes/merchants'));
 // app.use('/api/orders', require('./routes/orders'));
 // app.use('/api/users', require('./routes/users'));
 
