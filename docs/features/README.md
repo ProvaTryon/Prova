@@ -18,6 +18,13 @@ This directory contains consolidated documentation for all completed features in
 - **Key Files**: `frontend/components/layout/theme-toggle.tsx`, `frontend/app/layout.tsx`, `frontend/app/globals.css`
 - **Related Features**: Navigation, Internationalization
 
+### 3. VTON360 3D Virtual Try-On Integration
+- **File**: `vton360-integration.md`
+- **Completed**: November 2025
+- **Summary**: Dual-backend architecture supporting both OOTDiffusion (2D) and VTON360 (3D) virtual try-on models with multipart file upload
+- **Key Files**: `app/services/vton360_client.py`, `app/routers/vton360.py`, `notebooks/VTON360_Colab_Inference.ipynb`
+- **Related Features**: OOTDiffusion Integration
+
 ---
 
 ## Documentation Guidelines
@@ -37,7 +44,7 @@ This directory contains consolidated documentation for all completed features in
 - (To be documented)
 
 ### AI Features
-- (To be documented)
+- VTON360 3D Virtual Try-On (see `vton360-integration.md`)
 
 ### Infrastructure Features
 - (To be documented)
