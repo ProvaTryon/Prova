@@ -10,6 +10,7 @@ import merchantRoutes from "@/routes/merchant.routes";
 import orderRoutes from "@/routes/order.routes";
 import branchRoutes from "@/routes/branch.routes";
 import reviewRoutes from "@/routes/review.routes";
+import recommendationRoutes from "@/routes/recommendation.routes";
 
 
 import { logger } from "@/middleware/logger.middleware";
@@ -23,8 +24,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-app.use(logger);      
-app.use(rateLimiter);   
+app.use(logger);
+app.use(rateLimiter);
 
 
 app.use("/api/auth", authRoutes);
@@ -34,6 +35,7 @@ app.use("/api/merchants", merchantRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/branches", branchRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/recommendations", recommendationRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running...");

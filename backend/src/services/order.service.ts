@@ -1,7 +1,13 @@
 import Order from "@/models/order.model";
+import { invalidateUserCache, invalidateTrendingCache } from "./recommendation.service";
 
 export const createOrderService = async (data: any) => {
   const order = await Order.create(data);
+
+  // Invalidate recommendation caches
+  invalidateUserCache(data.user.toString());
+  invalidateTrendingCache();
+
   return order.toObject();
 };
 
