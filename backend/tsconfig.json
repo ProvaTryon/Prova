@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+        "target": "es2022",
+        "lib": ["ES2022"],
+        "module": "nodenext",
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "strict": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+        "sourceMap": false,
+        "declaration": false,
+        "declarationMap": false,
+        "noUncheckedIndexedAccess": true,
+        "exactOptionalPropertyTypes": true,
+        "moduleResolution": "nodenext",
+        "types": [
+            "node",
+            "express"
+        ],
+        "paths": {"@/*":["./src/*.js"]}
+    },
+    "include": [
+        "src/**/*",
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ],
+      "tsc-alias": {
+    // https://stackoverflow.com/questions/59179787/tsc-doesnt-compile-alias-paths
+        "resolveFullPaths": true,
+        "verbose": false
+  }
+}
