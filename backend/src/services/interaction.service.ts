@@ -1,8 +1,14 @@
 import UserInteraction from "@/models/user.interaction.model";
 import Product from "@/models/product.model";
 
-export const trackProductViewService = async (userId: string, productId: string) => {
+export const trackProductViewService = async (userId: string, productId: string): Promise<{ success: boolean }> => {
   try {
+    // Validate product exists
+    const product = await Product.findById(productId);
+    if (!product) {
+      throw new Error('Product not found');
+    }
+
     // Create interaction record
     await UserInteraction.create({
       user: userId,
@@ -19,12 +25,18 @@ export const trackProductViewService = async (userId: string, productId: string)
 
     return { success: true };
   } catch (err: any) {
-    throw new Error(`Failed to track view: ${err.message}`);
+    throw new Error(`Failed to track product view: ${err.message}`);
   }
 };
 
-export const trackProductClickService = async (userId: string, productId: string) => {
+export const trackProductClickService = async (userId: string, productId: string): Promise<{ success: boolean }> => {
   try {
+    // Validate product exists
+    const product = await Product.findById(productId);
+    if (!product) {
+      throw new Error('Product not found');
+    }
+
     // Create interaction record
     await UserInteraction.create({
       user: userId,
@@ -34,6 +46,6 @@ export const trackProductClickService = async (userId: string, productId: string
 
     return { success: true };
   } catch (err: any) {
-    throw new Error(`Failed to track click: ${err.message}`);
+    throw new Error(`Failed to track product click: ${err.message}`);
   }
 };

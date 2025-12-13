@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import {
   getPersonalizedRecommendationsService,
   getCollaborativeRecommendationsService,
+  getContentBasedRecommendationsService,
   getSimilarProductsService,
   getPopularProductsService,
   getTrendingProductsService
@@ -39,7 +40,7 @@ export const getSimilarProducts = async (req: Request, res: Response) => {
 
     res.json(similarProducts);
   } catch (err: any) {
-    res.status(404).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -52,6 +53,22 @@ export const getCollaborativeRecommendations = async (req: Request, res: Respons
 
     const duration = Date.now() - startTime;
     console.log(`Collaborative recommendations for ${userId}: ${duration}ms`);
+
+    res.json(recommendations);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const getContentBasedRecommendations = async (req: Request, res: Response) => {
+  try {
+    const userId = (req as any).user._id.toString();
+    const startTime = Date.now();
+
+    const recommendations = await getContentBasedRecommendationsService(userId);
+
+    const duration = Date.now() - startTime;
+    console.log(`Content-based recommendations for ${userId}: ${duration}ms`);
 
     res.json(recommendations);
   } catch (err: any) {
@@ -96,7 +113,7 @@ export const trackProductView = async (req: Request, res: Response) => {
 
     await trackProductViewService(userId, productId);
 
-    res.json({ message: 'View tracked successfully' });
+    res.status(201).json({ message: 'View tracked successfully' });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
@@ -109,7 +126,7 @@ export const trackProductClick = async (req: Request, res: Response) => {
 
     await trackProductClickService(userId, productId);
 
-    res.json({ message: 'Click tracked successfully' });
+    res.status(201).json({ message: 'Click tracked successfully' });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }

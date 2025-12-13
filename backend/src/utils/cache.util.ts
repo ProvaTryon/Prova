@@ -73,6 +73,11 @@ class RecommendationCache {
     this.cache.del(`similar:${productId}`);
   }
 
+  // Invalidate popular products cache
+  del(key: string): void {
+    this.cache.del(key);
+  }
+
   // Get cache statistics
   getStats() {
     const stats = this.cache.getStats();

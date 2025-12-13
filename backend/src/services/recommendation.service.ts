@@ -48,6 +48,12 @@ export const getPersonalizedRecommendationsService = async (userId: string) => {
 
     // Extract user preferences
     const userProducts = userOrders.flatMap(order => order.products) as any[];
+
+    // Handle edge case: empty products array
+    if (userProducts.length === 0) {
+      return await getPopularProductsService();
+    }
+
     const userCategories = [...new Set(userProducts.map((p: any) => p.category))];
     const userBrands = [...new Set(userProducts.map((p: any) => p.brand).filter(Boolean))];
     const avgPrice = userProducts.reduce((sum: number, p: any) => sum + p.price, 0) / userProducts.length;
@@ -150,6 +156,12 @@ export const getContentBasedRecommendationsService = async (userId: string) => {
 
     // Extract user preferences
     const userProducts = userOrders.flatMap(order => order.products) as any[];
+
+    // Handle edge case: empty products array
+    if (userProducts.length === 0) {
+      return [];
+    }
+
     const userCategories = [...new Set(userProducts.map((p: any) => p.category))];
     const userTags = [...new Set(userProducts.flatMap((p: any) => p.tags || []))];
     const userBrands = [...new Set(userProducts.map((p: any) => p.brand).filter(Boolean))];
@@ -250,6 +262,12 @@ export const getTrendingProductsService = async () => {
       { $replaceRoot: { newRoot: '$product' } }
     ]);
 
+    // Fallback to popular if no trending products
+    if (trending.length === 0) {
+      console.log('No trending products found, returning popular products');
+      return await getPopularProductsService();
+    }
+
     // Cache the results (1 hour TTL)
     recommendationCache.setTrendingProducts(trending);
 
@@ -278,6 +296,14 @@ export const getPopularProductsService = async () => {
       { $sort: { orderCount: -1 } },
       { $limit: 50 }
     ]);
+
+    // If no orders exist, return all products sorted by viewCount
+    if (orderCounts.length === 0) {
+      console.log('No orders found, returning products by view count');
+      const products = await Product.find().sort({ viewCount: -1 }).limit(20).lean();
+      recommendationCache.setPopularProducts(products);
+      return products;
+    }
 
     const productIds = orderCounts.map(item => item._id);
 
@@ -325,6 +351,14 @@ export const invalidateUserCache = (userId: string) => {
 
 export const invalidateTrendingCache = () => {
   recommendationCache.invalidateTrending();
+};
+
+export const invalidatePopularCache = () => {
+  recommendationCache.del('popular:products');
+};
+
+export const invalidateProductCache = (productId: string) => {
+  recommendationCache.invalidateProduct(productId);
 };
 
 // Warm cache on startup
