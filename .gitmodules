@@ -1,3 +1,6 @@
 [submodule "cloth-store-app-tryon"]
 	path = cloth-store-app-tryon
 	url = https://github.com/YousefAyman125/cloth-store-app-tryon.git
+[submodule "backend"]
+	path = backend
+	url = https://github.com/ProvaTryon/Prova-Backend.git
