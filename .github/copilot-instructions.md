@@ -28,6 +28,7 @@
 ## Quick Start for AI Agents
 
 Read in this order:
+
 1. **Agent Mode Rules** (Section 1) - Non-negotiable constraints
 2. **Quick Reference Card** (Section 2) - Critical project facts
 3. **Agent Workflow** (Section 3) - Step-by-step process
@@ -43,12 +44,14 @@ Then apply the professional principles and procedures as needed.
 **These rules are NON-NEGOTIABLE when operating in autonomous agent mode.**
 
 ### 1.1. NEVER Assume - Always Verify
+
 - ❌ **NEVER** guess at file contents, API signatures, or implementation details
 - ✅ **ALWAYS** use `read_file`, `semantic_search`, or `grep_search` before making changes
 - ✅ **ALWAYS** check if a file/component/function exists before referencing it
 - ✅ **ALWAYS** read the full function/component before modifying it
 
 ### 1.2. Test Before Declaring Success
+
 - ❌ **NEVER** say "done" or "complete" without verification
 - ✅ **ALWAYS** run error checking tools after file modifications
 - ✅ **ALWAYS** test affected functionality in relevant environments
@@ -56,6 +59,7 @@ Then apply the professional principles and procedures as needed.
 - ✅ **ALWAYS** check edge cases and error handling
 
 ### 1.3. Maintain Consistency - Follow Existing Patterns
+
 - ❌ **NEVER** introduce new patterns when existing ones work
 - ❌ **NEVER** mix different approaches or styling methods
 - ✅ **ALWAYS** use existing components/modules/libraries before creating new ones
@@ -63,18 +67,21 @@ Then apply the professional principles and procedures as needed.
 - ✅ **ALWAYS** use the same state management, styling, and architectural patterns
 
 ### 1.4. Document As You Go
+
 - ❌ **NEVER** make architectural changes without updating documentation
 - ✅ **ALWAYS** update feature documentation when completing features
 - ✅ **ALWAYS** update this file when introducing new patterns or conventions
 - ✅ **ALWAYS** add code comments for complex logic and functions
 
 ### 1.5. Safe File Operations
+
 - ❌ **NEVER** delete files without explicit user confirmation
 - ❌ **NEVER** overwrite files without reading them first
 - ✅ **ALWAYS** create backups for risky operations (suggest git commit first)
 - ✅ **ALWAYS** use appropriate edit tools with sufficient context (3-5 lines)
 
 ### 1.6. Security First
+
 - ❌ **NEVER** commit API keys, tokens, credentials, or secrets
 - ❌ **NEVER** disable security features without explicit approval
 - ✅ **ALWAYS** validate and sanitize user inputs
@@ -82,6 +89,7 @@ Then apply the professional principles and procedures as needed.
 - ✅ **ALWAYS** follow the principle of least privilege
 
 ### 1.7. Error Handling is Mandatory
+
 - ❌ **NEVER** leave try-catch blocks empty or suppress errors silently
 - ❌ **NEVER** ignore error cases or edge conditions
 - ✅ **ALWAYS** provide meaningful error messages and logging
@@ -89,6 +97,7 @@ Then apply the professional principles and procedures as needed.
 - ✅ **ALWAYS** consider failure scenarios and degradation paths
 
 ### 1.8. Respect Project Constraints
+
 - ❌ **NEVER** violate project-specific technology or tooling requirements
 - ❌ **NEVER** bypass established systems (authentication, validation, etc.)
 - ❌ **NEVER** ignore project-specific testing or deployment requirements
@@ -102,6 +111,7 @@ Then apply the professional principles and procedures as needed.
 > **📝 Note for Project Setup:** Fill in this section with your project's specific details. This serves as the agent's quick reference for critical project facts.
 
 **Architecture & Tech Stack:**
+
 ```
 [Describe your architecture: microservices, monolith, serverless, etc.]
 [List key services and their ports]
@@ -109,17 +119,20 @@ Then apply the professional principles and procedures as needed.
 ```
 
 **Critical Workflows:**
+
 ```bash
 # [Add commands to run the project]
 # [Include build, test, and deployment commands]
 ```
 
 **Before Any Changes:**
+
 1. [List pre-change verification steps]
 2. [Include testing requirements]
 3. [Note any environment-specific checks]
 
 **Key Project Patterns:**
+
 - **State Management:** [Describe your state management approach]
 - **Component Library:** [List any UI libraries or design systems]
 - **Internationalization:** [Describe i18n setup if applicable]
@@ -140,6 +153,7 @@ Then apply the professional principles and procedures as needed.
 5. **[Pattern Name]**: [Description of non-obvious behavior or requirement]
 
 > **Example Pattern Descriptions:**
+>
 > - "Service X is a proxy only - it forwards to external API"
 > - "All data is currently mock - no real database connections"
 > - "Package managers are strict - Frontend uses X, Backend uses Y"
@@ -150,6 +164,7 @@ Then apply the professional principles and procedures as needed.
 > **Instructions:** List anti-patterns and mistakes specific to this codebase that agents should avoid.
 
 **Examples:**
+
 - ❌ Don't use library X for feature Y (use library Z instead)
 - ❌ Never bypass the authentication middleware
 - ❌ Don't modify generated files in /dist or /build
@@ -157,6 +172,7 @@ Then apply the professional principles and procedures as needed.
 - ❌ Don't store sensitive data in localStorage
 
 **Your Project:**
+
 1. ❌ [Anti-pattern 1]: [Why it's problematic]
 2. ❌ [Anti-pattern 2]: [Why it's problematic]
 3. ❌ [Anti-pattern 3]: [Why it's problematic]
@@ -166,16 +182,19 @@ Then apply the professional principles and procedures as needed.
 > **Instructions:** Define measurable performance targets for this project.
 
 **Page Load (if web application):**
+
 - First Contentful Paint: < [X]s
 - Time to Interactive: < [X]s
 - Total page size: < [X]MB
 
 **API/Backend:**
+
 - Response time (p95): < [X]ms
 - Database query time (p95): < [X]ms
 - Concurrent requests supported: [X]
 
 **Bundle Sizes (if applicable):**
+
 - Main bundle: < [X]KB (gzipped)
 - Vendor bundle: < [X]KB (gzipped)
 - Per-route chunks: < [X]KB (gzipped)
@@ -185,12 +204,14 @@ Then apply the professional principles and procedures as needed.
 > **Instructions:** Document what's needed to run this project.
 
 **Required Software:**
+
 - [ ] [Language/runtime]: version [X.X.X]
 - [ ] [Package manager]: version [X.X.X]
 - [ ] [Database]: version [X.X.X]
 - [ ] [Other tools]: [versions]
 
 **Environment Variables Required:**
+
 ```bash
 [ENV_VAR_1]=[description]
 [ENV_VAR_2]=[description]
@@ -198,6 +219,7 @@ Then apply the professional principles and procedures as needed.
 ```
 
 **Setup Steps:**
+
 1. [Step 1: e.g., Install dependencies]
 2. [Step 2: e.g., Copy .env.example to .env]
 3. [Step 3: e.g., Run database migrations]
@@ -205,6 +227,7 @@ Then apply the professional principles and procedures as needed.
 5. [Step 5: e.g., Start development server]
 
 **Verification:**
+
 - [ ] Project runs without errors
 - [ ] Tests pass
 - [ ] Can access application at [URL]
@@ -245,6 +268,7 @@ Then apply the professional principles and procedures as needed.
 ### Failure Recovery Protocol
 
 **If something breaks:**
+
 1. ✅ Immediately stop and assess the damage
 2. ✅ Use `get_errors` to identify the issue
 3. ✅ Read the affected files completely
@@ -253,6 +277,7 @@ Then apply the professional principles and procedures as needed.
 6. ✅ Suggest git revert if fix is complex
 
 **If requirements are unclear:**
+
 1. ✅ List what you understand
 2. ✅ List what's ambiguous
 3. ✅ Ask specific questions
@@ -268,17 +293,20 @@ Then apply the professional principles and procedures as needed.
 ### 4.1. When to Provide Progress Updates
 
 **For Multi-Step Tasks (3+ steps):**
+
 - ✅ Announce your plan before starting
 - ✅ Update after completing each major phase
 - ✅ Report blockers immediately when encountered
 - ✅ Provide summary when task is complete
 
 **For Long-Running Operations:**
+
 - ✅ Set expectations: "This will take 2-3 minutes..."
 - ✅ Explain what's happening: "Running full test suite..."
 - ✅ Report results: "Tests passed: 47/50, 3 failures in auth module"
 
 **For Research/Discovery:**
+
 - ✅ Share findings as you discover them
 - ✅ Explain what you're looking for
 - ✅ Report when you've found enough context to proceed
@@ -286,6 +314,7 @@ Then apply the professional principles and procedures as needed.
 ### 4.2. How to Ask Clarifying Questions
 
 **When Requirements Are Ambiguous:**
+
 ```markdown
 🤔 I need clarification on [specific aspect]:
 
@@ -305,6 +334,7 @@ Which approach would you prefer, or should I proceed differently?
 ```
 
 **When Multiple Solutions Exist:**
+
 ```markdown
 📊 I've identified [N] ways to implement this:
 
@@ -324,17 +354,20 @@ Recommendation: [Option X] because [reasoning]
 ### 4.3. Using manage_todo_list for Visibility
 
 **WHEN to use todo lists:**
+
 - ✅ Tasks with 4+ distinct steps
 - ✅ Work spanning multiple files/systems
 - ✅ Complex features requiring phases
 - ✅ When user asks "what's left to do?"
 
 **WHEN NOT to use todo lists:**
+
 - ❌ Simple 1-2 step tasks
 - ❌ Quick bug fixes
 - ❌ Single file edits
 
 **Todo List Best Practices:**
+
 ```markdown
 1. Create todo list at start of complex work
 2. Mark ONE task as "in-progress" before starting it
@@ -346,12 +379,14 @@ Recommendation: [Option X] because [reasoning]
 ### 4.4. Progress Reporting Frequency
 
 **Guidelines:**
+
 - **Quick tasks (< 2 min)**: Report only when complete
 - **Medium tasks (2-10 min)**: Update at 50% and 100%
 - **Long tasks (> 10 min)**: Update every 3-5 minutes or per phase
 - **Blocked/waiting**: Report immediately
 
 **What to Include in Updates:**
+
 ```markdown
 ✅ What's completed
 🔨 What's in progress
@@ -363,6 +398,7 @@ Recommendation: [Option X] because [reasoning]
 ### 4.5. Error Communication
 
 **When Errors Occur:**
+
 ```markdown
 ❌ ERROR ENCOUNTERED
 
@@ -381,6 +417,7 @@ Do you want me to proceed with this fix, or would you prefer a different approac
 ```
 
 **When You're Unsure:**
+
 - ✅ Admit uncertainty clearly
 - ✅ Explain what you DO know
 - ✅ Present options with confidence levels
@@ -390,6 +427,7 @@ Do you want me to proceed with this fix, or would you prefer a different approac
 ### 4.6. Completion Reporting
 
 **Comprehensive Final Report Format:**
+
 ```markdown
 ✅ TASK COMPLETE: [Task Name]
 
@@ -425,6 +463,7 @@ Do you want me to proceed with this fix, or would you prefer a different approac
 ### 4.7. Tone & Style Guidelines
 
 **DO:**
+
 - ✅ Be clear and direct
 - ✅ Use technical terms appropriately
 - ✅ Explain complex concepts simply
@@ -433,6 +472,7 @@ Do you want me to proceed with this fix, or would you prefer a different approac
 - ✅ Use formatting for readability
 
 **DON'T:**
+
 - ❌ Use excessive emojis (1-2 per section max)
 - ❌ Be overly verbose
 - ❌ Use jargon without explanation
@@ -441,11 +481,158 @@ Do you want me to proceed with this fix, or would you prefer a different approac
 
 ---
 
+### 4.8. Code Explanation Standards
+
+**When user asks "explain code" or "explain [file/function]":**
+
+**MANDATORY explanation format:**
+
+1. **File/Component Overview** (2-3 sentences)
+   - What it does
+   - Why it exists  
+   - How it fits into the system
+
+2. **Line-by-Line Breakdown**
+   - Start with imports and explain each
+   - For each section/function:
+     - **What it does**: Functional description
+     - **Why it exists**: Purpose and reasoning
+     - **Why this approach**: Design decisions
+     - **Real-world example**: Concrete usage scenario
+
+3. **Deep Dive Sections**
+   - **Relationships**: How it connects to other files
+   - **Data Flow**: How data moves through the code
+   - **Design Patterns**: Patterns used and why
+   - **Performance Considerations**: Efficiency decisions
+   - **Security/Validation**: Safety measures
+
+4. **Practical Examples**
+   - Show 2-3 real usage scenarios
+   - Include input/output examples
+   - Demonstrate edge cases
+
+5. **Key Takeaways**
+   - Summary of critical points (5-7 bullet points)
+   - Related files to check
+   - Common pitfalls to avoid
+
+**Depth requirements:**
+
+- ✅ Explain EVERY non-obvious line
+- ✅ Show WHY decisions were made, not just WHAT
+- ✅ Include real-world analogies for complex concepts
+- ✅ Use tables for comparing options/approaches
+- ✅ Add code examples for unclear concepts
+- ✅ Explain in terms of the larger system architecture
+
+**Visual aids to use:**
+
+- Tables for comparisons
+- Code blocks with annotations (❌ BAD / ✅ GOOD)
+- Flow diagrams using markdown (arrows, steps)
+- Data structure examples with JSON/objects
+
+**DON'T:**
+
+- ❌ Give superficial "what the code does" descriptions
+- ❌ Skip over complex logic
+- ❌ Assume user knows framework-specific concepts
+- ❌ Use jargon without explanation
+- ❌ Provide incomplete examples
+
+**Example response structure:**
+
+```markdown
+# Detailed Explanation: [File/Component Name]
+
+## 📋 Overview
+[2-3 sentence summary]
+
+## 🔍 Line-by-Line Breakdown
+
+### Imports (Lines X-Y)
+[Code block with explanation]
+
+### Interface/Type Definition (Lines X-Y)
+[Detailed explanation of each field]
+
+### Main Function/Component (Lines X-Y)
+[Step-by-step walkthrough]
+
+## 🔗 How It Fits Into The System
+[Architecture context]
+
+## 🎯 Real-World Usage Scenarios
+**Scenario 1:** [Example]
+**Scenario 2:** [Example]
+
+## 📊 Performance/Security/Database Considerations
+[Relevant deep-dives]
+
+## 🎓 Key Takeaways
+- [Critical point 1]
+- [Critical point 2]
+...
+
+## 📚 Related Files
+- [File 1] - [Relationship]
+```
+
+**When explaining complex algorithms:**
+
+- ✅ Break into numbered steps
+- ✅ Show intermediate states
+- ✅ Explain time/space complexity
+- ✅ Compare with alternative approaches
+
+**When explaining database operations:**
+
+- ✅ Explain indexes and their purpose
+- ✅ Show example queries
+- ✅ Explain optimization techniques
+- ✅ Show MongoDB document structure
+
+**When explaining API/route handlers:**
+
+- ✅ Show request/response flow
+- ✅ Explain middleware chain
+- ✅ Show authentication/authorization logic
+- ✅ Provide cURL or Postman examples
+
+**Verification before sending explanation:**
+
+- ✅ Did I explain EVERY non-obvious line?
+- ✅ Did I provide real-world examples?
+- ✅ Did I explain WHY, not just WHAT?
+- ✅ Would a junior developer understand this?
+- ✅ Did I cover edge cases and gotchas?
+
+---
+
+### 4.9. Explanation Trigger Phrases
+
+**User says ANY of these → Provide detailed explanation per Section 4.8:**
+
+- "explain [file/function/code]"
+- "explain in detail"
+- "explain in great detail"
+- "walk me through [code]"
+- "how does [code] work"
+- "break down [code]"
+- "what does [code] do and why"
+
+**Response acknowledgment:**
+Start with: "I'll provide a comprehensive explanation following the detailed format..."
+
+---
+
 ## 5. Quality Gates & Enforcement
 
 ### 5.1. Mandatory Pre-Commit Checks
 
 **Before ANY code changes, agents MUST verify:**
+
 - ✅ **Zero compilation errors** - Run `get_errors` or project's type checker
 - ✅ **All locales tested** - Test all supported languages (if i18n affected)
 - ✅ **Theme variants work** - Test all theme modes (if theming exists)
@@ -459,6 +646,7 @@ Do you want me to proceed with this fix, or would you prefer a different approac
 ### 5.2. Success Criteria
 
 **A task is NOT complete until:**
+
 - ✅ **Functional**: Feature works as requested in all scenarios
 - ✅ **Tested**: Verified in all supported environments/configurations
 - ✅ **Clean**: Zero compilation/lint errors, no debug statements
@@ -487,6 +675,7 @@ Do you want me to proceed with this fix, or would you prefer a different approac
 ### 5.4. Escalation Protocol
 
 **When to stop and ask for help:**
+
 1. 🚨 Errors you can't resolve after 2 attempts
 2. 🚨 Breaking changes that affect multiple features
 3. 🚨 Security concerns or potential vulnerabilities
@@ -495,6 +684,7 @@ Do you want me to proceed with this fix, or would you prefer a different approac
 6. 🚨 Performance issues without clear optimization path
 
 **Escalation format:**
+
 ```
 🚨 ESCALATION NEEDED
 Issue: [Brief description]
@@ -512,6 +702,7 @@ Risk Assessment: [Potential impacts of each option]
 When working on any task in this project, follow this systematic approach:
 
 ### Phase 1: Analysis & Planning
+
 1. **Understand the Request**: Clarify the user's goal and identify all affected areas
 2. **Analyze Scope**: Use semantic search and grep to understand the current state
 3. **Identify Dependencies**: Find related files, components, and patterns already in use
@@ -522,11 +713,13 @@ When working on any task in this project, follow this systematic approach:
    - Potential conflicts or issues
 
 ### Phase 2: Verification & Alignment
+
 1. **Present Options**: Offer choices (e.g., Option A: comprehensive, Option B: minimal, Option C: custom)
 2. **Get User Confirmation**: Wait for user to select approach before proceeding
 3. **Set Expectations**: Be clear about what will be done and what won't
 
 ### Phase 3: Systematic Implementation
+
 1. **Break Down Work**: Divide large tasks into logical, trackable phases
 2. **Incremental Progress**: Complete one section at a time, test, then move forward
 3. **Use Todo Lists**: Maintain visible progress tracking with `manage_todo_list`
@@ -543,12 +736,12 @@ When working on any task in this project, follow this systematic approach:
    - Completed a full feature module (not individual functions)
    - Finished a complete page or component with all its translations
    - Completed configuration setup that makes a feature functional
-   
+
 2. **At Natural Breakpoints**:
    - For work with **many phases** (5+ phases): Commit after each phase completion
    - For work with **12+ small parts**: Commit at 50% completion, then at 100%
    - For work with **3-4 medium phases**: Commit at 50% and 100%
-   
+
 3. **After Significant Milestones**:
    - All tests passing after major changes
    - Feature fully functional and tested
@@ -556,29 +749,34 @@ When working on any task in this project, follow this systematic approach:
    - Breaking points where code is stable and revertable
 
 **When NOT to Commit:**
+
 - After every small file edit (unless it's the only change for that task)
 - In the middle of a multi-file refactor before testing
 - After adding individual translation keys (wait for batch completion)
 - During exploratory changes that might be reverted
 
 **Examples:**
+
 - ✅ **Good**: "feat: Complete virtual-tryon page translation (34 keys, 12 sections)"
 - ✅ **Good**: "feat: Add admin dashboard with 5 sub-pages (Part 1/2)"
 - ❌ **Too Early**: "feat: Add title translation to virtual-tryon page"
 - ❌ **Too Late**: "feat: Complete entire i18n implementation" (if work took 20+ hours)
 
 ### Phase 4: Quality Assurance
+
 1. **Test for Errors**: Use `get_errors` to verify no compilation/lint issues
 2. **Cross-Reference**: Ensure consistency with existing patterns and conventions
 3. **Document Changes**: Update relevant docs if architecture or patterns change
 4. **Final Verification**: Check that all original requirements are met
 
 ### Phase 5: Completion & Documentation
+
 1. **Comprehensive Report**: Summarize what was done, files changed, metrics
 2. **Handoff Information**: Provide clear next steps or testing instructions
 3. **Update Project Context**: Note any new patterns or conventions established
 
 ### Key Principles
+
 - **Don't Assume**: Always gather context first, never guess at implementations
 - **Think Systematically**: Large changes need planning, small changes need context
 - **Be Transparent**: Show your reasoning, present trade-offs, explain decisions
@@ -598,6 +796,7 @@ After completing any significant feature or major functionality:
 1. **Create Feature Summary Document**
    - Location: `docs/features/[feature-name].md`
    - Structure:
+
      ```markdown
      # Feature: [Feature Name]
      
@@ -910,6 +1109,7 @@ This section provides step-by-step procedures for common agent tasks. **Adapt th
 **Symptoms:** Code won't compile/run
 
 **Diagnosis steps:**
+
 1. ✅ Run `get_errors` to see exact error messages
 2. ✅ Read the error message carefully (line number, description)
 3. ✅ Check for typos in variable/function names
@@ -918,6 +1118,7 @@ This section provides step-by-step procedures for common agent tasks. **Adapt th
 6. ✅ Verify type signatures match (for typed languages)
 
 **Common causes:**
+
 - Missing imports or wrong import paths
 - Type mismatches
 - Syntax errors (missing brackets, commas)
@@ -928,6 +1129,7 @@ This section provides step-by-step procedures for common agent tasks. **Adapt th
 **Symptoms:** Code compiles but crashes/fails during execution
 
 **Diagnosis steps:**
+
 1. ✅ Read the stack trace from bottom to top
 2. ✅ Identify the exact line where error occurs
 3. ✅ Check variable values at that point (add logging)
@@ -935,6 +1137,7 @@ This section provides step-by-step procedures for common agent tasks. **Adapt th
 5. ✅ Check for async/timing issues
 
 **Common causes:**
+
 - Null/undefined reference errors
 - Array index out of bounds
 - Type coercion issues
@@ -946,6 +1149,7 @@ This section provides step-by-step procedures for common agent tasks. **Adapt th
 **Symptoms:** Code runs but produces wrong results
 
 **Diagnosis steps:**
+
 1. ✅ Add logging at key decision points
 2. ✅ Trace data flow through the system
 3. ✅ Check boundary conditions and edge cases
@@ -953,6 +1157,7 @@ This section provides step-by-step procedures for common agent tasks. **Adapt th
 5. ✅ Test with known input/output pairs
 
 **Common causes:**
+
 - Off-by-one errors
 - Wrong operators (= vs ==, && vs ||)
 - Incorrect algorithm implementation
@@ -964,6 +1169,7 @@ This section provides step-by-step procedures for common agent tasks. **Adapt th
 **Symptoms:** Code works but is too slow
 
 **Diagnosis steps:**
+
 1. ✅ Measure: Use profiling tools to find bottlenecks
 2. ✅ Identify: What operation takes the most time?
 3. ✅ Analyze: Why is it slow? (N+1 queries, large loops, etc.)
@@ -971,6 +1177,7 @@ This section provides step-by-step procedures for common agent tasks. **Adapt th
 5. ✅ Measure again: Verify improvement
 
 **Common causes:**
+
 - N+1 database queries
 - Unnecessary re-renders (UI frameworks)
 - Large data processing in loops
@@ -990,6 +1197,7 @@ Error: Cannot read property 'name' of undefined
 ```
 
 **Reading strategy:**
+
 1. Start at the **top** of the stack (actual error location)
 2. Check the line number and understand the context
 3. Work **down** to understand the call chain
@@ -1011,6 +1219,7 @@ Error: Cannot read property 'name' of undefined
 ### 9.5. Debugging Tools & Techniques
 
 **Logging:**
+
 ```javascript
 // Strategic logging points
 console.log('Input:', input);           // Start of function
@@ -1020,6 +1229,7 @@ console.log('Error path:', error);      // Error cases
 ```
 
 **Browser DevTools (for web apps):**
+
 - **Console**: View logs and errors
 - **Network**: Check API requests/responses
 - **Elements**: Inspect DOM and CSS
@@ -1028,6 +1238,7 @@ console.log('Error path:', error);      // Error cases
 - **Application**: Check localStorage, cookies, cache
 
 **Terminal/CLI Debugging:**
+
 - Check exit codes of commands
 - Read stderr vs stdout
 - Use verbose flags (-v, --verbose)
@@ -1035,6 +1246,7 @@ console.log('Error path:', error);      // Error cases
 - Verify file permissions
 
 **Database Debugging:**
+
 - Check connection strings
 - Verify credentials
 - Test queries directly in DB client
@@ -1044,6 +1256,7 @@ console.log('Error path:', error);      // Error cases
 ### 9.6. When to Escalate
 
 **Stop debugging and ask for help if:**
+
 - 🚨 You've spent 15+ minutes without progress
 - 🚨 The error is in unfamiliar code/framework
 - 🚨 The issue might be environment-specific
@@ -1051,6 +1264,7 @@ console.log('Error path:', error);      // Error cases
 - 🚨 The fix might have wide-reaching impacts
 
 **Escalation template:**
+
 ```markdown
 🔍 DEBUGGING ASSISTANCE NEEDED
 
@@ -1111,6 +1325,7 @@ What I need:
 ```
 
 **⚠️ Premature Optimization Warning:**
+
 - Don't optimize code that runs once at startup
 - Don't optimize code that handles small datasets
 - Don't sacrifice readability for micro-optimizations
@@ -1121,6 +1336,7 @@ What I need:
 #### Database Optimization
 
 **N+1 Query Problem:**
+
 ```
 ❌ BAD - N+1 queries:
 users = db.query("SELECT * FROM users")
@@ -1136,12 +1352,14 @@ results = db.query("""
 ```
 
 **Use Indexes:**
+
 - Index columns used in WHERE clauses
 - Index foreign keys
 - Index columns used for sorting
 - Don't over-index (slows writes)
 
 **Query Optimization:**
+
 - Select only needed columns (avoid SELECT *)
 - Use LIMIT for large result sets
 - Use pagination for UI lists
@@ -1150,6 +1368,7 @@ results = db.query("""
 #### Frontend/UI Optimization
 
 **Avoid Unnecessary Re-renders:**
+
 ```javascript
 // React example
 ❌ BAD - Creates new object every render:
@@ -1168,12 +1387,14 @@ const onClick = useCallback(() => handleClick(id), [id]);
 ```
 
 **Lazy Loading:**
+
 - Load images only when visible
 - Split code bundles (route-based)
 - Defer non-critical scripts
 - Use virtual scrolling for long lists
 
 **Debounce/Throttle:**
+
 ```javascript
 // Debounce - Wait for user to stop typing
 const debouncedSearch = debounce(search, 300);
@@ -1185,6 +1406,7 @@ const throttledScroll = throttle(handleScroll, 100);
 #### Backend/API Optimization
 
 **Caching Strategies:**
+
 ```
 1. Cache expensive computations
 2. Cache database queries (with invalidation)
@@ -1194,6 +1416,7 @@ const throttledScroll = throttle(handleScroll, 100);
 ```
 
 **Async/Parallel Processing:**
+
 ```python
 ❌ BAD - Sequential:
 result1 = fetch_data_1()  # 100ms
@@ -1211,6 +1434,7 @@ results = await Promise.all([
 ```
 
 **Rate Limiting:**
+
 - Protect expensive endpoints
 - Use request queues
 - Implement backpressure
@@ -1218,6 +1442,7 @@ results = await Promise.all([
 #### Algorithm Optimization
 
 **Choose Right Data Structure:**
+
 | Operation | Use | Time Complexity |
 |-----------|-----|----------------|
 | Lookup by key | Hash Map/Object | O(1) |
@@ -1227,6 +1452,7 @@ results = await Promise.all([
 | Range queries | Tree | O(log n) |
 
 **Complexity Examples:**
+
 ```javascript
 ❌ BAD - O(n²):
 for (let i = 0; i < arr.length; i++) {
@@ -1246,6 +1472,7 @@ for (let item of arr) {
 ### 10.3. Memory Optimization
 
 **Avoid Memory Leaks:**
+
 ```javascript
 ❌ BAD - Memory leak:
 class Component {
@@ -1267,6 +1494,7 @@ class Component {
 ```
 
 **Common Memory Leak Sources:**
+
 - Event listeners not removed
 - Timers not cleared (setInterval, setTimeout)
 - Global variables accumulating data
@@ -1276,6 +1504,7 @@ class Component {
 ### 10.4. Bundle Size Optimization (Frontend)
 
 **Reduce Bundle Size:**
+
 - Tree-shaking (remove unused code)
 - Code splitting by route
 - Lazy load heavy libraries
@@ -1283,6 +1512,7 @@ class Component {
 - Minimize/compress assets
 
 **Example:**
+
 ```javascript
 ❌ BAD - Import entire library:
 import _ from 'lodash'; // 70KB
@@ -1317,18 +1547,21 @@ import debounce from 'lodash/debounce'; // 2KB
 ### 10.6. Monitoring & Profiling
 
 **Frontend Profiling:**
+
 - Chrome DevTools Performance tab
 - Lighthouse for web vitals
 - React DevTools Profiler
 - Network waterfall analysis
 
 **Backend Profiling:**
+
 - Application performance monitoring (APM)
 - Database slow query logs
 - Request timing middleware
 - Memory usage tracking
 
 **Key Metrics to Track:**
+
 - Response time (p50, p95, p99)
 - Error rate
 - Throughput (requests/second)
@@ -1338,6 +1571,7 @@ import debounce from 'lodash/debounce'; // 2KB
 ### 10.7. Optimization Checklist
 
 **Before declaring optimization complete:**
+
 - ✅ Measured performance before optimization
 - ✅ Identified actual bottleneck with profiling
 - ✅ Implemented optimization
@@ -1364,6 +1598,7 @@ import debounce from 'lodash/debounce'; // 2KB
 ### 11.1. When to Refactor
 
 **Refactor when:**
+
 - ✅ Code is difficult to understand or maintain
 - ✅ You need to modify code and it's too complex
 - ✅ There's significant code duplication
@@ -1371,6 +1606,7 @@ import debounce from 'lodash/debounce'; // 2KB
 - ✅ Technical debt is slowing development
 
 **Don't refactor when:**
+
 - ❌ No tests exist (write tests first)
 - ❌ Under tight deadline (schedule it for later)
 - ❌ You don't understand the code fully
@@ -1578,6 +1814,7 @@ class Triangle {
 ### 11.5. Refactoring Checklist
 
 **Before starting:**
+
 - ✅ Tests exist and pass
 - ✅ Code is committed
 - ✅ You understand what the code does
@@ -1585,12 +1822,14 @@ class Triangle {
 - ✅ Stakeholders approve (if production code)
 
 **During refactoring:**
+
 - ✅ Make small, incremental changes
 - ✅ Run tests after each change
 - ✅ Keep commits small and focused
 - ✅ Document non-obvious decisions
 
 **After refactoring:**
+
 - ✅ All tests still pass
 - ✅ Performance hasn't degraded
 - ✅ Code is more readable/maintainable
@@ -1600,6 +1839,7 @@ class Triangle {
 ### 11.6. When Refactoring Goes Wrong
 
 **If tests fail after refactoring:**
+
 1. Read the test failure carefully
 2. Check what changed in your last step
 3. If unclear, revert to last working state
@@ -1607,11 +1847,13 @@ class Triangle {
 5. Consider if test needs updating (rare)
 
 **If code works but feels worse:**
+
 - Revert and reconsider approach
 - Get feedback from team/user
 - Maybe the original was actually better
 
 **If refactoring takes too long:**
+
 - Commit what works so far
 - Schedule remaining work
 - Don't leave code in broken state
@@ -1640,12 +1882,14 @@ class Triangle {
 **Pre-Push Quality Gate:**
 
 Run comprehensive verification:
+
 - Compilation/build errors check
 - Linting and code style verification
 - Test suite execution
 - Security vulnerability scan (if applicable)
 
 **Manual verification commands (adapt to your project):**
+
 ```bash
 # Frontend/Client checks
 [run type checker]
@@ -1660,6 +1904,7 @@ Run comprehensive verification:
 ```
 
 **Automated Pre-Push Hook (if using Git hooks):**
+
 ```bash
 #!/usr/bin/env sh
 echo "🚦 Running quality gates before push..."
@@ -1687,6 +1932,7 @@ This section demonstrates the complete agent workflow for implementing a new fea
 #### Phase 1: Planning & Analysis (15-30 minutes)
 
 **1. Requirements Gathering:**
+
 ```
 User Story:
 As a [user type], I want [feature]
@@ -1701,6 +1947,7 @@ Acceptance Criteria:
 ```
 
 **2. Technical Analysis:**
+
 ```bash
 # Search for existing similar functionality
 semantic_search query="[relevant search terms]"
@@ -1713,6 +1960,7 @@ read_file filePath="[path to relevant file]"
 ```
 
 **3. Architecture Design:**
+
 ```
 Files to create/modify:
 [Service/Layer 1]:
@@ -1728,6 +1976,7 @@ Files to create/modify:
 ```
 
 **4. Create Implementation Plan:**
+
 ```markdown
 ## Implementation Plan
 
@@ -1757,6 +2006,7 @@ Files to create/modify:
 #### Phase 2: Implementation (2-3 hours)
 
 **Step 1: Implement Core Data Model**
+
 ```
 [Example code structure for your tech stack]
 // Create/update data model
@@ -1765,6 +2015,7 @@ Files to create/modify:
 ```
 
 **Step 2: Create API/Service Layer**
+
 ```
 [Example code structure for your tech stack]
 // Create routes/endpoints
@@ -1773,6 +2024,7 @@ Files to create/modify:
 ```
 
 **Step 3: Implement State Management**
+
 ```
 [Example code structure for your tech stack]
 // Create state container
@@ -1781,6 +2033,7 @@ Files to create/modify:
 ```
 
 **Step 4: Create UI Components**
+
 ```
 [Example code structure for your tech stack]
 // Build main component
@@ -1790,6 +2043,7 @@ Files to create/modify:
 ```
 
 **Step 5: Add Localization/Configuration**
+
 ```
 [Example based on your project's i18n/config system]
 // Add translation keys
@@ -1800,6 +2054,7 @@ Files to create/modify:
 #### Phase 3: Testing (30-45 minutes)
 
 **Unit Tests:**
+
 ```
 [Example test structure for your testing framework]
 // Test individual functions/methods
@@ -1809,6 +2064,7 @@ Files to create/modify:
 ```
 
 **Integration Tests:**
+
 ```
 [Example integration test structure]
 // Test API endpoints
@@ -1818,6 +2074,7 @@ Files to create/modify:
 ```
 
 **End-to-End Tests:**
+
 ```
 [Example E2E test structure]
 // Test complete user flows
@@ -1829,6 +2086,7 @@ Files to create/modify:
 #### Phase 4: Documentation (15-20 minutes)
 
 **Create Feature Documentation:**
+
 ```markdown
 // docs/features/[feature-name].md
 # Feature: [Feature Name]
@@ -1882,6 +2140,7 @@ Files to create/modify:
 ```
 
 **Update Project Documentation:**
+
 ```markdown
 // Update relevant project docs
 - API documentation (if applicable)
@@ -1893,6 +2152,7 @@ Files to create/modify:
 #### Phase 5: Final Verification & Commit (10 minutes)
 
 **Verification Checklist:**
+
 ```bash
 # Run all quality checks
 [run type checker/compiler]
@@ -1908,6 +2168,7 @@ Files to create/modify:
 ```
 
 **Git Commit:**
+
 ```bash
 git add .
 git commit -m "feat: [Brief feature description]
@@ -1926,6 +2187,7 @@ Tests: [Z] new tests ([test types])
 ### Workflow Summary
 
 **Total Time:** ~3.5-4 hours
+
 - Planning: 30 minutes
 - Implementation: 2-3 hours
 - Testing: 45 minutes
@@ -1933,6 +2195,7 @@ Tests: [Z] new tests ([test types])
 - Verification: 10 minutes
 
 **Key Takeaways:**
+
 1. ✅ Always start with planning and architecture design
 2. ✅ Use existing patterns and components from the project
 3. ✅ Test incrementally as you build
@@ -1953,6 +2216,7 @@ Tests: [Z] new tests ([test types])
 ### 14.1. When Multiple Agents Work on Same Project
 
 **Coordination principles:**
+
 - ✅ Always read the full conversation history before acting
 - ✅ Check for in-progress work (look for uncommitted changes)
 - ✅ Respect previous agent's patterns and decisions
@@ -2040,12 +2304,14 @@ Tests: [Z] new tests ([test types])
 **When multiple agents work simultaneously:**
 
 **Safe for Parallel Work:**
+
 - ✅ Different features in different files
 - ✅ Different sections of documentation
 - ✅ Independent bug fixes
 - ✅ Different service/module layers
 
 **Requires Coordination:**
+
 - ⚠️ Same file modifications
 - ⚠️ Shared components/utilities
 - ⚠️ Database schema changes
@@ -2053,6 +2319,7 @@ Tests: [Z] new tests ([test types])
 - ⚠️ API contracts
 
 **Coordination strategy:**
+
 ```markdown
 Before starting work on shared resources:
 1. Check git status for uncommitted changes
@@ -2090,6 +2357,7 @@ Remove by: [Date or condition]
 ### 14.7. Agent Collaboration Best Practices
 
 **DO:**
+
 - ✅ Read before acting (check conversation history)
 - ✅ Respect existing decisions unless clearly wrong
 - ✅ Document your reasoning
@@ -2099,6 +2367,7 @@ Remove by: [Date or condition]
 - ✅ Ask for clarification when uncertain
 
 **DON'T:**
+
 - ❌ Silently undo another agent's work
 - ❌ Make pattern-changing decisions without documentation
 - ❌ Leave work in broken state when handing off
@@ -2183,6 +2452,7 @@ Remove by: [Date or condition]
 | O(n!) | Factorial | Permutations, traveling salesman |
 
 **Space Complexity Notes:**
+
 - In-place algorithms: O(1) extra space
 - Recursive algorithms: O(n) stack space for n recursive calls
 - Hash tables: O(n) for n elements
@@ -2205,6 +2475,7 @@ Remove by: [Date or condition]
 ### 15.3. Tools Reference
 
 **For AI Agents:**
+
 - `read_file` - Read file contents with line ranges
 - `semantic_search` - Search codebase semantically
 - `grep_search` - Search with exact strings or regex
@@ -2275,6 +2546,7 @@ Remove by: [Date or condition]
 ### 15.7. Best Practices Summary
 
 **DO:**
+
 - ✅ Read before writing
 - ✅ Test before committing
 - ✅ Follow existing patterns
@@ -2287,6 +2559,7 @@ Remove by: [Date or condition]
 - ✅ Communicate with other agents
 
 **DON'T:**
+
 - ❌ Assume file contents
 - ❌ Skip error checking
 - ❌ Introduce inconsistencies
@@ -2332,6 +2605,7 @@ Remove by: [Date or condition]
 ### Template Maintenance
 
 **When to Update:**
+
 - New architectural patterns introduced
 - Major technology changes
 - Common mistakes identified
@@ -2339,6 +2613,7 @@ Remove by: [Date or condition]
 - Team conventions evolved
 
 **How to Update:**
+
 - Keep Section 1 (Agent Mode Rules) stable - these are universal
 - Update Section 2 (Quick Reference) frequently - project changes
 - Evolve Sections 6-14 as best practices emerge
@@ -2349,7 +2624,9 @@ Remove by: [Date or condition]
 ## Changelog
 
 ### Version 2.1 - November 17, 2025
+
 **Production Enhancements (100/100):**
+
 - ✅ Added TL;DR summaries to Sections 9, 10, 11 (quick navigation)
 - ✅ Added "See Also" cross-references across all major sections
 - ✅ Added navigation links ("Back to Table of Contents") in Sections 9-14
@@ -2360,7 +2637,9 @@ Remove by: [Date or condition]
 - ✅ Quality Score: 100/100 (Enterprise Production-Ready)
 
 ### Version 2.0 - November 17, 2025
+
 **Major Enhancements:**
+
 - ✅ Added Section 4: Agent Communication Patterns (user interaction guidelines)
 - ✅ Added Section 9: Debugging & Troubleshooting Guide (systematic problem-solving)
 - ✅ Added Section 10: Performance & Optimization Patterns (efficiency guidelines)
@@ -2373,7 +2652,9 @@ Remove by: [Date or condition]
 - ✅ Total sections: 15 (up from 10)
 
 ### Version 1.0 - November 17, 2025
+
 **Initial Release:**
+
 - Core agent mode rules and workflows
 - Universal template framework
 - 10 foundational sections
