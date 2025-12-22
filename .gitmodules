@@ -1,4 +1,4 @@
-[submodule "cloth-store-app-tryon"]
+[submodule "tryon"]
 	path = tryon
 	url = https://github.com/ProvaTryon/Prova-AI.git
 [submodule "backend"]
