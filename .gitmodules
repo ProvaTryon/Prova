@@ -1,9 +1,12 @@
 [submodule "backend"]
 	path = backend
 	url = https://github.com/ProvaTryon/Prova-Backend.git
+	branch = main
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/ProvaTryon/Prova-Frontend.git
+	branch = main
 [submodule "tryon"]
 	path = tryon
 	url = https://github.com/ProvaTryon/Prova-AI
+	branch = main
