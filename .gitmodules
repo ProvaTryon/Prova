@@ -1,9 +1,9 @@
-[submodule "tryon"]
-	path = tryon
-	url = https://github.com/YousefAyman125/cloth-store-app-tryon.git
 [submodule "backend"]
 	path = backend
 	url = https://github.com/ProvaTryon/Prova-Backend.git
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/ProvaTryon/Prova-Frontend.git
+[submodule "tryon"]
+	path = tryon
+	url = https://github.com/ProvaTryon/Prova-AI
