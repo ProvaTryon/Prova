@@ -23,6 +23,7 @@
 - Product management API
 - Order management API
 - Body measurements API
+- Add validation schemas
 
 ### AI/ML (Amro)
 - 2D virtual try-on core implementation
@@ -60,7 +61,6 @@
 - [ ] Design database schema for posts/likes/shares
 - [ ] Create API routes structure (`/api/community/*`)
 - [ ] Implement post creation endpoint
-- [ ] Add validation schemas
 **Deliverable:** Community API design doc + basic post endpoint
 
 #### Seif Mohamed - Chatbot Enhancement
