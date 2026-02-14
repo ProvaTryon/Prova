@@ -1,0 +1,726 @@
+[
+  {
+    "id": "TC001",
+    "title": "User Login Success",
+    "description": "Verify that a user can successfully login with valid email and password credentials and receives a valid JWT token.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the login page"
+      },
+      {
+        "type": "action",
+        "description": "Enter a valid registered email address"
+      },
+      {
+        "type": "action",
+        "description": "Enter the correct password"
+      },
+      {
+        "type": "action",
+        "description": "Click the Login button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify login success and receipt of valid JWT token"
+      },
+      {
+        "type": "assertion",
+        "description": "User is redirected to the homepage or dashboard"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "User Login Failure with Incorrect Credentials",
+    "description": "Verify that login fails when invalid email or password is provided and an appropriate error message is displayed.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the login page"
+      },
+      {
+        "type": "action",
+        "description": "Enter a valid registered email address"
+      },
+      {
+        "type": "action",
+        "description": "Enter an incorrect password"
+      },
+      {
+        "type": "action",
+        "description": "Click the Login button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that login is rejected"
+      },
+      {
+        "type": "assertion",
+        "description": "Error message about invalid credentials is displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "User Signup with Valid Data",
+    "description": "Verify that a new user can successfully sign up with valid details including role selection and receives confirmation.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the signup page"
+      },
+      {
+        "type": "action",
+        "description": "Fill in all required fields with valid data (email, password, role selection, etc.)"
+      },
+      {
+        "type": "action",
+        "description": "Submit the signup form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify user account is created and confirmation message is shown"
+      },
+      {
+        "type": "assertion",
+        "description": "User is optionally logged in or redirected to login page"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Password Reset Flow with OTP",
+    "description": "Verify the password reset process including requesting OTP, validating OTP, and setting a new password.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the forgot password page"
+      },
+      {
+        "type": "action",
+        "description": "Enter registered email address for password reset"
+      },
+      {
+        "type": "action",
+        "description": "Request OTP for password reset"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify OTP is sent to the provided email"
+      },
+      {
+        "type": "action",
+        "description": "Enter received OTP and new password"
+      },
+      {
+        "type": "action",
+        "description": "Submit new password"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify password is successfully reset and user can login with new password"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Browse Product Catalog with Filters and Sorting",
+    "description": "Verify users can browse products with category filters, price range, brand, size, and color filters along with sorting options.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the shop page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify product grid loads with product images and prices"
+      },
+      {
+        "type": "action",
+        "description": "Use category filter to select one category"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify product grid updates to show only products in selected category"
+      },
+      {
+        "type": "action",
+        "description": "Apply price range filter with minimum and maximum value"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify products match price range filter"
+      },
+      {
+        "type": "action",
+        "description": "Apply brand filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify product grid updates accordingly"
+      },
+      {
+        "type": "action",
+        "description": "Apply size and color filters"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify filtered results only show products that match all selected criteria"
+      },
+      {
+        "type": "action",
+        "description": "Sort products by price ascending"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify products are sorted correctly by ascending price"
+      },
+      {
+        "type": "action",
+        "description": "Sort products by newest arrivals"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify products are sorted correctly by newest"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Product Detail Page Display and Interactions",
+    "description": "Verify the product detail page shows all relevant details, images with zoom, selectable size/color options, reviews, and add to cart/wishlist functionality.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to a specific product detail page via product card or direct link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify main image and additional gallery images are displayed"
+      },
+      {
+        "type": "action",
+        "description": "Use image zoom feature on main image"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify zoom displays enlarged image properly"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify product description and specifications are visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify customer reviews and ratings are displayed"
+      },
+      {
+        "type": "action",
+        "description": "Select size and color options"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify selected options visually update and are selectable"
+      },
+      {
+        "type": "action",
+        "description": "Click 'Add to Cart' button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify product (with selected options) is added to shopping cart"
+      },
+      {
+        "type": "action",
+        "description": "Click 'Add to Wishlist' button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify product is added to wishlist"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Add, Update, Remove Items in Shopping Cart",
+    "description": "Verify users can add products to cart, change quantities, remove products, apply promo codes, and see updated prices in real-time.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to cart page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all cart items are displayed with correct images, names, options, and prices"
+      },
+      {
+        "type": "action",
+        "description": "Update quantity of a cart item"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify total price updates accordingly in real-time"
+      },
+      {
+        "type": "action",
+        "description": "Remove an item from the cart"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify item is removed and pricing updates correctly"
+      },
+      {
+        "type": "action",
+        "description": "Enter valid promo code and apply"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify promo code discounts are applied and shown in totals"
+      },
+      {
+        "type": "action",
+        "description": "Click 'Proceed to Checkout' button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify navigation to checkout page"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Multi-step Checkout Completion with COD Payment",
+    "description": "Verify that authenticated users can complete checkout by providing shipping info, selecting Cash on Delivery payment, reviewing order, and receiving confirmation.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login with valid user account"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to checkout page with items in cart"
+      },
+      {
+        "type": "action",
+        "description": "Enter valid shipping address details"
+      },
+      {
+        "type": "action",
+        "description": "Select Cash On Delivery as payment method"
+      },
+      {
+        "type": "action",
+        "description": "Review order summary for accuracy"
+      },
+      {
+        "type": "action",
+        "description": "Confirm and place the order"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify order confirmation is shown and order details are saved"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Merchant Product Creation, Editing and Deletion",
+    "description": "Verify merchants can perform CRUD operations for products with image uploading through Cloudinary and proper validation.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as merchant user"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to merchant products page"
+      },
+      {
+        "type": "action",
+        "description": "Click 'Add Product' button and fill in valid product details with all required fields"
+      },
+      {
+        "type": "action",
+        "description": "Upload main product image via drag-and-drop"
+      },
+      {
+        "type": "action",
+        "description": "Upload up to 5 additional images"
+      },
+      {
+        "type": "action",
+        "description": "Set available sizes and colors"
+      },
+      {
+        "type": "action",
+        "description": "Enter stock quantity"
+      },
+      {
+        "type": "action",
+        "description": "Submit the product creation form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify product appears in merchant's product list"
+      },
+      {
+        "type": "action",
+        "description": "Click edit icon and modify product details"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify product updates are saved and reflected"
+      },
+      {
+        "type": "action",
+        "description": "Click delete icon to remove product"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify product is removed from product list"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Merchant Order Management and Status Update",
+    "description": "Verify merchants can view incoming orders, filter by status, update order status, add notes, and print packing slips.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as merchant user"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to merchant orders page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify list of orders is displayed with various statuses"
+      },
+      {
+        "type": "action",
+        "description": "Use status filters to view orders by processing, shipped, delivered"
+      },
+      {
+        "type": "action",
+        "description": "Select an order to view details"
+      },
+      {
+        "type": "action",
+        "description": "Update order status to 'shipped'"
+      },
+      {
+        "type": "action",
+        "description": "Add internal notes to the order"
+      },
+      {
+        "type": "action",
+        "description": "Print packing slip for the order"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify order status and notes are saved and packing slip is generated"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "User Profile Information and Body Measurement Management",
+    "description": "Verify authenticated users can view and update personal information and body measurements, and see order history section.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as a registered user"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to profile page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify current profile information is displayed correctly"
+      },
+      {
+        "type": "action",
+        "description": "Edit name, email, phone number, and address fields"
+      },
+      {
+        "type": "action",
+        "description": "Add or update body measurements including chest, waist, hips, height, and weight"
+      },
+      {
+        "type": "action",
+        "description": "Save profile changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify updated information is saved and displayed correctly"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify order history section is present and lists past orders"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Order History Viewing and Shipment Tracking",
+    "description": "Verify that logged-in users can view order history with status filtering, view order details, track shipments, and cancel unshipped orders.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as a registered user"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to orders page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify list of all user orders with correct statuses is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Apply filters to show orders by pending, shipped, and delivered status"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify filters display correct subset of orders"
+      },
+      {
+        "type": "action",
+        "description": "Select an order to view detailed information"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify order details including items, prices, and shipment tracking info"
+      },
+      {
+        "type": "action",
+        "description": "Use tracking number link or widget to track shipment status externally"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to cancel an order that is not yet shipped"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify order is cancelled and status is updated"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to cancel an order that has been shipped"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify cancellation is prevented and appropriate message is shown"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "AI-Powered Personalized Product Recommendations",
+    "description": "Verify authenticated users receive personalized recommendations based on their browsing and purchase history, and can interact with recommended items.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as a registered user with browsing history"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to recommendations page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify personalized product grid is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify presence of 'Recommended for You' section based on user behavior"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify 'Complete the Look' outfit suggestions are shown"
+      },
+      {
+        "type": "action",
+        "description": "Click a recommended product"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify navigation to product detail page of selected recommended product"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Wishlist Management: Add, Remove, Share",
+    "description": "Verify that authenticated users can view, manage, add to cart from wishlist, remove products, and share their wishlist.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as a registered user"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to wishlist page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all saved favorite products are displayed correctly"
+      },
+      {
+        "type": "action",
+        "description": "Remove a product from the wishlist"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify product is removed and wishlist updates"
+      },
+      {
+        "type": "action",
+        "description": "Add a product from wishlist to the shopping cart"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify product appears in shopping cart"
+      },
+      {
+        "type": "action",
+        "description": "Use wishlist share feature to share via link or supported methods"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify generated shareable wishlist link or sharing dialog appears"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Admin Dashboard Metrics and User Management",
+    "description": "Verify admin users can view platform-wide statistics, manage user accounts including suspension and deletion, approve or reject merchant applications, and moderate product listings.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as an admin user"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the admin dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify platform statistics for users, orders, and revenue are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify merchant performance rankings are shown"
+      },
+      {
+        "type": "action",
+        "description": "Access user management section"
+      },
+      {
+        "type": "action",
+        "description": "Suspend a user account"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user account is suspended and changes are reflected"
+      },
+      {
+        "type": "action",
+        "description": "Delete a user account"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user account is removed from the system"
+      },
+      {
+        "type": "action",
+        "description": "Review pending merchant applications and approve or reject"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify merchant applications status updates and notifications are sent"
+      },
+      {
+        "type": "action",
+        "description": "Moderate product listings (e.g. approve or reject inappropriate listings)"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify product moderation actions take place and listings update accordingly"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Language Switching Between English and Arabic with RTL Support",
+    "description": "Verify that users can switch language instantly between English and Arabic and that UI updates correctly with proper RTL layout and mirrored elements.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to any page with language switcher visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on language switcher control"
+      },
+      {
+        "type": "action",
+        "description": "Select Arabic from the language options"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify UI text changes to Arabic and all interface elements switch to RTL layout"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify menus, buttons, icons appear mirrored appropriately"
+      },
+      {
+        "type": "action",
+        "description": "Switch language back to English"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify UI text switches back to English and layout returns to LTR"
+      }
+    ]
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "loginUser": "merchant5@example.com",
+  "loginPassword": "Merchant@123",
+  "executionArgs": {
+    "projectName": "Prova",
+    "projectPath": "c:\\Users\\SEIFEZZELDINSAYEDSAY\\Prova",
+    "testIds": [],
+    "additionalInstruction": "",
+    "envs": {
+      "API_KEY": "sk-user-o14uPqCXZ4h8SLKjqOPXkue5qhQwZXk64UL3n_KJ38ZUZa1Qv01elJ0dT0626SPP4UiXRSp0k0qPLharQlvX8VgCKbJ6pPWYvzQ1CFs50JQNPeWxG5tLeS_3unMUNU0PnMc"
+    }
+  },
+  "serverPort": 34299,
+  "proxy": "http://205a3f28-810f-4590-9a26-be8ea63c8e2d:EwhTYygqemxDl5hwp8hi6xDehEB0sju7@tun.testsprite.com:8080"
+}
