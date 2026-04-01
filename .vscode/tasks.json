@@ -1,0 +1,103 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "lint-backend-common-schema",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-C",
+				"backend",
+				"exec",
+				"eslint",
+				"src/schemas/common.ts"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "format-backend-common-schema",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-C",
+				"backend",
+				"exec",
+				"prettier",
+				"--write",
+				"src/schemas/common.ts"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "lint-backend-common-schema",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-C",
+				"backend",
+				"exec",
+				"eslint",
+				"src/schemas/common.ts"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "typecheck-backend",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-C",
+				"backend",
+				"exec",
+				"tsc",
+				"--noEmit"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "lint-product-validation-fix",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-C",
+				"backend",
+				"exec",
+				"eslint",
+				"src/schemas/common.ts",
+				"src/schemas/product.schema.ts",
+				"src/routes/product.routes.ts",
+				"src/controller/product.controller.ts"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "lint-product-validation-fix",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-C",
+				"backend",
+				"exec",
+				"eslint",
+				"src/schemas/common.ts",
+				"src/schemas/product.schema.ts",
+				"src/routes/product.routes.ts",
+				"src/controller/product.controller.ts"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "typecheck-backend-product-fix",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"-C",
+				"backend",
+				"exec",
+				"tsc",
+				"--noEmit"
+			],
+			"isBackground": false
+		}
+	]
+}
