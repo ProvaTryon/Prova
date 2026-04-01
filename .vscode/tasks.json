@@ -98,6 +98,15 @@
 				"--noEmit"
 			],
 			"isBackground": false
+		},
+		{
+			"label": "noop-finalize-measurement-test-guide",
+			"type": "shell",
+			"command": "echo",
+			"args": [
+				"measurement test guide prepared"
+			],
+			"isBackground": false
 		}
 	]
 }
