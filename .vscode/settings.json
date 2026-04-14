@@ -3,6 +3,18 @@
     "*.md": "markdown",
     "copilot-instructions.md": "markdown"
   },
+  "files.watcherExclude": {
+    "**/.git/**": true,
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/.venv/**": true,
+    "**/venv/**": true,
+    "**/__pycache__/**": true,
+    "**/.pytest_cache/**": true,
+    "**/.mypy_cache/**": true
+  },
   "makefile.configureOnOpen": false,
   "makefile.extensionOutputFolder": "./.vscode"
 }
