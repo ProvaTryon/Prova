@@ -10,7 +10,7 @@
 	path = tryon
 	url = https://github.com/ProvaTryon/Prova-AI.git
 	branch = main
-[submodule "ChatBot"]
-	path = ChatBot
+[submodule "chat"]
+	path = chat
 	url = https://github.com/ProvaTryon/Prova-ChatBot.git
 	branch = main
