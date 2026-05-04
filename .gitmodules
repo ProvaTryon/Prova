@@ -8,8 +8,9 @@
 	branch = main
 [submodule "tryon"]
 	path = tryon
-	url = https://github.com/ProvaTryon/Prova-AI
+	url = https://github.com/ProvaTryon/Prova-AI.git
 	branch = main
 [submodule "ChatBot"]
-	path = Prova-ChatBot
-	url = https://github.com/ProvaTryon/Prova-ChatBot
+	path = ChatBot
+	url = https://github.com/ProvaTryon/Prova-ChatBot.git
+	branch = main
